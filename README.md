@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Github Repo Template for a Pkgdown Lesson
+# Writing Reusable and Modular Code
 
 <!-- badges: start -->
 
@@ -12,11 +12,14 @@ workflow](https://github.com/uf-repro/lesson-template/workflows/pkgdown/badge.sv
 
 ## Description
 
-This github repository serves as a template for a short-form workshop,
-lesson, or course to be shared in the form of a pkgdown website with
-slides rendered by xaringan. This description text for the package and
-lesson should be written in `README.Rmd`, which, when knit, will then
-update the package’s `DESCRIPTION` file.
+This workshop helps attendees advance their programming skills through
+instruction in writing functions. Attendees will learn about the DRY
+principle (“Don’t Repeat Yourself”) and tips on turning complex code
+into more manageable chunks, improving code robustness and reusability.
+
+*Attendees will be expected to have basic familiarity with programming,
+such as experience writing simple scripts or recent attendance at a
+Carpentries workshop* - <https://www.uf-carpentries.org/>
 
 ## Learning Outcomes
 

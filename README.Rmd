@@ -15,8 +15,10 @@ knitr::opts_chunk$set(
 
 ```{r, include = FALSE}
 
-lesson_title <- "Github Repo Template for a Pkgdown Lesson"
-lesson_description <- "This github repository serves as a template for a short-form workshop, lesson, or course to be shared in the form of a pkgdown website with slides rendered by xaringan. This description text for the package and lesson should be written in `README.Rmd`, which, when knit, will then update the package's `DESCRIPTION` file."
+lesson_title <- "Writing Reusable and Modular Code"
+lesson_description <- "This workshop helps attendees advance their programming skills through instruction in writing functions. Attendees will learn about the DRY principle (\"Don't Repeat Yourself\") and tips on turning complex code into more manageable chunks, improving code robustness and reusability.
+
+*Attendees will be expected to have basic familiarity with programming, such as experience writing simple scripts or recent attendance at a Carpentries workshop* - https://www.uf-carpentries.org/"
 
 desc::desc_set(Title = lesson_title, 
                Description = lesson_description)

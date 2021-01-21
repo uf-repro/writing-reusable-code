@@ -1,5 +1,5 @@
-Package: lesson.template
-Title: Github Repo Template for a Pkgdown Lesson
+Package: writing.reusable.code
+Title: Writing Reusable and Modular Code
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Hao",
@@ -7,7 +7,9 @@ Authors@R:
            role = c("aut", "cre"),
            email = "haoye@ufl.edu",
            comment = c(ORCID = "0000-0002-8630-1458"))
-Description: This github repository serves as a template for a short-form workshop, lesson, or course to be shared in the form of a pkgdown website with slides rendered by xaringan. This description text for the package and lesson should be written in `README.Rmd`, which, when knit, will then update the package's `DESCRIPTION` file.
+Description: This workshop helps attendees advance their programming skills through instruction in writing functions. Attendees will learn about the DRY principle ("Don't Repeat Yourself") and tips on turning complex code into more manageable chunks, improving code robustness and reusability.
+ .
+ *Attendees will be expected to have basic familiarity with programming, such as experience writing simple scripts or recent attendance at a Carpentries workshop* - https://www.uf-carpentries.org/
 License: CC BY 4.0
 Encoding: UTF-8
 LazyData: true
