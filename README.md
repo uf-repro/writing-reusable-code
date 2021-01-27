@@ -23,6 +23,11 @@ Carpentries workshop* - <https://www.uf-carpentries.org/>
 
 ## Learning Outcomes
 
-By the end of the workshop, participants will be able to: \*
+By the end of the workshop, participants will be able to:
+
+  - write modular functions to reduce complexity and increase
+    reproducibility
+  - use data structures to manage inputs and outputs
+  - recognize basic code smells
 
 ## References

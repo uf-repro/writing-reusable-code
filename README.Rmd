@@ -30,7 +30,6 @@ desc::desc_set(Title = lesson_title,
 <!-- badges: start -->
 [![GitHub Actions pkgdown workflow](https://github.com/uf-repro/lesson-template/workflows/pkgdown/badge.svg)](https://github.com/uf-repro/lesson-template/actions?query=workflow%3Apkgdown)
 
-
 <!-- badges: end -->
 
 ## Description
@@ -40,7 +39,10 @@ desc::desc_set(Title = lesson_title,
 ## Learning Outcomes
 
 By the end of the workshop, participants will be able to:
-* 
+
+* write modular functions to reduce complexity and increase reproducibility
+* use data structures to manage inputs and outputs
+* recognize basic code smells
 
 ## References
 
