@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">writing.reusable.code</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -120,37 +120,210 @@
 
 <div id="syllabus" class="section level1">
 
-<p>Hao Ye Health Science Center Libraries, University of Florida (updated: 2021-01-27)</p>
+<p>Hao Ye Health Science Center Libraries, University of Florida (updated: 2021-01-28)</p>
 <div id="intro" class="section level2">
 <h2 class="hasAnchor">
 <a href="#intro" class="anchor"></a>Intro</h2>
+</div>
+<div id="any-fool-can-write-code-that-a-computer-can-understand-br-good-programmers-write-code-that-humans-can-understand" class="section level2">
+<h2 class="hasAnchor">
+<a href="#any-fool-can-write-code-that-a-computer-can-understand-br-good-programmers-write-code-that-humans-can-understand" class="anchor"></a>“Any fool can write code that a computer can understand. &lt;br /&gt;Good programmers write code that humans can understand.”</h2>
+<p>&lt;p style=“text-align:right”&gt;from “Refactoring: Improving the Design of Existing Code” by Martin Fowler&lt;/p&gt;</p>
 <ul>
 <li>Motivations
 <ul>
-<li>because</li>
+<li>In addition to code that works, ideally it is <strong>also</strong>:
+<ul>
+<li>easy to read and understand</li>
+<li>easy to maintain or change</li>
+<li>obvious in its correctness</li>
+<li>aesthetically pleasing?</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>Learning Outcomes By the end of the workshop, participants will be able to:
 <ul>
-<li>
+<li>implement functions to make code more modular and increase reproducibility</li>
+<li>use data structures to manage inputs and outputs</li>
+<li>recognize and fix basic code smells</li>
+</ul>
+</li>
+<li>Disclaimer
+<ul>
+<li>Concepts are intended to be universal, but code examples will be in <strong><code>R</code></strong>.</li>
+<li>Like any other skill, <em>effective</em> practice matters!
+<ul>
+<li>working code != easy-to-read code (e.g. answers from Stack Overflow)</li>
+<li>when reading, ask yourself “is it clear what is going on?” (even if you don’t know the detailed mechanisms)</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
-<div id="subheading" class="section level2">
+<div id="breaking-code-into-functions" class="section level2">
 <h2 class="hasAnchor">
-<a href="#subheading" class="anchor"></a>Subheading</h2>
+<a href="#breaking-code-into-functions" class="anchor"></a>Breaking Code into Functions</h2>
 <ul>
 <li>
-<p>Topic Description –</p>
-<h2 id="so-what">So what?</h2>
+<p>What are functions?</p>
 <ul>
-<li><p>reason!</p></li>
 <li>
-<p>another reason! <img src="image.jpg" alt="Figure alt-text"></p>
-<h2 id="thanks">Thanks</h2>
+<strong>Functions</strong> let you refer to another piece of code by (a hopefully informative!) name</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R">  <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="op">)</span>
+  <span class="co"># computes arithmetic mean of input</span></code></pre></div>
+<ul>
+<li>You can write your own functions, too!</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R">  <span class="va">celsius_to_fahrenheit</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+    <span class="fl">9</span><span class="op">/</span><span class="fl">5</span> <span class="op">*</span> <span class="va">x</span> <span class="op">+</span> <span class="fl">32</span>
+  <span class="op">}</span></code></pre></div>
+</li>
+<li>
+<p>Why write your own functions?</p>
+<ul>
+<li><h2 id="it-seems-like-extra-work">It seems like extra work…</h2></li>
+<li>BUT, it enables:
+<ul>
+<li>repeating the same operation on different inputs (e.g. datasets, variables, parameter values, etc.)</li>
+<li>clarifying the larger organizational structure of the code</li>
+</ul>
 </li>
 </ul>
+</li>
+<li><p>Duplication ```r df &lt;- data.frame( a = rnorm(10), b = rnorm(10), c = rnorm(10))</p></li>
+<li><p>rescale all the columns of df df<span class="math inline"><em>a</em> &lt;  − (<em>d</em><em>f</em></span>a - min(df<span class="math inline"><em>a</em>))/(<em>m</em><em>a</em><em>x</em>(<em>d</em><em>f</em></span>a) - min(df<span class="math inline"><em>a</em>))<em>d</em><em>f</em></span>b &lt;- (df<span class="math inline"><em>b</em> − <em>m</em><em>i</em><em>n</em>(<em>d</em><em>f</em></span>b)) / (max(df<span class="math inline"><em>b</em>) − <em>m</em><em>i</em><em>n</em>(<em>d</em><em>f</em></span>a)) df<span class="math inline"><em>c</em> &lt;  − (<em>d</em><em>f</em></span>c - min(df<span class="math inline"><em>c</em>))/(<em>m</em><em>a</em><em>x</em>(<em>d</em><em>f</em></span>c) - min(df$c)) ```</p></li>
+<li><p>Define a function! ```r rescale01 &lt;- function(x) { (x - min(x)) / (max(x) - min(x)) }</p></li>
+<li><p>rescale all the columns of df df<span class="math inline"><em>a</em> &lt;  − <em>r</em><em>e</em><em>s</em><em>c</em><em>a</em><em>l</em><em>e</em>01(<em>d</em><em>f</em></span>a) df<span class="math inline"><em>b</em> &lt;  − <em>r</em><em>e</em><em>s</em><em>c</em><em>a</em><em>l</em><em>e</em>01(<em>d</em><em>f</em></span>b) df<span class="math inline"><em>c</em> &lt;  − <em>r</em><em>e</em><em>s</em><em>c</em><em>a</em><em>l</em><em>e</em>01(<em>d</em><em>f</em></span>c)</p></li>
+<li><p>or with dplyr df &lt;- df %&gt;% mutate_at(c(“a”, “b”, “c”), rescale01) ```</p></li>
+<li>
+<p>Notes</p>
+<ul>
+<li>calculation defined once and re-used</li>
+<li>changes or corrections only need to happen in one place</li>
+<li>fewer chances for error when modifying after copy-paste</li>
+</ul>
+</li>
+<li><p>Workflow structure <img src="project-diagram.svg" title="Diagram of the workflow in a hypothetical data analysis project with boxes representing code and data/output files. &amp;quot;Raw data&amp;quot; goes into &amp;quot;Pre-processing&amp;quot; and then &amp;quot;Pre-processed data&amp;quot;. &amp;quot;Pre-processed data&amp;quot; goes directly into &amp;quot;Figure 3&amp;quot; (code) and then &amp;quot;Figure 3&amp;quot; (Data file), but also into &amp;quot;Analysis/Modelling&amp;quot;. The &amp;quot;Model&amp;quot; output from &amp;quot;Analysis/Modelling&amp;quot; is used in code for &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;, which generate files &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;." alt="Diagram of the workflow in a hypothetical data analysis project with boxes representing code and data/output files. &amp;quot;Raw data&amp;quot; goes into &amp;quot;Pre-processing&amp;quot; and then &amp;quot;Pre-processed data&amp;quot;. &amp;quot;Pre-processed data&amp;quot; goes directly into &amp;quot;Figure 3&amp;quot; (code) and then &amp;quot;Figure 3&amp;quot; (Data file), but also into &amp;quot;Analysis/Modelling&amp;quot;. The &amp;quot;Model&amp;quot; output from &amp;quot;Analysis/Modelling&amp;quot; is used in code for &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;, which generate files &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;." width="60%"> .tiny[modified from “Reproducible research best practices @JupyterCon” (version 18) by Rachael Tatman, <a href="https://www.kaggle.com/rtatman/reproducible-research-best-practices-jupytercon" class="uri">https://www.kaggle.com/rtatman/reproducible-research-best-practices-jupytercon</a>]</p></li>
+<li>
+<p>Example Code</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">data_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"readings.dat"</span><span class="op">)</span>
+<span class="va">data_proc</span> <span class="op">&lt;-</span> <span class="fu">preprocess_data</span><span class="op">(</span><span class="va">data_raw</span><span class="op">)</span>
+<span class="va">fitted_model</span> <span class="op">&lt;-</span> <span class="fu">run_model</span><span class="op">(</span><span class="va">data_proc</span><span class="op">)</span>
+<span class="fu">plot_model_forecasts</span><span class="op">(</span><span class="va">fitted_model</span>,
+    <span class="st">"figure-1_abundance-forecasts.pdf"</span><span class="op">)</span>
+<span class="fu">plot_abundance_residuals</span><span class="op">(</span><span class="va">fitted_model</span>,
+    <span class="st">"figure-2_abundance-residuals.pdf"</span><span class="op">)</span>
+<span class="fu">plot_abundance_histogram</span><span class="op">(</span><span class="va">data_proc</span>, 
+    <span class="st">"figure-3_abundance-residuals.pdf"</span><span class="op">)</span></code></pre></div>
+</li>
+<li>
+<p>Notes</p>
+<ul>
+<li>The steps of the analysis are clear.</li>
+<li>When making changes/additions:
+<ul>
+<li>you know which function to change</li>
+<li>adding a new analysis: write a new function, include it in the workflow script</li>
+</ul>
+</li>
+<li>Ideally save <code>data_proc</code> and <code>fitted_model</code> objects to a file. Then figure code can be changed without re-running the model.</li>
+</ul>
+</li>
+<li>
+<p>Tips for writing functions</p>
+<ul>
+<li>name things well</li>
+<li>plan for flexibility</li>
+<li>split large tasks into smaller units</li>
+</ul>
+</li>
+<li>
+<p>Tip 1: Naming Things</p>
+<ul>
+<li>function names should be verbs ```r</li>
+</ul>
+</li>
+<li><p>bad row_adder() permutation()</p></li>
+<li><p>good add_row() permute() ``` .small[examples from <a href="https://style.tidyverse.org/functions.html#naming" class="uri">https://style.tidyverse.org/functions.html#naming</a>]</p></li>
+<li>
+<p>Tip 2: Plan for flexibility</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">plot_abundance_histogram</span> <span class="op">&lt;-</span> 
+  <span class="kw">function</span><span class="op">(</span><span class="va">data_proc</span>, <span class="va">filename</span>, 
+           <span class="va">width</span> <span class="op">=</span> <span class="fl">6</span>, <span class="va">height</span> <span class="op">=</span> <span class="fl">6</span><span class="op">)</span> <span class="op">{</span> 
+    <span class="co"># {{code}} </span>
+  <span class="op">}</span></code></pre></div>
+<ul>
+<li>input data and location of output are easily changed</li>
+<li>width and height are adjustable, but have reasonable defaults</li>
+</ul>
+</li>
+<li>
+<p>Tip 3: Function size</p>
+<ul>
+<li>Each function should have a single well-defined task
+<ul>
+<li>this makes testing and debugging easier</li>
+</ul>
+</li>
+<li>Functions should ideally be 50 lines or less
+<ul>
+<li>not a hard rule, divide work into functions sensibly!</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Tip 3 (cont’d)</p>
+<ul>
+<li>If a line or set of lines of code is complicated, it might need to be its own function (with a good name) ```r</li>
+</ul>
+</li>
+<li><p>bad if (class(x)[[1]]) == “numeric” || class(x)[[1]] == “integer”)</p></li>
+<li><p>good if (is.numeric(x)) ``` .small[examples from <a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36" class="uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36</a>]</p></li>
+</ul>
+</div>
+<div id="code-smells" class="section level2">
+<h2 class="hasAnchor">
+<a href="#code-smells" class="anchor"></a>Code Smells</h2>
+<ul>
+<li>
+<p>What are “code smells”</p>
+<ul>
+<li>aspects of the code that make it appear less ideal</li>
+<li>
+<h2 id="the-code-is-not-necessarily-buggy">the code is not necessarily buggy</h2>
+<ul>
+<li>but it is hard to tell!</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Example (code smell)</p></li>
+<li>
+<p>Solution</p>
+<ul>
+<li>follow a coding style guide</li>
+<li>use technological tools like automatic indentation and linters</li>
+<li>understand patterns and how to fix them
+<ul>
+<li>
+<strong>refactoring</strong>: rewriting code without changing its behavior (i.e. make it faster, cleaner, easier to use)</li>
+</ul>
+</li>
+<li>indentation</li>
+<li>spaces</li>
+</ul>
+</li>
+<li>
+<p>Comments</p>
+<h2 id="thanks">Thanks</h2>
 </li>
 <li><p>Let me know what content you’d like to see</p></li>
 <li><p>Contact me for additional questions or consultation requests!</p></li>
