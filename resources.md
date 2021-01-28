@@ -1,6 +1,6 @@
 # Additional Resources / Readings
 
-## Code Style
+## Code Style and Recommendations
 
 * ["The tidyverse style guide"](https://style.tidyverse.org/)
   - Hadley Wickham's online resource with details on naming and styling R code
@@ -8,6 +8,15 @@
 * ["Code Smells and Feels"](https://github.com/jennybc/code-smells-and-feels)
   - GitHub repo from Jenny Bryan on "code smells" - also check out the related [slides](https://speakerdeck.com/jennybc/code-smells-and-feels)
   
+* ["Column Names as Contracts"](https://emilyriederer.netlify.app/post/column-name-contracts/)
+  - Blogpost from Emily Riederer on selecting good column names to facilitate a data analysis workflow
+
+* ["Writing clear code"](https://kbroman.org/AdvData/14_clearcode.pdf)
+  - notes from Karl Broman
+  
+* ["RMarkdown Driven Development (RmdDD)"](https://emilyriederer.netlify.app/post/rmarkdown-driven-development/)
+  - Blogpost from Emily Riederer on structuring RMarkdown documents for data analysis; see also the ["RMarkdown Driven Development: the Technical Appendix"](https://emilyriederer.netlify.app/post/rmddd-tech-appendix/)
+
 ## Writing Functions
 
 * ["Functions"](https://r4ds.had.co.nz/functions.html)
@@ -17,6 +26,9 @@
 
 * ["The Wrong Abstraction"](https://sandimetz.com/blog/2016/1/20/the-wrong-abstraction)
   - blogpost from Sandi Metz on refactoring and complexity
+  
+* ["The drake R package"](https://docs.ropensci.org/drake/)
+  - `drake` is a workflow package to help manage large and complex analyses
   
 ## Book Recommendations from Twitter
 
