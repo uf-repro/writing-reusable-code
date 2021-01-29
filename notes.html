@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">writing.reusable.code</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -102,6 +102,12 @@
      
   </a>
 </li>
+<li>
+  <a href="https://github.com/uf-repro/writing-reusable-code/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -120,14 +126,14 @@
 
 <div id="syllabus" class="section level1">
 
-<p>Hao Ye Health Science Center Libraries, University of Florida (updated: 2021-01-28)</p>
+<p>Hao Ye Health Science Center Libraries, University of Florida (updated: 2021-01-29)</p>
 <div id="intro" class="section level2">
 <h2 class="hasAnchor">
 <a href="#intro" class="anchor"></a>Intro</h2>
-</div>
-<div id="any-fool-can-write-code-that-a-computer-can-understand-br-good-programmers-write-code-that-humans-can-understand" class="section level2">
-<h2 class="hasAnchor">
-<a href="#any-fool-can-write-code-that-a-computer-can-understand-br-good-programmers-write-code-that-humans-can-understand" class="anchor"></a>“Any fool can write code that a computer can understand. &lt;br /&gt;Good programmers write code that humans can understand.”</h2>
+<div id="any-fool-can-write-code-that-a-computer-can-understand-good-programmers-write-code-that-humans-can-understand" class="section level3">
+<h3 class="hasAnchor">
+<a href="#any-fool-can-write-code-that-a-computer-can-understand-good-programmers-write-code-that-humans-can-understand" class="anchor"></a>“Any fool can write code that a computer can understand.<br>
+Good programmers write code that humans can understand.”</h3>
 <p>&lt;p style=“text-align:right”&gt;from “Refactoring: Improving the Design of Existing Code” by Martin Fowler&lt;/p&gt;</p>
 <ul>
 <li>Motivations
@@ -162,6 +168,7 @@
 </li>
 </ul>
 </div>
+</div>
 <div id="breaking-code-into-functions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#breaking-code-into-functions" class="anchor"></a>Breaking Code into Functions</h2>
@@ -186,7 +193,7 @@
 <li>
 <p>Why write your own functions?</p>
 <ul>
-<li><h2 id="it-seems-like-extra-work">It seems like extra work…</h2></li>
+<li>It seems like extra work…</li>
 <li>BUT, it enables:
 <ul>
 <li>repeating the same operation on different inputs (e.g. datasets, variables, parameter values, etc.)</li>
@@ -208,7 +215,7 @@
 <li>fewer chances for error when modifying after copy-paste</li>
 </ul>
 </li>
-<li><p>Workflow structure <img src="project-diagram.svg" title="Diagram of the workflow in a hypothetical data analysis project with boxes representing code and data/output files. &amp;quot;Raw data&amp;quot; goes into &amp;quot;Pre-processing&amp;quot; and then &amp;quot;Pre-processed data&amp;quot;. &amp;quot;Pre-processed data&amp;quot; goes directly into &amp;quot;Figure 3&amp;quot; (code) and then &amp;quot;Figure 3&amp;quot; (Data file), but also into &amp;quot;Analysis/Modelling&amp;quot;. The &amp;quot;Model&amp;quot; output from &amp;quot;Analysis/Modelling&amp;quot; is used in code for &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;, which generate files &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;." alt="Diagram of the workflow in a hypothetical data analysis project with boxes representing code and data/output files. &amp;quot;Raw data&amp;quot; goes into &amp;quot;Pre-processing&amp;quot; and then &amp;quot;Pre-processed data&amp;quot;. &amp;quot;Pre-processed data&amp;quot; goes directly into &amp;quot;Figure 3&amp;quot; (code) and then &amp;quot;Figure 3&amp;quot; (Data file), but also into &amp;quot;Analysis/Modelling&amp;quot;. The &amp;quot;Model&amp;quot; output from &amp;quot;Analysis/Modelling&amp;quot; is used in code for &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;, which generate files &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;." width="60%"> .tiny[modified from “Reproducible research best practices @JupyterCon” (version 18) by Rachael Tatman, <a href="https://www.kaggle.com/rtatman/reproducible-research-best-practices-jupytercon" class="uri">https://www.kaggle.com/rtatman/reproducible-research-best-practices-jupytercon</a>]</p></li>
+<li><p>Workflow structure <img src="project-diagram.svg" title="Diagram of the workflow in a hypothetical data analysis project with boxes representing code and data/output files. &amp;quot;Raw data&amp;quot; goes into &amp;quot;Pre-processing&amp;quot; and then &amp;quot;Pre-processed data&amp;quot;. &amp;quot;Pre-processed data&amp;quot; goes directly into &amp;quot;Figure 3&amp;quot; (code) and then &amp;quot;Figure 3&amp;quot; (Data file), but also into &amp;quot;Analysis/Modelling&amp;quot;. The &amp;quot;Model&amp;quot; output from &amp;quot;Analysis/Modelling&amp;quot; is used in code for &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;, which generate files &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;." alt="Diagram of the workflow in a hypothetical data analysis project with boxes representing code and data/output files. &amp;quot;Raw data&amp;quot; goes into &amp;quot;Pre-processing&amp;quot; and then &amp;quot;Pre-processed data&amp;quot;. &amp;quot;Pre-processed data&amp;quot; goes directly into &amp;quot;Figure 3&amp;quot; (code) and then &amp;quot;Figure 3&amp;quot; (Data file), but also into &amp;quot;Analysis/Modelling&amp;quot;. The &amp;quot;Model&amp;quot; output from &amp;quot;Analysis/Modelling&amp;quot; is used in code for &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;, which generate files &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;." width="60%"> modified from “Reproducible research best practices @JupyterCon” (version 18) by Rachael Tatman, <a href="https://www.kaggle.com/rtatman/reproducible-research-best-practices-jupytercon" class="uri">https://www.kaggle.com/rtatman/reproducible-research-best-practices-jupytercon</a></p></li>
 <li>
 <p>Example Code</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -250,7 +257,7 @@
 </ul>
 </li>
 <li><p>bad row_adder() permutation()</p></li>
-<li><p>good add_row() permute() ``` .small[examples from <a href="https://style.tidyverse.org/functions.html#naming" class="uri">https://style.tidyverse.org/functions.html#naming</a>]</p></li>
+<li><p>good add_row() permute() ``` examples from <a href="https://style.tidyverse.org/functions.html#naming" class="uri">https://style.tidyverse.org/functions.html#naming</a></p></li>
 <li>
 <p>Tip 2: Plan for flexibility</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -286,7 +293,7 @@
 </ul>
 </li>
 <li><p>bad if (class(x)[[1]]) == “numeric” || class(x)[[1]] == “integer”)</p></li>
-<li><p>good if (is.numeric(x)) ``` .small[examples from <a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36" class="uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36</a>]</p></li>
+<li><p>good if (is.numeric(x)) ``` examples from <a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36" class="uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36</a></p></li>
 </ul>
 </div>
 <div id="code-smells" class="section level2">
@@ -297,8 +304,7 @@
 <p>What are “code smells”</p>
 <ul>
 <li>aspects of the code that make it appear less ideal</li>
-<li>
-<h2 id="the-code-is-not-necessarily-buggy">the code is not necessarily buggy</h2>
+<li>the code is not necessarily buggy
 <ul>
 <li>but it is hard to tell!</li>
 </ul>
