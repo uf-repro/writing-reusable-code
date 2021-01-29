@@ -1,20 +1,25 @@
 {
-"title": "lesson.template",
-"creators": [
+  "title": "Writing Reusable and Modular Code",
+  "creators": [
     {
       "affiliation": "University of Florida",
       "name": "Hao Ye",
       "orcid": "0000-0002-8630-1458"
     }
-],
-    "description": "What the package does (one paragraph).",
-    "keywords": [
+  ],
+  "description": "This workshop helps attendees advance their programming skills through instruction in writing functions. Attendees will learn about the DRY principle (\"Don't Repeat Yourself\") and tips on turning complex code into more manageable chunks, improving code robustness and reusability.\n\n*Attendees will be expected to have basic familiarity with programming, such as experience writing simple scripts or recent attendance at a Carpentries workshop* - https://www.uf-carpentries.org/",
+  "keywords": [
     "Open Educational Resources",
     "Research Support Skills",
     "Version Control",
-    "Workshop"
+    "Workshop",
+    "Research Software Engineering",
+    "Reproducibility",
+    "Modular Code",
+    "Style Guide",
+    "Code Smell"
   ],
-    "access_right": "open",
-    "license": "CC-BY-4.0",
-    "upload_type": "lesson"
+  "access_right": "open",
+  "license": "CC-BY-4.0",
+  "upload_type": "lesson"
 }

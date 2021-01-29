@@ -20,10 +20,26 @@ lesson_description <- "This workshop helps attendees advance their programming s
 
 *Attendees will be expected to have basic familiarity with programming, such as experience writing simple scripts or recent attendance at a Carpentries workshop* - https://www.uf-carpentries.org/"
 
+lesson_keywords <- c("Open Educational Resources", 
+                     "Research Support Skills", 
+                     "Version Control", 
+                     "Workshop", 
+                     "Research Software Engineering", 
+                     "Reproducibility", 
+                     "Modular Code", 
+                     "Style Guide", 
+                     "Code Smell")
+
 desc::desc_set(Title = lesson_title, 
                Description = lesson_description)
-```
 
+zenodo_json <- jsonlite::read_json(".zenodo.json")
+zenodo_json$title <- lesson_title
+zenodo_json$description <- lesson_description
+zenodo_json$keywords <- as.list(lesson_keywords)
+jsonlite::write_json(zenodo_json, ".zenodo.json", 
+                     auto_unbox = TRUE, pretty = TRUE)
+```
 
 # `r lesson_title`
 
