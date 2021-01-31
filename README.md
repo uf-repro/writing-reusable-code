@@ -27,7 +27,7 @@ By the end of the workshop, participants will be able to:
 
   - write modular functions to reduce complexity and increase
     reproducibility
-  - use data structures to manage inputs and outputs
+  - use good practices to comment code
   - recognize basic code smells
 
 ## References

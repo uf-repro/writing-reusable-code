@@ -7,15 +7,15 @@
   
 * ["Code Smells and Feels"](https://github.com/jennybc/code-smells-and-feels)
   - GitHub repo from Jenny Bryan on "code smells" - also check out the related [slides](https://speakerdeck.com/jennybc/code-smells-and-feels)
-  
-* ["Column Names as Contracts"](https://emilyriederer.netlify.app/post/column-name-contracts/)
-  - Blogpost from Emily Riederer on selecting good column names to facilitate a data analysis workflow
 
 * ["Writing clear code"](https://kbroman.org/AdvData/14_clearcode.pdf)
   - notes from Karl Broman
+
+* ["Writing Clean Scientific Software"](https://zenodo.org/record/3922957)
+  - slides from Nick Murphy on clean coding (examples in Python, a bit physics-oriented)
   
-* ["RMarkdown Driven Development (RmdDD)"](https://emilyriederer.netlify.app/post/rmarkdown-driven-development/)
-  - Blogpost from Emily Riederer on structuring RMarkdown documents for data analysis; see also the ["RMarkdown Driven Development: the Technical Appendix"](https://emilyriederer.netlify.app/post/rmddd-tech-appendix/)
+* ["Column Names as Contracts"](https://emilyriederer.netlify.app/post/column-name-contracts/)
+  - Blogpost from Emily Riederer on selecting good column names to facilitate a data analysis workflow
 
 ## Writing Functions
 
@@ -24,6 +24,9 @@
   
 ## Advanced Topics
 
+* ["RMarkdown Driven Development (RmdDD)"](https://emilyriederer.netlify.app/post/rmarkdown-driven-development/)
+  - Blogpost from Emily Riederer on structuring RMarkdown documents for data analysis; see also the ["RMarkdown Driven Development: the Technical Appendix"](https://emilyriederer.netlify.app/post/rmddd-tech-appendix/)
+  
 * ["The Wrong Abstraction"](https://sandimetz.com/blog/2016/1/20/the-wrong-abstraction)
   - blogpost from Sandi Metz on refactoring and complexity
   

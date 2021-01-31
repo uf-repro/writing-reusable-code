@@ -1,6 +1,6 @@
 Package: writing.reusable.code
 Title: Writing Reusable and Modular Code
-Version: 0.3.0
+Version: 0.9.0
 Authors@R: 
     person(given = "Hao",
            family = "Ye",
@@ -9,7 +9,7 @@ Authors@R:
            comment = c(ORCID = "0000-0002-8630-1458"))
 Description: This workshop helps attendees advance their programming skills through instruction in writing functions. Attendees will learn about the DRY principle ("Don't Repeat Yourself") and tips on turning complex code into more manageable chunks, improving code robustness and reusability.
  .
- *Attendees will be expected to have basic familiarity with programming, such as experience writing simple scripts or recent attendance at a Carpentries workshop* - https://www.uf-carpentries.org/
+  *Attendees will be expected to have basic familiarity with programming, such as experience writing simple scripts or recent attendance at a Carpentries workshop* - https://www.uf-carpentries.org/
 License: CC BY 4.0
 Encoding: UTF-8
 LazyData: true
@@ -22,3 +22,6 @@ Imports:
     xaringan,
     xaringanthemer
 URL: https://github.com/uf-repro/writing-reusable-code
+learningOutcomes: * write modular functions to reduce complexity and increase reproducibility
+ * use good practices to comment code
+ * recognize basic code smells
