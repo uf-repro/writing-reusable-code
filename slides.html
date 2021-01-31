@@ -17,7 +17,7 @@ class: inverse, center, middle
 # Writing Reusable and Modular Code
 ### Hao Ye
 ### Health Science Center Libraries, University of Florida
-### (updated: 2021-01-29)
+### (updated: 2021-01-31)
 
 ---
 class: inverse, center, middle
@@ -33,24 +33,27 @@ class: inverse, center, middle
   - easy to read and understand
   - easy to maintain or change
   - obvious in its correctness
-  - aesthetically pleasing?
+  - aesthetically pleasing (?)
 
 ---
 # Learning Outcomes
 
 By the end of the workshop, participants will be able to:
 
-* implement functions to make code more modular and increase reproducibility
-* use data structures to manage inputs and outputs
-* recognize and fix basic code smells
+* write modular functions to reduce complexity and increase reproducibility
+* use good practices to comment code
+* recognize basic code smells
 
 ---
 # Disclaimer
 
 * Concepts are intended to be universal, but code examples will be in **`R`**.
 * Like any other skill, *effective* practice matters!
-  - working code != easy-to-read code (e.g. answers from Stack Overflow)
-  - when reading, ask yourself "is it clear what is going on?" (even if you don't know the detailed mechanisms)
+  - just because code works and does what you want doesn't mean it is easy to read
+  - ask yourself "is it clear what is going on?" (even if the details are unclear)  
+  
+--
+  *I don't need to know how an engine works to drive a car.*
 
 ---
 class: inverse, center, middle
@@ -109,27 +112,28 @@ df$c &lt;- (df$c - min(df$c)) /
 
 
 ```r
-rescale01 &lt;- function(x) {
+rescale_to_01 &lt;- function(x) {
   (x - min(x)) / (max(x) - min(x))
 }
 
 # rescale all the columns of df
-df$a &lt;- rescale01(df$a)
-df$b &lt;- rescale01(df$b)
-df$c &lt;- rescale01(df$c)
+df$a &lt;- rescale_to_01(df$a)
+df$b &lt;- rescale_to_01(df$b)
+df$c &lt;- rescale_to_01(df$c)
 
 # or with dplyr
 df &lt;- df %&gt;% mutate_at(c("a", "b", "c"), 
-                       rescale01)
+                       rescale_to_01)
 ```
 
 ---
 # Notes
 
-* calculation defined once and re-used
-* changes or corrections only need to happen in one place
-* fewer chances for error when modifying after copy-paste
-
+* The calculation is defined once and re-used:
+  - If we need to fix it or change it for some reason, that happens in just one place.
+  - It is easier to find where to change it, because of the function name.
+* Someone reading the code can get a sense of what the code is doing without needing to decipher the formula.
+  
 ---
 # Workflow structure
 
@@ -158,11 +162,12 @@ plot_abundance_histogram(data_proc,
 ---
 # Notes
 
-* The steps of the analysis are clear.
-* When making changes/additions:
-  - you know which function to change
-  - adding a new analysis: write a new function, include it in the workflow script
-* Ideally save `data_proc` and `fitted_model` objects to a file. Then figure code can be changed without re-running the model.
+* The code matches the steps of the analysis.
+* It is easy to figure out where to make changes:
+  - plot modification - edit the function
+  - including a new figure - write a new function and call it in the workflow script
+* Best practice: save the `data_proc` and `fitted_model` objects to a file.
+  - The figure can be modified without re-running the model.
 
 ---
 # Tips for writing functions
@@ -170,11 +175,12 @@ plot_abundance_histogram(data_proc,
 * name things well
 * plan for flexibility
 * split large tasks into smaller units
+* use data structures to return complex objects
 
 ---
 # Tip 1: Naming Things
 
-* function names should be verbs
+Function names should be verbs
 
 
 ```r
@@ -203,10 +209,21 @@ plot_abundance_histogram &lt;-
 * width and height are adjustable, but have reasonable defaults
 
 ---
-# Tip 3: Function size
+# Tip 3: Subdividing work
 
+1. start with the main goal of your program
+2. split the goal into separate steps
+  - e.g. read in data, clean data, fit model, do statistics, make plots
+3. repeat step 2 until each step is a single task
+  - write a function for each task
+  - you may need to decide implementation details to get things working initially
+
+---
+# Tip 3 notes
+
+* Get something simple working first!
+* You can always make changes to the details and/or add flexibility later.
 * Each function should have a single well-defined task
-  - this makes testing and debugging easier
 * Functions should ideally be 50 lines or less
   - not a hard rule, divide work into functions sensibly!
 
@@ -225,6 +242,57 @@ if (class(x)[[1]]) == "numeric" ||
 if (is.numeric(x))
 ```
 .small[examples from https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36]
+
+---
+# Tip 4: Use data structures
+
+Most programming languages allow you to create data structures to store multiple things.
+* e.g. in **`R`**, you can define a list to include data, settings, and results in one object to return from a function:
+
+
+```r
+list(data = mtcars, 
+     var_1 = "mpg", 
+     var_2 = "cyl", 
+     rho = cor(mtcars$mpg, mtcars$cyl))
+```
+
+---
+class: inverse, center, middle
+
+# Comments
+
+---
+# Comment Dos &amp; Don'ts
+
+* **Do** use comments to describe **why**, not **how**
+* **Do** document function inputs, outputs, and purpose
+* **Do** store notes/references in comments
+* **Don't** turn code off and on with comments
+  - use conditional logic instead  
+
+```r
+if (DEBUG_MODE) {
+  cat("The value of x is", x)
+}
+```
+---
+# Comment Examples
+
+Bad:
+
+```r
+# Set lib as (1, [2/3 * n])
+lib &lt;- c(1, floor(2/3 * n))
+```
+
+Good:
+
+```r
+# set aside 2/3 of data to train model
+lib &lt;- c(1, floor(2/3 * n))
+```
+
 ---
 class: inverse, center, middle
 
@@ -233,34 +301,152 @@ class: inverse, center, middle
 ---
 # What are "code smells"
 
-* aspects of the code that make it appear less ideal
-* the code is not necessarily buggy  
+* properties of code that seem less ideal
+  - not necessarily incorrect, but something *smells off*
+* recognizing "code smells" depends on experience
+* use a good style guide and avoid common traps!
+---
+# Some common code smells
+
+* functions that are too long
+* lots of single-variable names
+* too much indentation
+* no indentation
+* duplicated (or near-identical) code fragments
+* magic numbers
+
+---
+# TMI = too much indentation
+
+.tiny[
+&lt;pre&gt;
+get_some_data &lt;- function(config, outfile) {
+  if (config_ok(config)) {
+    if (can_write(outfile)) {
+      if (can_open_network_connection(config)) {
+        data &lt;- parse_something_from_network()
+        if(makes_sense(data)) {
+          data &lt;- beautify(data)
+          write_it(data, outfile)
+          return(TRUE)
+        } else {
+          return(FALSE)
+        }
+      } else {
+        stop("Can't access network")
+      }
+    } else {
+      \# uhm. What was this else for again?
+    }
+  } else {
+    \# maybe, some bad news about ... the config? 
+  }
+}
+&lt;/pre&gt;
+]
+.small[example from https://speakerdeck.com/jennybc/code-smells-and-feels?slide=42]
+
+---
+# Simplify the logic!
+
+.tiny[
+&lt;pre&gt;
+get_some_data &lt;- function(config, outfile) {
+  if (config_bad(config)) {
+    stop("Bad config")
+  }
+  if (!can_write(outfile)) {
+    stop("Can't write outfile")
+  }
+  if (!can_open_network_connection(config)) {
+    stop("Can't access network")
+  }
+  &lt;br /&gt;
+  data &lt;- parse_something_from_network()
+  if(!makes_sense(data)) {
+    return(FALSE)
+  }
+  data &lt;- beautify(data)
+  write_it(data, outfile)
+  TRUE
+}
+&lt;/pre&gt;
+]
+.small[example from https://speakerdeck.com/jennybc/code-smells-and-feels?slide=43]
+
+---
+# Magic Numbers
+
+**magic numbers** are values whose meaning is derived from context
+
+* confusing
+* brittle
+* easily solved with named constants:
+
+---
+# Example
+
+
+```r
+cat("The correlation between mpg and cyl is", 
+    cor(mtcars[,1], mtcars[,2]))
+```
+
+```
+The correlation between mpg and cyl is -0.852162
+```
 --
-  - but it is hard to tell!
+* What if we insert a column or change the order of columns?
+* What if we want to change the variables?
+  - is the text label still correct?
 
 ---
-# Example (code smell)
+# Example (fixed)
+
+* define variables for the "magic numbers"
 
 
+```r
+var_1 &lt;- "mpg"
+var_2 &lt;- "cyl"
+cat("The correlation between", var_1, 
+    "and", var_2, "is", 
+    cor(mtcars[,var_1], mtcars[,var_2]))
+```
+
+```
+The correlation between mpg and cyl is -0.852162
+```
 
 ---
-# Solution
+# Example (as a function)
 
-* follow a coding style guide
+* We can even turn it into a function!
+
+
+```r
+f &lt;- function(df = mtcars, var_1 = "mpg", 
+              var_2 = "cyl") 
+{
+  cat("The correlation between", var_1, 
+      "and", var_2, "is", 
+    cor(df[,var_1], df[,var_2]))
+}
+
+f()
+```
+
+```
+The correlation between mpg and cyl is -0.852162
+```
+---
+# General Strategies
+
+* Embrace **refactoring**: rewriting code without changing its behavior (i.e. make it faster, cleaner, easier to use)
+* follow a coding **style guide**
+  - just being consistent helps readability!
 * use technological tools like automatic indentation and linters
-* understand patterns and how to fix them
-  - **refactoring**: rewriting code without changing its behavior (i.e. make it faster, cleaner, easier to use)
-
----
-
-* indentation
-* spaces
-
-
----
-# Comments
-
-
+  - most modern IDEs (e.g. RStudio) have these built-in
 
 ---
 # Thanks

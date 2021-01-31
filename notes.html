@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">writing.reusable.code</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
       </span>
     </div>
 
@@ -126,7 +126,7 @@
 
 <div id="syllabus" class="section level1">
 
-<p>Hao Ye Health Science Center Libraries, University of Florida (updated: 2021-01-29)</p>
+<p>Hao Ye Health Science Center Libraries, University of Florida (updated: 2021-01-31)</p>
 <div id="intro" class="section level2">
 <h2 class="hasAnchor">
 <a href="#intro" class="anchor"></a>Intro</h2>
@@ -134,7 +134,7 @@
 <h3 class="hasAnchor">
 <a href="#any-fool-can-write-code-that-a-computer-can-understand-good-programmers-write-code-that-humans-can-understand" class="anchor"></a>“Any fool can write code that a computer can understand.<br>
 Good programmers write code that humans can understand.”</h3>
-<p>&lt;p style=“text-align:right”&gt;from “Refactoring: Improving the Design of Existing Code” by Martin Fowler&lt;/p&gt;</p>
+<p>from “Refactoring: Improving the Design of Existing Code” by Martin Fowler</p>
 <ul>
 <li>Motivations
 <ul>
@@ -143,16 +143,16 @@ Good programmers write code that humans can understand.”</h3>
 <li>easy to read and understand</li>
 <li>easy to maintain or change</li>
 <li>obvious in its correctness</li>
-<li>aesthetically pleasing?</li>
+<li>aesthetically pleasing (?)</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>Learning Outcomes By the end of the workshop, participants will be able to:
 <ul>
-<li>implement functions to make code more modular and increase reproducibility</li>
-<li>use data structures to manage inputs and outputs</li>
-<li>recognize and fix basic code smells</li>
+<li>write modular functions to reduce complexity and increase reproducibility</li>
+<li>use good practices to comment code</li>
+<li>recognize basic code smells</li>
 </ul>
 </li>
 <li>Disclaimer
@@ -160,8 +160,9 @@ Good programmers write code that humans can understand.”</h3>
 <li>Concepts are intended to be universal, but code examples will be in <strong><code>R</code></strong>.</li>
 <li>Like any other skill, <em>effective</em> practice matters!
 <ul>
-<li>working code != easy-to-read code (e.g. answers from Stack Overflow)</li>
-<li>when reading, ask yourself “is it clear what is going on?” (even if you don’t know the detailed mechanisms)</li>
+<li>just because code works and does what you want doesn’t mean it is easy to read</li>
+<li>ask yourself “is it clear what is going on?” (even if the details are unclear)<br><em>I don’t need to know how an engine works to drive a car.</em>
+</li>
 </ul>
 </li>
 </ul>
@@ -204,15 +205,19 @@ Good programmers write code that humans can understand.”</h3>
 </li>
 <li><p>Duplication ```r df &lt;- data.frame( a = rnorm(10), b = rnorm(10), c = rnorm(10))</p></li>
 <li><p>rescale all the columns of df df<span class="math inline"><em>a</em> &lt;  − (<em>d</em><em>f</em></span>a - min(df<span class="math inline"><em>a</em>))/(<em>m</em><em>a</em><em>x</em>(<em>d</em><em>f</em></span>a) - min(df<span class="math inline"><em>a</em>))<em>d</em><em>f</em></span>b &lt;- (df<span class="math inline"><em>b</em> − <em>m</em><em>i</em><em>n</em>(<em>d</em><em>f</em></span>b)) / (max(df<span class="math inline"><em>b</em>) − <em>m</em><em>i</em><em>n</em>(<em>d</em><em>f</em></span>a)) df<span class="math inline"><em>c</em> &lt;  − (<em>d</em><em>f</em></span>c - min(df<span class="math inline"><em>c</em>))/(<em>m</em><em>a</em><em>x</em>(<em>d</em><em>f</em></span>c) - min(df$c)) ```</p></li>
-<li><p>Define a function! ```r rescale01 &lt;- function(x) { (x - min(x)) / (max(x) - min(x)) }</p></li>
-<li><p>rescale all the columns of df df<span class="math inline"><em>a</em> &lt;  − <em>r</em><em>e</em><em>s</em><em>c</em><em>a</em><em>l</em><em>e</em>01(<em>d</em><em>f</em></span>a) df<span class="math inline"><em>b</em> &lt;  − <em>r</em><em>e</em><em>s</em><em>c</em><em>a</em><em>l</em><em>e</em>01(<em>d</em><em>f</em></span>b) df<span class="math inline"><em>c</em> &lt;  − <em>r</em><em>e</em><em>s</em><em>c</em><em>a</em><em>l</em><em>e</em>01(<em>d</em><em>f</em></span>c)</p></li>
-<li><p>or with dplyr df &lt;- df %&gt;% mutate_at(c(“a”, “b”, “c”), rescale01) ```</p></li>
+<li><p>Define a function! ```r rescale_to_01 &lt;- function(x) { (x - min(x)) / (max(x) - min(x)) }</p></li>
+<li><p>rescale all the columns of df df<span class="math inline"><em>a</em> &lt;  − <em>r</em><em>e</em><em>s</em><em>c</em><em>a</em><em>l</em><em>e</em><sub><em>t</em></sub><em>o</em><sub>01</sub>(<em>d</em><em>f</em></span>a) df<span class="math inline"><em>b</em> &lt;  − <em>r</em><em>e</em><em>s</em><em>c</em><em>a</em><em>l</em><em>e</em><sub><em>t</em></sub><em>o</em><sub>01</sub>(<em>d</em><em>f</em></span>b) df<span class="math inline"><em>c</em> &lt;  − <em>r</em><em>e</em><em>s</em><em>c</em><em>a</em><em>l</em><em>e</em><sub><em>t</em></sub><em>o</em><sub>01</sub>(<em>d</em><em>f</em></span>c)</p></li>
+<li><p>or with dplyr df &lt;- df %&gt;% mutate_at(c(“a”, “b”, “c”), rescale_to_01) ```</p></li>
 <li>
 <p>Notes</p>
 <ul>
-<li>calculation defined once and re-used</li>
-<li>changes or corrections only need to happen in one place</li>
-<li>fewer chances for error when modifying after copy-paste</li>
+<li>The calculation is defined once and re-used:
+<ul>
+<li>If we need to fix it or change it for some reason, that happens in just one place.</li>
+<li>It is easier to find where to change it, because of the function name.</li>
+</ul>
+</li>
+<li>Someone reading the code can get a sense of what the code is doing without needing to decipher the formula.</li>
 </ul>
 </li>
 <li><p>Workflow structure <img src="project-diagram.svg" title="Diagram of the workflow in a hypothetical data analysis project with boxes representing code and data/output files. &amp;quot;Raw data&amp;quot; goes into &amp;quot;Pre-processing&amp;quot; and then &amp;quot;Pre-processed data&amp;quot;. &amp;quot;Pre-processed data&amp;quot; goes directly into &amp;quot;Figure 3&amp;quot; (code) and then &amp;quot;Figure 3&amp;quot; (Data file), but also into &amp;quot;Analysis/Modelling&amp;quot;. The &amp;quot;Model&amp;quot; output from &amp;quot;Analysis/Modelling&amp;quot; is used in code for &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;, which generate files &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;." alt="Diagram of the workflow in a hypothetical data analysis project with boxes representing code and data/output files. &amp;quot;Raw data&amp;quot; goes into &amp;quot;Pre-processing&amp;quot; and then &amp;quot;Pre-processed data&amp;quot;. &amp;quot;Pre-processed data&amp;quot; goes directly into &amp;quot;Figure 3&amp;quot; (code) and then &amp;quot;Figure 3&amp;quot; (Data file), but also into &amp;quot;Analysis/Modelling&amp;quot;. The &amp;quot;Model&amp;quot; output from &amp;quot;Analysis/Modelling&amp;quot; is used in code for &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;, which generate files &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;." width="60%"> modified from “Reproducible research best practices @JupyterCon” (version 18) by Rachael Tatman, <a href="https://www.kaggle.com/rtatman/reproducible-research-best-practices-jupytercon" class="uri">https://www.kaggle.com/rtatman/reproducible-research-best-practices-jupytercon</a></p></li>
@@ -232,14 +237,18 @@ Good programmers write code that humans can understand.”</h3>
 <li>
 <p>Notes</p>
 <ul>
-<li>The steps of the analysis are clear.</li>
-<li>When making changes/additions:
+<li>The code matches the steps of the analysis.</li>
+<li>It is easy to figure out where to make changes:
 <ul>
-<li>you know which function to change</li>
-<li>adding a new analysis: write a new function, include it in the workflow script</li>
+<li>plot modification - edit the function</li>
+<li>including a new figure - write a new function and call it in the workflow script</li>
 </ul>
 </li>
-<li>Ideally save <code>data_proc</code> and <code>fitted_model</code> objects to a file. Then figure code can be changed without re-running the model.</li>
+<li>Best practice: save the <code>data_proc</code> and <code>fitted_model</code> objects to a file.
+<ul>
+<li>The figure can be modified without re-running the model.</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>
@@ -248,14 +257,10 @@ Good programmers write code that humans can understand.”</h3>
 <li>name things well</li>
 <li>plan for flexibility</li>
 <li>split large tasks into smaller units</li>
+<li>use data structures to return complex objects</li>
 </ul>
 </li>
-<li>
-<p>Tip 1: Naming Things</p>
-<ul>
-<li>function names should be verbs ```r</li>
-</ul>
-</li>
+<li><p>Tip 1: Naming Things Function names should be verbs ```r</p></li>
 <li><p>bad row_adder() permutation()</p></li>
 <li><p>good add_row() permute() ``` examples from <a href="https://style.tidyverse.org/functions.html#naming" class="uri">https://style.tidyverse.org/functions.html#naming</a></p></li>
 <li>
@@ -272,13 +277,28 @@ Good programmers write code that humans can understand.”</h3>
 </ul>
 </li>
 <li>
-<p>Tip 3: Function size</p>
+<p>Tip 3: Subdividing work</p>
+<ol>
+<li>start with the main goal of your program</li>
+<li>split the goal into separate steps</li>
+</ol>
 <ul>
-<li>Each function should have a single well-defined task
+<li>e.g. read in data, clean data, fit model, do statistics, make plots</li>
+</ul>
+<ol>
+<li>repeat step 2 until each step is a single task</li>
+</ol>
 <ul>
-<li>this makes testing and debugging easier</li>
+<li>write a function for each task</li>
+<li>you may need to decide implementation details to get things working initially</li>
 </ul>
 </li>
+<li>
+<p>Tip 3 notes</p>
+<ul>
+<li>Get something simple working first!</li>
+<li>You can always make changes to the details and/or add flexibility later.</li>
+<li>Each function should have a single well-defined task</li>
 <li>Functions should ideally be 50 lines or less
 <ul>
 <li>not a hard rule, divide work into functions sensibly!</li>
@@ -294,6 +314,48 @@ Good programmers write code that humans can understand.”</h3>
 </li>
 <li><p>bad if (class(x)[[1]]) == “numeric” || class(x)[[1]] == “integer”)</p></li>
 <li><p>good if (is.numeric(x)) ``` examples from <a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36" class="uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36</a></p></li>
+<li>
+<p>Tip 4: Use data structures Most programming languages allow you to create data structures to store multiple things.</p>
+<ul>
+<li>e.g. in <strong><code>R</code></strong>, you can define a list to include data, settings, and results in one object to return from a function:</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtcars</span>, 
+     var_1 <span class="op">=</span> <span class="st">"mpg"</span>, 
+     var_2 <span class="op">=</span> <span class="st">"cyl"</span>, 
+     rho <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">$</span><span class="va">mpg</span>, <span class="va">mtcars</span><span class="op">$</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+</li>
+</ul>
+</div>
+<div id="comments" class="section level2">
+<h2 class="hasAnchor">
+<a href="#comments" class="anchor"></a>Comments</h2>
+<ul>
+<li>Comment Dos &amp; Don’ts
+<ul>
+<li>
+<strong>Do</strong> use comments to describe <strong>why</strong>, not <strong>how</strong>
+</li>
+<li>
+<strong>Do</strong> document function inputs, outputs, and purpose</li>
+<li>
+<strong>Do</strong> store notes/references in comments</li>
+<li>
+<strong>Don’t</strong> turn code off and on with comments
+<ul>
+<li>use conditional logic instead<br>
+</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="va">DEBUG_MODE</span><span class="op">)</span> <span class="op">{</span>
+<span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"The value of x is"</span>, <span class="va">x</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+</li>
+</ul>
+</li>
+<li>Comment Examples Bad: ```r</li>
+<li>Set lib as (1, [2/3 * n]) lib &lt;- c(1, floor(2/3 * n)) <code>Good:</code>r</li>
+<li>set aside 2/3 of data to train model lib &lt;- c(1, floor(2/3 * n)) ```</li>
 </ul>
 </div>
 <div id="code-smells" class="section level2">
@@ -303,33 +365,110 @@ Good programmers write code that humans can understand.”</h3>
 <li>
 <p>What are “code smells”</p>
 <ul>
-<li>aspects of the code that make it appear less ideal</li>
-<li>the code is not necessarily buggy
+<li>properties of code that seem less ideal
 <ul>
-<li>but it is hard to tell!</li>
-</ul>
+<li>not necessarily incorrect, but something <em>smells off</em>
 </li>
 </ul>
 </li>
-<li><p>Example (code smell)</p></li>
-<li>
-<p>Solution</p>
-<ul>
-<li>follow a coding style guide</li>
-<li>use technological tools like automatic indentation and linters</li>
-<li>understand patterns and how to fix them
-<ul>
-<li>
-<strong>refactoring</strong>: rewriting code without changing its behavior (i.e. make it faster, cleaner, easier to use)</li>
-</ul>
-</li>
-<li>indentation</li>
-<li>spaces</li>
+<li>recognizing “code smells” depends on experience</li>
+<li>use a good style guide and avoid common traps!</li>
 </ul>
 </li>
 <li>
-<p>Comments</p>
+<p>Some common code smells</p>
+<ul>
+<li>functions that are too long</li>
+<li>lots of single-variable names</li>
+<li>too much indentation</li>
+<li>no indentation</li>
+<li>duplicated (or near-identical) code fragments</li>
+<li>magic numbers</li>
+</ul>
+</li>
+<li>
+<p>TMI = too much indentation .tiny[</p>
+<pre>
+get_some_data 
+<p>] example from <a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=42" class="uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=42</a></p></pre>
+</li>
+<li>
+<p>Simplify the logic! .tiny[</p>
+<pre>
+get_some_data 
+  data 
+<p>] example from <a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=43" class="uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=43</a></p></pre>
+</li>
+<li>
+<p>Magic Numbers <strong>magic numbers</strong> are values whose meaning is derived from context</p>
+<ul>
+<li>confusing</li>
+<li>brittle</li>
+<li>easily solved with named constants:</li>
+</ul>
+</li>
+<li>
+<p>Example</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"The correlation between mpg and cyl is"</span>, 
+    <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">mtcars</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>The correlation between mpg and cyl is -0.852162</code></pre>
+<ul>
+<li>What if we insert a column or change the order of columns?</li>
+<li>What if we want to change the variables?
+<ul>
+<li>is the text label still correct?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Example (fixed)</p>
+<ul>
+<li>define variables for the “magic numbers”</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">var_1</span> <span class="op">&lt;-</span> <span class="st">"mpg"</span>
+<span class="va">var_2</span> <span class="op">&lt;-</span> <span class="st">"cyl"</span>
+<span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"The correlation between"</span>, <span class="va">var_1</span>, 
+    <span class="st">"and"</span>, <span class="va">var_2</span>, <span class="st">"is"</span>, 
+    <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">[</span>,<span class="va">var_1</span><span class="op">]</span>, <span class="va">mtcars</span><span class="op">[</span>,<span class="va">var_2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>The correlation between mpg and cyl is -0.852162</code></pre>
+</li>
+<li>
+<p>Example (as a function)</p>
+<ul>
+<li>We can even turn it into a function!</li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span> <span class="op">=</span> <span class="va">mtcars</span>, <span class="va">var_1</span> <span class="op">=</span> <span class="st">"mpg"</span>, 
+              <span class="va">var_2</span> <span class="op">=</span> <span class="st">"cyl"</span><span class="op">)</span> 
+<span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"The correlation between"</span>, <span class="va">var_1</span>, 
+      <span class="st">"and"</span>, <span class="va">var_2</span>, <span class="st">"is"</span>, 
+    <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">df</span><span class="op">[</span>,<span class="va">var_1</span><span class="op">]</span>, <span class="va">df</span><span class="op">[</span>,<span class="va">var_2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
+<span class="op">}</span>
+<span class="fu">f</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>The correlation between mpg and cyl is -0.852162</code></pre>
+</li>
+<li>
+<p>General Strategies</p>
+<ul>
+<li>Embrace <strong>refactoring</strong>: rewriting code without changing its behavior (i.e. make it faster, cleaner, easier to use)</li>
+<li>follow a coding <strong>style guide</strong>
+<ul>
+<li>just being consistent helps readability!</li>
+</ul>
+</li>
+<li>use technological tools like automatic indentation and linters
+<ul>
+<li>
+<p>most modern IDEs (e.g. RStudio) have these built-in</p>
 <h2 id="thanks">Thanks</h2>
+</li>
+</ul>
+</li>
+</ul>
 </li>
 <li><p>Let me know what content you’d like to see</p></li>
 <li><p>Contact me for additional questions or consultation requests!</p></li>
