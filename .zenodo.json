@@ -7,7 +7,7 @@
       "orcid": "0000-0002-8630-1458"
     }
   ],
-  "description": "This workshop helps attendees advance their programming skills through instruction in writing functions. Attendees will learn about the DRY principle (\"Don't Repeat Yourself\") and tips on turning complex code into more manageable chunks, improving code robustness and reusability.\n\n*Attendees will be expected to have basic familiarity with programming, such as experience writing simple scripts or recent attendance at a Carpentries workshop* - https://www.uf-carpentries.org/",
+  "description": "This workshop introduces attendees to the principles of writing 'clean' code, that is easier to read, maintain, and expand. Attendees will learn about organizing complex programming scripts into modular functions, writing effective documentation, and habits to improve code robustness and reusability.\n\n*Attendees will be expected to have basic familiarity with programming, such as experience writing simple scripts or recent attendance at a Carpentries workshop* - https://www.uf-carpentries.org/",
   "keywords": [
     "Open Educational Resources",
     "Research Support Skills",
