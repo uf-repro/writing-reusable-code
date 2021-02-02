@@ -172,7 +172,13 @@ knitr::include_graphics("project-diagram.svg")
 ---
 # Example Code
 
-```{r, eval = FALSE}
+.tiny[
+<pre>
+library(tidyverse)
+
+source("analysis_functions.R")
+source("plotting_functions.R")
+
 data_raw <- readRDS("readings.dat")
 data_proc <- preprocess_data(data_raw)
 
@@ -184,7 +190,8 @@ plot_abundance_residuals(fitted_model,
     "figure-2_abundance-residuals.pdf")
 plot_abundance_histogram(data_proc, 
     "figure-3_abundance-residuals.pdf")
-```
+</pre>
+]
 
 ---
 # Notes
@@ -284,6 +291,14 @@ list(data = mtcars,
 class: inverse, center, middle
 
 # Comments
+
+---
+# Comment Dos & Don'ts
+
+* **Do** use comments to describe **why**, not **how**
+* **Do** document the inputs, outputs, and purpose of each function
+* **Do** store notes/references in comments
+* **Don't** turn code off and on with comments
 
 ---
 # Comment Dos & Don'ts

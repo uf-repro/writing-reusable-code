@@ -1,6 +1,6 @@
 Package: writing.reusable.code
 Title: Writing Reusable and Modular Code
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: 
     person(given = "Hao",
            family = "Ye",
