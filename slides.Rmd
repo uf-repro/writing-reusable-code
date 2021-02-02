@@ -372,7 +372,7 @@ class: inverse, center, middle
 # Some common code smells
 
 * functions that are too long
-* lots of single-letter variable names
+* lots of single-variable names
 * too much indentation
 * no indentation
 * duplicated (or near-identical) code fragments
