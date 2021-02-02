@@ -17,7 +17,7 @@ class: inverse, center, middle
 # Writing Reusable and Modular Code
 ### Hao Ye
 ### Health Science Center Libraries, University of Florida
-### (updated: 2021-01-31)
+### (updated: 2021-02-02)
 
 ---
 class: inverse, center, middle
@@ -40,9 +40,9 @@ class: inverse, center, middle
 
 By the end of the workshop, participants will be able to:
 
-* write modular functions to reduce complexity and increase reproducibility
-* use good practices to comment code
-* recognize basic code smells
+* split complex programming tasks into modular functions
+* communicate code intent using comments
+* recognize and fix basic code smells
 
 ---
 # Disclaimer
@@ -130,6 +130,7 @@ df &lt;- df %&gt;% mutate_at(c("a", "b", "c"),
 # Notes
 
 * The calculation is defined once and re-used:
+  - **DRY** = "Don't Repeat Yourself"
   - If we need to fix it or change it for some reason, that happens in just one place.
   - It is easier to find where to change it, because of the function name.
 * Someone reading the code can get a sense of what the code is doing without needing to decipher the formula.
@@ -265,19 +266,7 @@ class: inverse, center, middle
 ---
 # Comment Dos &amp; Don'ts
 
-* **Do** use comments to describe **why**, not **how**
-* **Do** document function inputs, outputs, and purpose
-* **Do** store notes/references in comments
-* **Don't** turn code off and on with comments
-  - use conditional logic instead  
-
-```r
-if (DEBUG_MODE) {
-  cat("The value of x is", x)
-}
-```
----
-# Comment Examples
+**Do** use comments to describe **why**, not **how**
 
 Bad:
 
@@ -291,6 +280,48 @@ Good:
 ```r
 # set aside 2/3 of data to train model
 lib &lt;- c(1, floor(2/3 * n))
+```
+
+---
+# Comment Dos &amp; Don'ts
+
+**Do** document the inputs, outputs, and purpose of each function
+
+
+```r
+plot_abundance_histogram &lt;- 
+  function(data_proc, filename, 
+           width = 6, height = 6) { 
+    # {{code}} 
+  }
+```
+* What is `data_proc` and how is it structured?
+
+---
+# Comment Dos &amp; Don'ts
+
+**Do** store notes/references in comments
+
+
+```r
+# cholesky algorithm from Rasmussen &amp; 
+#   Williams (2006, algorithm 2.1)
+R &lt;- chol(Sigma)
+alpha &lt;- backsolve(R, forwardsolve(t(R), y_lib - mean_y))
+L_inv &lt;- forwardsolve(t(R), diag(NROW(x_lib)))
+Sigma_inv &lt;-  t(L_inv) %*% L_inv
+```
+
+---
+# Comment Dos &amp; Don'ts
+
+**Don't** turn code off and on with comments  
+- use conditional logic instead  
+
+```r
+if (DEBUG_MODE) {
+  cat("The value of x is", x)
+}
 ```
 
 ---
@@ -377,11 +408,11 @@ get_some_data &lt;- function(config, outfile) {
 ---
 # Magic Numbers
 
-**magic numbers** are values whose meaning is derived from context
+**Magic numbers** are values in the code whose meaning is derived from context.
 
-* confusing
-* brittle
-* easily solved with named constants:
+* confusing - what do they represent?
+* brittle - the value isn't always fixed
+* can be easily replaced with named constants
 
 ---
 # Example
@@ -426,8 +457,7 @@ The correlation between mpg and cyl is -0.852162
 
 ```r
 f &lt;- function(df = mtcars, var_1 = "mpg", 
-              var_2 = "cyl") 
-{
+              var_2 = "cyl") {
   cat("The correlation between", var_1, 
       "and", var_2, "is", 
     cor(df[,var_1], df[,var_2]))
@@ -444,9 +474,9 @@ The correlation between mpg and cyl is -0.852162
 
 * Embrace **refactoring**: rewriting code without changing its behavior (i.e. make it faster, cleaner, easier to use)
 * follow a coding **style guide**
-  - just being consistent helps readability!
+  - links in the resources
 * use technological tools like automatic indentation and linters
-  - most modern IDEs (e.g. RStudio) have these built-in
+  - many modern IDEs (e.g. RStudio) have these built-in
 
 ---
 # Thanks

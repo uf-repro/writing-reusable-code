@@ -38,7 +38,8 @@ style_mono_accent(
                    "pre" = list("margin-top" = "0.5em", 
                               "margin-bottom" = "0.5em"), 
                    ".small" = list("font-size" = "80%"), 
-                   ".tiny" = list("font-size" = "50%")), 
+                   ".tiny" = list("font-size" = "50%"), 
+                   "remark-code" = list("word-wrap" = "break-word")), 
   link_color = "#339944"
 )
 ```
@@ -154,6 +155,7 @@ df <- df %>% mutate_at(c("a", "b", "c"),
 # Notes
 
 * The calculation is defined once and re-used:
+  - **DRY** = "Don't Repeat Yourself"
   - If we need to fix it or change it for some reason, that happens in just one place.
   - It is easier to find where to change it, because of the function name.
 * Someone reading the code can get a sense of what the code is doing without needing to decipher the formula.
@@ -286,18 +288,7 @@ class: inverse, center, middle
 ---
 # Comment Dos & Don'ts
 
-* **Do** use comments to describe **why**, not **how**
-* **Do** document function inputs, outputs, and purpose
-* **Do** store notes/references in comments
-* **Don't** turn code off and on with comments
-  - use conditional logic instead  
-```{r, eval = FALSE}
-if (DEBUG_MODE) {
-  cat("The value of x is", x)
-}
-```
----
-# Comment Examples
+**Do** use comments to describe **why**, not **how**
 
 Bad:
 ```{r, eval = FALSE}
@@ -309,6 +300,45 @@ Good:
 ```{r, eval = FALSE}
 # set aside 2/3 of data to train model
 lib <- c(1, floor(2/3 * n))
+```
+
+---
+# Comment Dos & Don'ts
+
+**Do** document the inputs, outputs, and purpose of each function
+
+```{r, eval = FALSE}
+plot_abundance_histogram <- 
+  function(data_proc, filename, 
+           width = 6, height = 6) { 
+    # {{code}} 
+  }
+```
+* What is `data_proc` and how is it structured?
+
+---
+# Comment Dos & Don'ts
+
+**Do** store notes/references in comments
+
+```{r, eval = FALSE}
+# cholesky algorithm from Rasmussen & 
+#   Williams (2006, algorithm 2.1)
+R <- chol(Sigma)
+alpha <- backsolve(R, forwardsolve(t(R), y_lib - mean_y))
+L_inv <- forwardsolve(t(R), diag(NROW(x_lib)))
+Sigma_inv <-  t(L_inv) %*% L_inv
+```
+
+---
+# Comment Dos & Don'ts
+
+**Don't** turn code off and on with comments  
+- use conditional logic instead  
+```{r, eval = FALSE}
+if (DEBUG_MODE) {
+  cat("The value of x is", x)
+}
 ```
 
 ---
@@ -395,11 +425,11 @@ get_some_data <- function(config, outfile) {
 ---
 # Magic Numbers
 
-**magic numbers** are values whose meaning is derived from context
+**Magic numbers** are values in the code whose meaning is derived from context.
 
-* confusing
-* brittle
-* easily solved with named constants:
+* confusing - what do they represent?
+* brittle - the value isn't always fixed
+* can be easily replaced with named constants
 
 ---
 # Example
@@ -433,8 +463,7 @@ cat("The correlation between", var_1,
 
 ```{r, comment = ""}
 f <- function(df = mtcars, var_1 = "mpg", 
-              var_2 = "cyl") 
-{
+              var_2 = "cyl") {
   cat("The correlation between", var_1, 
       "and", var_2, "is", 
     cor(df[,var_1], df[,var_2]))
@@ -447,9 +476,9 @@ f()
 
 * Embrace **refactoring**: rewriting code without changing its behavior (i.e. make it faster, cleaner, easier to use)
 * follow a coding **style guide**
-  - just being consistent helps readability!
+  - links in the resources
 * use technological tools like automatic indentation and linters
-  - most modern IDEs (e.g. RStudio) have these built-in
+  - many modern IDEs (e.g. RStudio) have these built-in
 
 ---
 # Thanks

@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">writing.reusable.code</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -126,7 +126,7 @@
 
 <div id="syllabus" class="section level1">
 
-<p>Hao Ye Health Science Center Libraries, University of Florida (updated: 2021-01-31)</p>
+<p>Hao Ye Health Science Center Libraries, University of Florida (updated: 2021-02-02)</p>
 <div id="intro" class="section level2">
 <h2 class="hasAnchor">
 <a href="#intro" class="anchor"></a>Intro</h2>
@@ -150,9 +150,9 @@ Good programmers write code that humans can understand.”</h3>
 </li>
 <li>Learning Outcomes By the end of the workshop, participants will be able to:
 <ul>
-<li>write modular functions to reduce complexity and increase reproducibility</li>
-<li>use good practices to comment code</li>
-<li>recognize basic code smells</li>
+<li>split complex programming tasks into modular functions</li>
+<li>communicate code intent using comments</li>
+<li>recognize and fix basic code smells</li>
 </ul>
 </li>
 <li>Disclaimer
@@ -213,6 +213,8 @@ Good programmers write code that humans can understand.”</h3>
 <ul>
 <li>The calculation is defined once and re-used:
 <ul>
+<li>
+<strong>DRY</strong> = “Don’t Repeat Yourself”</li>
 <li>If we need to fix it or change it for some reason, that happens in just one place.</li>
 <li>It is easier to find where to change it, because of the function name.</li>
 </ul>
@@ -331,32 +333,32 @@ Good programmers write code that humans can understand.”</h3>
 <h2 class="hasAnchor">
 <a href="#comments" class="anchor"></a>Comments</h2>
 <ul>
-<li>Comment Dos &amp; Don’ts
-<ul>
+<li><p>Comment Dos &amp; Don’ts <strong>Do</strong> use comments to describe <strong>why</strong>, not <strong>how</strong> Bad: ```r</p></li>
+<li><p>Set lib as (1, [2/3 * n]) lib &lt;- c(1, floor(2/3 * n)) <code>Good:</code>r</p></li>
+<li><p>set aside 2/3 of data to train model lib &lt;- c(1, floor(2/3 * n)) ```</p></li>
 <li>
-<strong>Do</strong> use comments to describe <strong>why</strong>, not <strong>how</strong>
-</li>
-<li>
-<strong>Do</strong> document function inputs, outputs, and purpose</li>
-<li>
-<strong>Do</strong> store notes/references in comments</li>
-<li>
-<strong>Don’t</strong> turn code off and on with comments
-<ul>
-<li>use conditional logic instead<br>
-</li>
-</ul>
+<p>Comment Dos &amp; Don’ts <strong>Do</strong> document the inputs, outputs, and purpose of each function</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="va">DEBUG_MODE</span><span class="op">)</span> <span class="op">{</span>
-<span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"The value of x is"</span>, <span class="va">x</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
-</li>
+<code class="sourceCode R"><span class="va">plot_abundance_histogram</span> <span class="op">&lt;-</span> 
+  <span class="kw">function</span><span class="op">(</span><span class="va">data_proc</span>, <span class="va">filename</span>, 
+           <span class="va">width</span> <span class="op">=</span> <span class="fl">6</span>, <span class="va">height</span> <span class="op">=</span> <span class="fl">6</span><span class="op">)</span> <span class="op">{</span> 
+    <span class="co"># {{code}} </span>
+  <span class="op">}</span></code></pre></div>
+<ul>
+<li>What is <code>data_proc</code> and how is it structured?</li>
 </ul>
 </li>
-<li>Comment Examples Bad: ```r</li>
-<li>Set lib as (1, [2/3 * n]) lib &lt;- c(1, floor(2/3 * n)) <code>Good:</code>r</li>
-<li>set aside 2/3 of data to train model lib &lt;- c(1, floor(2/3 * n)) ```</li>
+<li><p>Comment Dos &amp; Don’ts <strong>Do</strong> store notes/references in comments ```r</p></li>
+<li><p>cholesky algorithm from Rasmussen &amp;</p></li>
+<li><p>Williams (2006, algorithm 2.1) R &lt;- chol(Sigma) alpha &lt;- backsolve(R, forwardsolve(t(R), y_lib - mean_y)) L_inv &lt;- forwardsolve(t(R), diag(NROW(x_lib))) Sigma_inv &lt;- t(L_inv) %*% L_inv</p></li>
 </ul>
+<pre><code>* Comment Dos &amp;amp; Don'ts
+**Don't** turn code off and on with comments  
+- use conditional logic instead  
+```r
+if (DEBUG_MODE) {
+  cat("The value of x is", x)
+}</code></pre>
 </div>
 <div id="code-smells" class="section level2">
 <h2 class="hasAnchor">
@@ -400,16 +402,16 @@ get_some_data
 <p>] example from <a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=43" class="uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=43</a></p></pre>
 </li>
 <li>
-<p>Magic Numbers <strong>magic numbers</strong> are values whose meaning is derived from context</p>
+<p>Magic Numbers <strong>Magic numbers</strong> are values in the code whose meaning is derived from context.</p>
 <ul>
-<li>confusing</li>
-<li>brittle</li>
-<li>easily solved with named constants:</li>
+<li>confusing - what do they represent?</li>
+<li>brittle - the value isn’t always fixed</li>
+<li>can be easily replaced with named constants</li>
 </ul>
 </li>
 <li>
 <p>Example</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"The correlation between mpg and cyl is"</span>, 
     <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">mtcars</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>The correlation between mpg and cyl is -0.852162</code></pre>
@@ -427,7 +429,7 @@ get_some_data
 <ul>
 <li>define variables for the “magic numbers”</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">var_1</span> <span class="op">&lt;-</span> <span class="st">"mpg"</span>
 <span class="va">var_2</span> <span class="op">&lt;-</span> <span class="st">"cyl"</span>
 <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"The correlation between"</span>, <span class="va">var_1</span>, 
@@ -440,10 +442,9 @@ get_some_data
 <ul>
 <li>We can even turn it into a function!</li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span> <span class="op">=</span> <span class="va">mtcars</span>, <span class="va">var_1</span> <span class="op">=</span> <span class="st">"mpg"</span>, 
-              <span class="va">var_2</span> <span class="op">=</span> <span class="st">"cyl"</span><span class="op">)</span> 
-<span class="op">{</span>
+              <span class="va">var_2</span> <span class="op">=</span> <span class="st">"cyl"</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"The correlation between"</span>, <span class="va">var_1</span>, 
       <span class="st">"and"</span>, <span class="va">var_2</span>, <span class="st">"is"</span>, 
     <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">df</span><span class="op">[</span>,<span class="va">var_1</span><span class="op">]</span>, <span class="va">df</span><span class="op">[</span>,<span class="va">var_2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
@@ -457,13 +458,13 @@ get_some_data
 <li>Embrace <strong>refactoring</strong>: rewriting code without changing its behavior (i.e. make it faster, cleaner, easier to use)</li>
 <li>follow a coding <strong>style guide</strong>
 <ul>
-<li>just being consistent helps readability!</li>
+<li>links in the resources</li>
 </ul>
 </li>
 <li>use technological tools like automatic indentation and linters
 <ul>
 <li>
-<p>most modern IDEs (e.g. RStudio) have these built-in</p>
+<p>many modern IDEs (e.g. RStudio) have these built-in</p>
 <h2 id="thanks">Thanks</h2>
 </li>
 </ul>
