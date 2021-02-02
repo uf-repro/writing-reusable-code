@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">writing.reusable.code</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -224,17 +224,13 @@ Good programmers write code that humans can understand.”</h3>
 </li>
 <li><p>Workflow structure <img src="project-diagram.svg" title="Diagram of the workflow in a hypothetical data analysis project with boxes representing code and data/output files. &amp;quot;Raw data&amp;quot; goes into &amp;quot;Pre-processing&amp;quot; and then &amp;quot;Pre-processed data&amp;quot;. &amp;quot;Pre-processed data&amp;quot; goes directly into &amp;quot;Figure 3&amp;quot; (code) and then &amp;quot;Figure 3&amp;quot; (Data file), but also into &amp;quot;Analysis/Modelling&amp;quot;. The &amp;quot;Model&amp;quot; output from &amp;quot;Analysis/Modelling&amp;quot; is used in code for &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;, which generate files &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;." alt="Diagram of the workflow in a hypothetical data analysis project with boxes representing code and data/output files. &amp;quot;Raw data&amp;quot; goes into &amp;quot;Pre-processing&amp;quot; and then &amp;quot;Pre-processed data&amp;quot;. &amp;quot;Pre-processed data&amp;quot; goes directly into &amp;quot;Figure 3&amp;quot; (code) and then &amp;quot;Figure 3&amp;quot; (Data file), but also into &amp;quot;Analysis/Modelling&amp;quot;. The &amp;quot;Model&amp;quot; output from &amp;quot;Analysis/Modelling&amp;quot; is used in code for &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;, which generate files &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;." width="60%"> modified from “Reproducible research best practices @JupyterCon” (version 18) by Rachael Tatman, <a href="https://www.kaggle.com/rtatman/reproducible-research-best-practices-jupytercon" class="uri">https://www.kaggle.com/rtatman/reproducible-research-best-practices-jupytercon</a></p></li>
 <li>
-<p>Example Code</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">data_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"readings.dat"</span><span class="op">)</span>
-<span class="va">data_proc</span> <span class="op">&lt;-</span> <span class="fu">preprocess_data</span><span class="op">(</span><span class="va">data_raw</span><span class="op">)</span>
-<span class="va">fitted_model</span> <span class="op">&lt;-</span> <span class="fu">run_model</span><span class="op">(</span><span class="va">data_proc</span><span class="op">)</span>
-<span class="fu">plot_model_forecasts</span><span class="op">(</span><span class="va">fitted_model</span>,
-    <span class="st">"figure-1_abundance-forecasts.pdf"</span><span class="op">)</span>
-<span class="fu">plot_abundance_residuals</span><span class="op">(</span><span class="va">fitted_model</span>,
-    <span class="st">"figure-2_abundance-residuals.pdf"</span><span class="op">)</span>
-<span class="fu">plot_abundance_histogram</span><span class="op">(</span><span class="va">data_proc</span>, 
-    <span class="st">"figure-3_abundance-residuals.pdf"</span><span class="op">)</span></code></pre></div>
+<p>Example Code .tiny[</p>
+<pre>
+library(tidyverse)
+source("analysis_functions.R")
+source("plotting_functions.R")
+data_raw 
+<p>]</p></pre>
 </li>
 <li>
 <p>Notes</p>
@@ -267,7 +263,7 @@ Good programmers write code that humans can understand.”</h3>
 <li><p>good add_row() permute() ``` examples from <a href="https://style.tidyverse.org/functions.html#naming" class="uri">https://style.tidyverse.org/functions.html#naming</a></p></li>
 <li>
 <p>Tip 2: Plan for flexibility</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plot_abundance_histogram</span> <span class="op">&lt;-</span> 
   <span class="kw">function</span><span class="op">(</span><span class="va">data_proc</span>, <span class="va">filename</span>, 
            <span class="va">width</span> <span class="op">=</span> <span class="fl">6</span>, <span class="va">height</span> <span class="op">=</span> <span class="fl">6</span><span class="op">)</span> <span class="op">{</span> 
@@ -321,7 +317,7 @@ Good programmers write code that humans can understand.”</h3>
 <ul>
 <li>e.g. in <strong><code>R</code></strong>, you can define a list to include data, settings, and results in one object to return from a function:</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtcars</span>, 
      var_1 <span class="op">=</span> <span class="st">"mpg"</span>, 
      var_2 <span class="op">=</span> <span class="st">"cyl"</span>, 
@@ -333,12 +329,26 @@ Good programmers write code that humans can understand.”</h3>
 <h2 class="hasAnchor">
 <a href="#comments" class="anchor"></a>Comments</h2>
 <ul>
+<li>
+<p>Comment Dos &amp; Don’ts</p>
+<ul>
+<li>
+<strong>Do</strong> use comments to describe <strong>why</strong>, not <strong>how</strong>
+</li>
+<li>
+<strong>Do</strong> document the inputs, outputs, and purpose of each function</li>
+<li>
+<strong>Do</strong> store notes/references in comments</li>
+<li>
+<strong>Don’t</strong> turn code off and on with comments</li>
+</ul>
+</li>
 <li><p>Comment Dos &amp; Don’ts <strong>Do</strong> use comments to describe <strong>why</strong>, not <strong>how</strong> Bad: ```r</p></li>
 <li><p>Set lib as (1, [2/3 * n]) lib &lt;- c(1, floor(2/3 * n)) <code>Good:</code>r</p></li>
 <li><p>set aside 2/3 of data to train model lib &lt;- c(1, floor(2/3 * n)) ```</p></li>
 <li>
 <p>Comment Dos &amp; Don’ts <strong>Do</strong> document the inputs, outputs, and purpose of each function</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plot_abundance_histogram</span> <span class="op">&lt;-</span> 
   <span class="kw">function</span><span class="op">(</span><span class="va">data_proc</span>, <span class="va">filename</span>, 
            <span class="va">width</span> <span class="op">=</span> <span class="fl">6</span>, <span class="va">height</span> <span class="op">=</span> <span class="fl">6</span><span class="op">)</span> <span class="op">{</span> 
@@ -381,7 +391,7 @@ if (DEBUG_MODE) {
 <p>Some common code smells</p>
 <ul>
 <li>functions that are too long</li>
-<li>lots of single-variable names</li>
+<li>lots of single-letter variable names</li>
 <li>too much indentation</li>
 <li>no indentation</li>
 <li>duplicated (or near-identical) code fragments</li>
@@ -411,7 +421,7 @@ get_some_data
 </li>
 <li>
 <p>Example</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"The correlation between mpg and cyl is"</span>, 
     <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">mtcars</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>The correlation between mpg and cyl is -0.852162</code></pre>
@@ -429,7 +439,7 @@ get_some_data
 <ul>
 <li>define variables for the “magic numbers”</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">var_1</span> <span class="op">&lt;-</span> <span class="st">"mpg"</span>
 <span class="va">var_2</span> <span class="op">&lt;-</span> <span class="st">"cyl"</span>
 <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"The correlation between"</span>, <span class="va">var_1</span>, 
@@ -442,7 +452,7 @@ get_some_data
 <ul>
 <li>We can even turn it into a function!</li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span> <span class="op">=</span> <span class="va">mtcars</span>, <span class="va">var_1</span> <span class="op">=</span> <span class="st">"mpg"</span>, 
               <span class="va">var_2</span> <span class="op">=</span> <span class="st">"cyl"</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"The correlation between"</span>, <span class="va">var_1</span>, 

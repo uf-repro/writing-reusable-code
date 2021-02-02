@@ -145,8 +145,13 @@ df &lt;- df %&gt;% mutate_at(c("a", "b", "c"),
 ---
 # Example Code
 
+.tiny[
+&lt;pre&gt;
+library(tidyverse)
 
-```r
+source("analysis_functions.R")
+source("plotting_functions.R")
+
 data_raw &lt;- readRDS("readings.dat")
 data_proc &lt;- preprocess_data(data_raw)
 
@@ -158,7 +163,8 @@ plot_abundance_residuals(fitted_model,
     "figure-2_abundance-residuals.pdf")
 plot_abundance_histogram(data_proc, 
     "figure-3_abundance-residuals.pdf")
-```
+&lt;/pre&gt;
+]
 
 ---
 # Notes
@@ -266,6 +272,14 @@ class: inverse, center, middle
 ---
 # Comment Dos &amp; Don'ts
 
+* **Do** use comments to describe **why**, not **how**
+* **Do** document the inputs, outputs, and purpose of each function
+* **Do** store notes/references in comments
+* **Don't** turn code off and on with comments
+
+---
+# Comment Dos &amp; Don'ts
+
 **Do** use comments to describe **why**, not **how**
 
 Bad:
@@ -340,7 +354,7 @@ class: inverse, center, middle
 # Some common code smells
 
 * functions that are too long
-* lots of single-variable names
+* lots of single-letter variable names
 * too much indentation
 * no indentation
 * duplicated (or near-identical) code fragments
