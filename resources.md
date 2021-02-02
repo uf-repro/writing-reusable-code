@@ -1,10 +1,15 @@
 # Additional Resources / Readings
 
-## Code Style and Recommendations
+## Style Guides
 
 * ["The tidyverse style guide"](https://style.tidyverse.org/)
   - Hadley Wickham's online resource with details on naming and styling R code
-  
+
+* ["Style Guide for Python Code"](https://www.python.org/dev/peps/pep-0008/)
+  - the Python Enhancement Proposal from Guido van Rossum, Barry Warsaw, and Nick Coghlan
+
+## Code Smells and Recommendations
+
 * ["Code Smells and Feels"](https://github.com/jennybc/code-smells-and-feels)
   - GitHub repo from Jenny Bryan on "code smells" - also check out the related [slides](https://speakerdeck.com/jennybc/code-smells-and-feels)
 
