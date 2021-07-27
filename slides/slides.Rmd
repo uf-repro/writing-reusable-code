@@ -12,6 +12,7 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
+      beforeInit: "https://platform.twitter.com/widgets.js"
 ---
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
@@ -60,11 +61,11 @@ class: inverse, center, middle
 ---
 # Motivations
 
-* In addition to code that works, ideally it is **also**:
+* In addition to code that **works correctly**, ideally it is also:
   - easy to read and understand
   - easy to maintain or change
-  - obvious in its correctness
-  - aesthetically pleasing (?)
+  - easy to verify its correct operation
+  - aesthetically pleasing (maybe?)
 
 ---
 # Learning Outcomes
@@ -74,15 +75,12 @@ By the end of the workshop, participants will be able to:
 `r gsub("\n ", "\n", desc::desc_get("learningOutcomes"))`
 
 ---
-# Disclaimer
+# A Note
 
 * Concepts are intended to be universal, but code examples will be in **`R`**.
-* Like any other skill, *effective* practice matters!
-  - just because code works and does what you want doesn't mean it is easy to read
-  - ask yourself "is it clear what is going on?" (even if the details are unclear)  
-  
---
-  *I don't need to know how an engine works to drive a car.*
+* Like any other skill, **_effective_** practice matters!
+  - correctly working code isn't necessarily easy to read or maintain
+  - keep in mind that you will almost always need to fix or revise the code later
 
 ---
 class: inverse, center, middle
@@ -113,11 +111,11 @@ class: inverse, center, middle
 
 --
 * BUT, it enables:
-  - repeating the same operation on different inputs (e.g. datasets, variables, parameter values, etc.)
-  - clarifying the larger organizational structure of the code
+  - performing the same operation on different inputs (e.g. datasets, variables, parameter values, etc.)
+  - the structure of your code can communicate how it works
 
 ---
-# Duplication
+# Repeating yourself
 
 ```{r, eval = FALSE}
 df <- data.frame( a = rnorm(10),
@@ -152,14 +150,15 @@ df <- df %>% mutate_at(c("a", "b", "c"),
 ```
 
 ---
-# Notes
+# **DRY** = "Don't Repeat Yourself"
 
-* The calculation is defined once and re-used:
-  - **DRY** = "Don't Repeat Yourself"
-  - If we need to fix it or change it for some reason, that happens in just one place.
-  - It is easier to find where to change it, because of the function name.
-* Someone reading the code can get a sense of what the code is doing without needing to decipher the formula.
-  
+* If we need to fix or change the operation, only the function needs to be changed.
+* It is easier to find where to change it, because of the function name.
+* Someone reading the code can understand it without details.  
+
+--
+  *I don't need to know how an engine works to drive a car.*
+
 ---
 # Workflow structure
 
@@ -198,19 +197,18 @@ plot_abundance_histogram(data_proc,
 
 * The code matches the steps of the analysis.
 * It is easy to figure out where to make changes:
-  - plot modification - edit the function
-  - including a new figure - write a new function and call it in the workflow script
-* Best practice: save the `data_proc` and `fitted_model` objects to a file.
-  - The figure can be modified without re-running the model.
-
+  - to modify a plot - edit the function
+  - including a new figure - write a new function and add it to the workflow script
+* Possible improvement: 
+  - save the processed data and model output to a file, so that they do not need to be re-run
+  
 ---
 # Tips for writing functions
 
 * name things well
-* plan for flexibility
-* split large tasks into smaller units
-* use data structures to return complex objects
-
+* plan for (some) flexibility
+* split large complex tasks into smaller units, each with a clear purpose
+* use data structures to store complex objects, as needed
 ---
 # Tip 1: Naming Things
 
@@ -238,17 +236,17 @@ plot_abundance_histogram <-
   }
 ```
 * input data and location of output are easily changed
-* width and height are adjustable, but have reasonable defaults
+* width and height are adjustable, but have defaults that will work
 
 ---
 # Tip 3: Subdividing work
 
 1. start with the main goal of your program
-2. split the goal into separate steps
+2. split the goal into separate subgoals
   - e.g. read in data, clean data, fit model, do statistics, make plots
-3. repeat step 2 until each step is a single task
+3. repeat until each subgoal is a single task
   - write a function for each task
-  - you may need to decide implementation details to get things working initially
+  - you may need to choose implementation details to get things working initially
 
 ---
 # Tip 3 notes
@@ -257,12 +255,12 @@ plot_abundance_histogram <-
 * You can always make changes to the details and/or add flexibility later.
 * Each function should have a single well-defined task
 * Functions should ideally be 50 lines or less
-  - not a hard rule, divide work into functions sensibly!
+  - this is a **guideline**—divide work into functions sensibly!
 
 ---
 # Tip 3 (cont'd)
 
-* If a line or set of lines of code is complicated, it might need to be its own function (with a good name)
+* If a line or set of lines of code is complicated, a new function might be needed (with a good name)
 
 ```{r, eval = FALSE}
 # bad
@@ -277,8 +275,8 @@ if (is.numeric(x))
 ---
 # Tip 4: Use data structures
 
-Most programming languages allow you to create data structures to store multiple things.
-* e.g. in **`R`**, you can define a list to include data, settings, and results in one object to return from a function:
+Most programming languages let you create data structures to store complex data.
+* e.g. in **`R`**, you can define a list to include data, settings, and results. This list can be returned from a function:
 
 ```{r, eval = FALSE}
 list(data = mtcars, 
@@ -291,6 +289,10 @@ list(data = mtcars,
 class: inverse, center, middle
 
 # Comments
+
+---
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Developers commenting their code <a href="https://t.co/jKURCVR9ds">pic.twitter.com/jKURCVR9ds</a></p>&mdash; Ricardo Ferreira (@riferrei) <a href="https://twitter.com/riferrei/status/1358180071081713670?ref_src=twsrc%5Etfw">February 6, 2021</a></blockquote>
 
 ---
 # Comment Dos & Don'ts
@@ -365,9 +367,10 @@ class: inverse, center, middle
 # What are "code smells"
 
 * properties of code that seem less ideal
-  - not necessarily incorrect, but something *smells off*
-* recognizing "code smells" depends on experience
-* use a good style guide and avoid common traps!
+  - not always incorrect, but *not quite right*
+* the ability to recognize "code smells" depends on experience
+* use a good style guide and avoid common issues!
+
 ---
 # Some common code smells
 
@@ -440,11 +443,11 @@ get_some_data <- function(config, outfile) {
 ---
 # Magic Numbers
 
-**Magic numbers** are values in the code whose meaning is derived from context.
+**Magic numbers** are values in the code where the meaning of the number is derived from context.
 
 * confusing - what do they represent?
 * brittle - the value isn't always fixed
-* can be easily replaced with named constants
+* can usually be replaced with named constants
 
 ---
 # Example

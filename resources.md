@@ -37,7 +37,10 @@
   
 * ["The drake R package"](https://docs.ropensci.org/drake/)
   - `drake` is a workflow package to help manage large and complex analyses
-  
+
+* ["My Workflow for Open and Reproducible Science as an Academic Researcher in Biomedicine"](https://towardsdatascience.com/my-workflow-for-open-and-reproducible-science-as-an-academic-researcher-in-biomedicine-b41eaabcd420)
+  - a broad overview of combining snakemake, RStudio projects, and github for reproducible workflows, from Ruben Van Paemel
+
 ## Book Recommendations from Twitter
 
 * ["The Art of Readable Code"](https://www.oreilly.com/library/view/the-art-of/9781449318482/)
@@ -45,4 +48,6 @@
   
 * ["Clean Code: A Handbook of Craftsmanship"](https://www.oreilly.com/library/view/clean-code-a/9780136083238/)
   - via https://twitter.com/mxwlj/status/1354170627695861761
+  
+* ["Research Software Engineering with Python: Building software that makes research possible"](https://www.routledge.com/Research-Software-Engineering-with-Python-Building-software-that-makes/Irving-Hertweck-Johnston-Ostblom-Wickham-Wilson/p/book/9780367698324)
   
