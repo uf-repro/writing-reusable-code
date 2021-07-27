@@ -57,9 +57,15 @@
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-title-body">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -73,16 +79,13 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">writing.reusable.code</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a></a>
-</li>
-<li>
   <a></a>
 </li>
       </ul>
@@ -126,24 +129,24 @@
 
 <div id="syllabus" class="section level1">
 
-<p>Hao Ye Health Science Center Libraries, University of Florida (updated: 2021-02-02)</p>
+<p>Hao Ye Health Science Center Libraries, University of Florida (updated: 2021-07-27)</p>
 <div id="intro" class="section level2">
 <h2 class="hasAnchor">
-<a href="#intro" class="anchor"></a>Intro</h2>
+<a href="#intro" class="anchor" aria-hidden="true"></a>Intro</h2>
 <div id="any-fool-can-write-code-that-a-computer-can-understand-good-programmers-write-code-that-humans-can-understand" class="section level3">
 <h3 class="hasAnchor">
-<a href="#any-fool-can-write-code-that-a-computer-can-understand-good-programmers-write-code-that-humans-can-understand" class="anchor"></a>“Any fool can write code that a computer can understand.<br>
+<a href="#any-fool-can-write-code-that-a-computer-can-understand-good-programmers-write-code-that-humans-can-understand" class="anchor" aria-hidden="true"></a>“Any fool can write code that a computer can understand.<br>
 Good programmers write code that humans can understand.”</h3>
 <p>from “Refactoring: Improving the Design of Existing Code” by Martin Fowler</p>
 <ul>
 <li>Motivations
 <ul>
-<li>In addition to code that works, ideally it is <strong>also</strong>:
+<li>In addition to code that <strong>works correctly</strong>, ideally it is also:
 <ul>
 <li>easy to read and understand</li>
 <li>easy to maintain or change</li>
-<li>obvious in its correctness</li>
-<li>aesthetically pleasing (?)</li>
+<li>easy to verify its correct operation</li>
+<li>aesthetically pleasing (maybe?)</li>
 </ul>
 </li>
 </ul>
@@ -155,14 +158,13 @@ Good programmers write code that humans can understand.”</h3>
 <li>recognize and fix basic code smells</li>
 </ul>
 </li>
-<li>Disclaimer
+<li>A Note
 <ul>
 <li>Concepts are intended to be universal, but code examples will be in <strong><code>R</code></strong>.</li>
-<li>Like any other skill, <em>effective</em> practice matters!
+<li>Like any other skill, <strong><em>effective</em></strong> practice matters!
 <ul>
-<li>just because code works and does what you want doesn’t mean it is easy to read</li>
-<li>ask yourself “is it clear what is going on?” (even if the details are unclear)<br><em>I don’t need to know how an engine works to drive a car.</em>
-</li>
+<li>correctly working code isn’t necessarily easy to read or maintain</li>
+<li>keep in mind that you will almost always need to fix or revise the code later</li>
 </ul>
 </li>
 </ul>
@@ -172,7 +174,7 @@ Good programmers write code that humans can understand.”</h3>
 </div>
 <div id="breaking-code-into-functions" class="section level2">
 <h2 class="hasAnchor">
-<a href="#breaking-code-into-functions" class="anchor"></a>Breaking Code into Functions</h2>
+<a href="#breaking-code-into-functions" class="anchor" aria-hidden="true"></a>Breaking Code into Functions</h2>
 <ul>
 <li>
 <p>What are functions?</p>
@@ -181,7 +183,7 @@ Good programmers write code that humans can understand.”</h3>
 <strong>Functions</strong> let you refer to another piece of code by (a hopefully informative!) name</li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R">  <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="op">)</span>
+<code class="sourceCode R">  <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="op">)</span>
   <span class="co"># computes arithmetic mean of input</span></code></pre></div>
 <ul>
 <li>You can write your own functions, too!</li>
@@ -197,32 +199,27 @@ Good programmers write code that humans can understand.”</h3>
 <li>It seems like extra work…</li>
 <li>BUT, it enables:
 <ul>
-<li>repeating the same operation on different inputs (e.g. datasets, variables, parameter values, etc.)</li>
-<li>clarifying the larger organizational structure of the code</li>
+<li>performing the same operation on different inputs (e.g. datasets, variables, parameter values, etc.)</li>
+<li>the structure of your code can communicate how it works</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p>Duplication ```r df &lt;- data.frame( a = rnorm(10), b = rnorm(10), c = rnorm(10))</p></li>
+<li><p>Repeating yourself ```r df &lt;- data.frame( a = rnorm(10), b = rnorm(10), c = rnorm(10))</p></li>
 <li><p>rescale all the columns of df df<span class="math inline"><em>a</em> &lt;  − (<em>d</em><em>f</em></span>a - min(df<span class="math inline"><em>a</em>))/(<em>m</em><em>a</em><em>x</em>(<em>d</em><em>f</em></span>a) - min(df<span class="math inline"><em>a</em>))<em>d</em><em>f</em></span>b &lt;- (df<span class="math inline"><em>b</em> − <em>m</em><em>i</em><em>n</em>(<em>d</em><em>f</em></span>b)) / (max(df<span class="math inline"><em>b</em>) − <em>m</em><em>i</em><em>n</em>(<em>d</em><em>f</em></span>a)) df<span class="math inline"><em>c</em> &lt;  − (<em>d</em><em>f</em></span>c - min(df<span class="math inline"><em>c</em>))/(<em>m</em><em>a</em><em>x</em>(<em>d</em><em>f</em></span>c) - min(df$c)) ```</p></li>
 <li><p>Define a function! ```r rescale_to_01 &lt;- function(x) { (x - min(x)) / (max(x) - min(x)) }</p></li>
 <li><p>rescale all the columns of df df<span class="math inline"><em>a</em> &lt;  − <em>r</em><em>e</em><em>s</em><em>c</em><em>a</em><em>l</em><em>e</em><sub><em>t</em></sub><em>o</em><sub>01</sub>(<em>d</em><em>f</em></span>a) df<span class="math inline"><em>b</em> &lt;  − <em>r</em><em>e</em><em>s</em><em>c</em><em>a</em><em>l</em><em>e</em><sub><em>t</em></sub><em>o</em><sub>01</sub>(<em>d</em><em>f</em></span>b) df<span class="math inline"><em>c</em> &lt;  − <em>r</em><em>e</em><em>s</em><em>c</em><em>a</em><em>l</em><em>e</em><sub><em>t</em></sub><em>o</em><sub>01</sub>(<em>d</em><em>f</em></span>c)</p></li>
 <li><p>or with dplyr df &lt;- df %&gt;% mutate_at(c(“a”, “b”, “c”), rescale_to_01) ```</p></li>
 <li>
-<p>Notes</p>
+<p><strong>DRY</strong> = “Don’t Repeat Yourself”</p>
 <ul>
-<li>The calculation is defined once and re-used:
-<ul>
-<li>
-<strong>DRY</strong> = “Don’t Repeat Yourself”</li>
-<li>If we need to fix it or change it for some reason, that happens in just one place.</li>
+<li>If we need to fix or change the operation, only the function needs to be changed.</li>
 <li>It is easier to find where to change it, because of the function name.</li>
+<li>Someone reading the code can understand it without details.<br><em>I don’t need to know how an engine works to drive a car.</em>
+</li>
 </ul>
 </li>
-<li>Someone reading the code can get a sense of what the code is doing without needing to decipher the formula.</li>
-</ul>
-</li>
-<li><p>Workflow structure <img src="project-diagram.svg" title="Diagram of the workflow in a hypothetical data analysis project with boxes representing code and data/output files. &amp;quot;Raw data&amp;quot; goes into &amp;quot;Pre-processing&amp;quot; and then &amp;quot;Pre-processed data&amp;quot;. &amp;quot;Pre-processed data&amp;quot; goes directly into &amp;quot;Figure 3&amp;quot; (code) and then &amp;quot;Figure 3&amp;quot; (Data file), but also into &amp;quot;Analysis/Modelling&amp;quot;. The &amp;quot;Model&amp;quot; output from &amp;quot;Analysis/Modelling&amp;quot; is used in code for &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;, which generate files &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;." alt="Diagram of the workflow in a hypothetical data analysis project with boxes representing code and data/output files. &amp;quot;Raw data&amp;quot; goes into &amp;quot;Pre-processing&amp;quot; and then &amp;quot;Pre-processed data&amp;quot;. &amp;quot;Pre-processed data&amp;quot; goes directly into &amp;quot;Figure 3&amp;quot; (code) and then &amp;quot;Figure 3&amp;quot; (Data file), but also into &amp;quot;Analysis/Modelling&amp;quot;. The &amp;quot;Model&amp;quot; output from &amp;quot;Analysis/Modelling&amp;quot; is used in code for &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;, which generate files &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;." width="60%"> modified from “Reproducible research best practices @JupyterCon” (version 18) by Rachael Tatman, <a href="https://www.kaggle.com/rtatman/reproducible-research-best-practices-jupytercon" class="uri">https://www.kaggle.com/rtatman/reproducible-research-best-practices-jupytercon</a></p></li>
+<li><p>Workflow structure <img src="project-diagram.svg" title="Diagram of the workflow in a hypothetical data analysis project with boxes representing code and data/output files. &amp;quot;Raw data&amp;quot; goes into &amp;quot;Pre-processing&amp;quot; and then &amp;quot;Pre-processed data&amp;quot;. &amp;quot;Pre-processed data&amp;quot; goes directly into &amp;quot;Figure 3&amp;quot; (code) and then &amp;quot;Figure 3&amp;quot; (Data file), but also into &amp;quot;Analysis/Modelling&amp;quot;. The &amp;quot;Model&amp;quot; output from &amp;quot;Analysis/Modelling&amp;quot; is used in code for &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;, which generate files &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;." alt="Diagram of the workflow in a hypothetical data analysis project with boxes representing code and data/output files. &amp;quot;Raw data&amp;quot; goes into &amp;quot;Pre-processing&amp;quot; and then &amp;quot;Pre-processed data&amp;quot;. &amp;quot;Pre-processed data&amp;quot; goes directly into &amp;quot;Figure 3&amp;quot; (code) and then &amp;quot;Figure 3&amp;quot; (Data file), but also into &amp;quot;Analysis/Modelling&amp;quot;. The &amp;quot;Model&amp;quot; output from &amp;quot;Analysis/Modelling&amp;quot; is used in code for &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;, which generate files &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;." width="60%"> modified from “Reproducible research best practices @JupyterCon” (version 18) by Rachael Tatman, <a href="https://www.kaggle.com/rtatman/reproducible-research-best-practices-jupytercon" class="external-link uri">https://www.kaggle.com/rtatman/reproducible-research-best-practices-jupytercon</a></p></li>
 <li>
 <p>Example Code .tiny[</p>
 <pre>
@@ -238,13 +235,13 @@ data_raw
 <li>The code matches the steps of the analysis.</li>
 <li>It is easy to figure out where to make changes:
 <ul>
-<li>plot modification - edit the function</li>
-<li>including a new figure - write a new function and call it in the workflow script</li>
+<li>to modify a plot - edit the function</li>
+<li>including a new figure - write a new function and add it to the workflow script</li>
 </ul>
 </li>
-<li>Best practice: save the <code>data_proc</code> and <code>fitted_model</code> objects to a file.
+<li>Possible improvement:
 <ul>
-<li>The figure can be modified without re-running the model.</li>
+<li>save the processed data and model output to a file, so that they do not need to be re-run</li>
 </ul>
 </li>
 </ul>
@@ -253,14 +250,14 @@ data_raw
 <p>Tips for writing functions</p>
 <ul>
 <li>name things well</li>
-<li>plan for flexibility</li>
-<li>split large tasks into smaller units</li>
-<li>use data structures to return complex objects</li>
+<li>plan for (some) flexibility</li>
+<li>split large complex tasks into smaller units, each with a clear purpose</li>
+<li>use data structures to store complex objects, as needed</li>
 </ul>
 </li>
 <li><p>Tip 1: Naming Things Function names should be verbs ```r</p></li>
 <li><p>bad row_adder() permutation()</p></li>
-<li><p>good add_row() permute() ``` examples from <a href="https://style.tidyverse.org/functions.html#naming" class="uri">https://style.tidyverse.org/functions.html#naming</a></p></li>
+<li><p>good add_row() permute() ``` examples from <a href="https://style.tidyverse.org/functions.html#naming" class="external-link uri">https://style.tidyverse.org/functions.html#naming</a></p></li>
 <li>
 <p>Tip 2: Plan for flexibility</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -271,24 +268,24 @@ data_raw
   <span class="op">}</span></code></pre></div>
 <ul>
 <li>input data and location of output are easily changed</li>
-<li>width and height are adjustable, but have reasonable defaults</li>
+<li>width and height are adjustable, but have defaults that will work</li>
 </ul>
 </li>
 <li>
 <p>Tip 3: Subdividing work</p>
-<ol>
+<ol style="list-style-type: decimal">
 <li>start with the main goal of your program</li>
-<li>split the goal into separate steps</li>
+<li>split the goal into separate subgoals</li>
 </ol>
 <ul>
 <li>e.g. read in data, clean data, fit model, do statistics, make plots</li>
 </ul>
-<ol>
-<li>repeat step 2 until each step is a single task</li>
+<ol start="3" style="list-style-type: decimal">
+<li>repeat until each subgoal is a single task</li>
 </ol>
 <ul>
 <li>write a function for each task</li>
-<li>you may need to decide implementation details to get things working initially</li>
+<li>you may need to choose implementation details to get things working initially</li>
 </ul>
 </li>
 <li>
@@ -299,7 +296,7 @@ data_raw
 <li>Each function should have a single well-defined task</li>
 <li>Functions should ideally be 50 lines or less
 <ul>
-<li>not a hard rule, divide work into functions sensibly!</li>
+<li>this is a <strong>guideline</strong>—divide work into functions sensibly!</li>
 </ul>
 </li>
 </ul>
@@ -307,27 +304,33 @@ data_raw
 <li>
 <p>Tip 3 (cont’d)</p>
 <ul>
-<li>If a line or set of lines of code is complicated, it might need to be its own function (with a good name) ```r</li>
+<li>If a line or set of lines of code is complicated, a new function might be needed (with a good name) ```r</li>
 </ul>
 </li>
 <li><p>bad if (class(x)[[1]]) == “numeric” || class(x)[[1]] == “integer”)</p></li>
-<li><p>good if (is.numeric(x)) ``` examples from <a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36" class="uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36</a></p></li>
+<li><p>good if (is.numeric(x)) ``` examples from <a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36" class="external-link uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36</a></p></li>
 <li>
-<p>Tip 4: Use data structures Most programming languages allow you to create data structures to store multiple things.</p>
+<p>Tip 4: Use data structures Most programming languages let you create data structures to store complex data.</p>
 <ul>
-<li>e.g. in <strong><code>R</code></strong>, you can define a list to include data, settings, and results in one object to return from a function:</li>
+<li>e.g. in <strong><code>R</code></strong>, you can define a list to include data, settings, and results. This list can be returned from a function:</li>
 </ul>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtcars</span>, 
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtcars</span>, 
      var_1 <span class="op">=</span> <span class="st">"mpg"</span>, 
      var_2 <span class="op">=</span> <span class="st">"cyl"</span>, 
-     rho <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">$</span><span class="va">mpg</span>, <span class="va">mtcars</span><span class="op">$</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+     rho <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">$</span><span class="va">mpg</span>, <span class="va">mtcars</span><span class="op">$</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </li>
 </ul>
 </div>
 <div id="comments" class="section level2">
 <h2 class="hasAnchor">
-<a href="#comments" class="anchor"></a>Comments</h2>
+<a href="#comments" class="anchor" aria-hidden="true"></a>Comments</h2>
+<blockquote class="twitter-tweet">
+<p lang="en" dir="ltr">
+Developers commenting their code <a href="https://t.co/jKURCVR9ds" class="external-link">pic.twitter.com/jKURCVR9ds</a>
+</p>
+&amp;mdash; Ricardo Ferreira (@riferrei) <a href="https://twitter.com/riferrei/status/1358180071081713670?ref_src=twsrc%5Etfw" class="external-link">February 6, 2021</a>
+</blockquote>
 <ul>
 <li>
 <p>Comment Dos &amp; Don’ts</p>
@@ -372,26 +375,26 @@ if (DEBUG_MODE) {
 </div>
 <div id="code-smells" class="section level2">
 <h2 class="hasAnchor">
-<a href="#code-smells" class="anchor"></a>Code Smells</h2>
+<a href="#code-smells" class="anchor" aria-hidden="true"></a>Code Smells</h2>
 <ul>
 <li>
 <p>What are “code smells”</p>
 <ul>
 <li>properties of code that seem less ideal
 <ul>
-<li>not necessarily incorrect, but something <em>smells off</em>
+<li>not always incorrect, but <em>not quite right</em>
 </li>
 </ul>
 </li>
-<li>recognizing “code smells” depends on experience</li>
-<li>use a good style guide and avoid common traps!</li>
+<li>the ability to recognize “code smells” depends on experience</li>
+<li>use a good style guide and avoid common issues!</li>
 </ul>
 </li>
 <li>
 <p>Some common code smells</p>
 <ul>
 <li>functions that are too long</li>
-<li>lots of single-variable names</li>
+<li>lots of single-letter variable names</li>
 <li>too much indentation</li>
 <li>no indentation</li>
 <li>duplicated (or near-identical) code fragments</li>
@@ -402,28 +405,28 @@ if (DEBUG_MODE) {
 <p>TMI = too much indentation .tiny[</p>
 <pre>
 get_some_data 
-<p>] example from <a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=42" class="uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=42</a></p></pre>
+<p>] example from <a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=42" class="external-link uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=42</a></p></pre>
 </li>
 <li>
 <p>Simplify the logic! .tiny[</p>
 <pre>
 get_some_data 
   data 
-<p>] example from <a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=43" class="uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=43</a></p></pre>
+<p>] example from <a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=43" class="external-link uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=43</a></p></pre>
 </li>
 <li>
-<p>Magic Numbers <strong>Magic numbers</strong> are values in the code whose meaning is derived from context.</p>
+<p>Magic Numbers <strong>Magic numbers</strong> are values in the code where the meaning of the number is derived from context.</p>
 <ul>
 <li>confusing - what do they represent?</li>
 <li>brittle - the value isn’t always fixed</li>
-<li>can be easily replaced with named constants</li>
+<li>can usually be replaced with named constants</li>
 </ul>
 </li>
 <li>
 <p>Example</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"The correlation between mpg and cyl is"</span>, 
-    <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">mtcars</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"The correlation between mpg and cyl is"</span>, 
+    <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">mtcars</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>The correlation between mpg and cyl is -0.852162</code></pre>
 <ul>
 <li>What if we insert a column or change the order of columns?</li>
@@ -442,9 +445,9 @@ get_some_data
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">var_1</span> <span class="op">&lt;-</span> <span class="st">"mpg"</span>
 <span class="va">var_2</span> <span class="op">&lt;-</span> <span class="st">"cyl"</span>
-<span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"The correlation between"</span>, <span class="va">var_1</span>, 
+<span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"The correlation between"</span>, <span class="va">var_1</span>, 
     <span class="st">"and"</span>, <span class="va">var_2</span>, <span class="st">"is"</span>, 
-    <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">[</span>,<span class="va">var_1</span><span class="op">]</span>, <span class="va">mtcars</span><span class="op">[</span>,<span class="va">var_2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+    <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">[</span>,<span class="va">var_1</span><span class="op">]</span>, <span class="va">mtcars</span><span class="op">[</span>,<span class="va">var_2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>The correlation between mpg and cyl is -0.852162</code></pre>
 </li>
 <li>
@@ -455,9 +458,9 @@ get_some_data
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span> <span class="op">=</span> <span class="va">mtcars</span>, <span class="va">var_1</span> <span class="op">=</span> <span class="st">"mpg"</span>, 
               <span class="va">var_2</span> <span class="op">=</span> <span class="st">"cyl"</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"The correlation between"</span>, <span class="va">var_1</span>, 
+  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"The correlation between"</span>, <span class="va">var_1</span>, 
       <span class="st">"and"</span>, <span class="va">var_2</span>, <span class="st">"is"</span>, 
-    <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">df</span><span class="op">[</span>,<span class="va">var_1</span><span class="op">]</span>, <span class="va">df</span><span class="op">[</span>,<span class="va">var_2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">df</span><span class="op">[</span>,<span class="va">var_1</span><span class="op">]</span>, <span class="va">df</span><span class="op">[</span>,<span class="va">var_2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
 <span class="op">}</span>
 <span class="fu">f</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>The correlation between mpg and cyl is -0.852162</code></pre>
@@ -473,10 +476,7 @@ get_some_data
 </li>
 <li>use technological tools like automatic indentation and linters
 <ul>
-<li>
-<p>many modern IDEs (e.g. RStudio) have these built-in</p>
-<h2 id="thanks">Thanks</h2>
-</li>
+<li>many modern IDEs (e.g. RStudio) have these built-in ## Thanks</li>
 </ul>
 </li>
 </ul>
@@ -486,7 +486,7 @@ get_some_data
 <li>
 <p>Check back in on the libguide for more modules and contact info:</p>
 <ul>
-<li><a href="https://guides.uflib.ufl.edu/reproducibility" class="uri">https://guides.uflib.ufl.edu/reproducibility</a></li>
+<li><a href="https://guides.uflib.ufl.edu/reproducibility" class="external-link uri">https://guides.uflib.ufl.edu/reproducibility</a></li>
 </ul>
 </li>
 </ul>
@@ -507,11 +507,11 @@ get_some_data
 
       <footer>
       <div class="copyright">
-  <p>Developed by Hao Ye.</p>
+  <p><p>Developed by Hao Ye.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -519,6 +519,8 @@ get_some_data
 
   
 
+
+  
 
   </body>
 </html>
