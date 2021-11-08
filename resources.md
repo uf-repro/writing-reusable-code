@@ -49,5 +49,5 @@
 * ["Clean Code: A Handbook of Craftsmanship"](https://www.oreilly.com/library/view/clean-code-a/9780136083238/)
   - via https://twitter.com/mxwlj/status/1354170627695861761
   
-* ["Research Software Engineering with Python: Building software that makes research possible"](https://www.routledge.com/Research-Software-Engineering-with-Python-Building-software-that-makes/Irving-Hertweck-Johnston-Ostblom-Wickham-Wilson/p/book/9780367698324)
-  
+* ["Research Software Engineering with Python: Building software that makes research possible"](https://www.routledge.com/Research-Software-Engineering-with-Python-Building-software-that-makes/Irving-Hertweck-Johnston-Ostblom-Wickham-Wilson/p/book/9780367698324) [bookdown version](https://merely-useful.tech/py-rse/)
+   - book from Damien Irving, Kate Hertweck, Luke Johnston, Joel Ostblom, Charlotte Wickham, and Greg Wilson on introductory Research Software Engineering
