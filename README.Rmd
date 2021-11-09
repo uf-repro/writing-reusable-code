@@ -57,7 +57,7 @@ jsonlite::write_json(zenodo_json, ".zenodo.json",
 ## Learning Outcomes
 
 ```{r, include = FALSE}
-learning_outcomes <- c("split complex programming tasks into modular functions", 
+learning_outcomes <- c("organize programming tasks into modular functions", 
                        "communicate code intent using comments",
                        "recognize and fix basic code smells")
 outcomes_text <- paste0("* ", learning_outcomes, collapse = "\n")

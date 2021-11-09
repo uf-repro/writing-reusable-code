@@ -1,6 +1,6 @@
 Package: writing.reusable.code
 Title: Writing Reusable and Modular Code
-Version: 1.1.0
+Version: 1.1.1
 Authors@R: 
     person(given = "Hao",
            family = "Ye",
@@ -22,6 +22,6 @@ Imports:
     xaringan,
     xaringanthemer
 URL: https://github.com/uf-repro/writing-reusable-code
-learningOutcomes: * split complex programming tasks into modular functions
+learningOutcomes: * organize programming tasks into modular functions
  * communicate code intent using comments
  * recognize and fix basic code smells

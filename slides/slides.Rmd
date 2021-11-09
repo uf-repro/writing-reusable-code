@@ -61,7 +61,7 @@ class: inverse, center, middle
 ---
 # Motivations
 
-* In addition to code that **works correctly**, ideally it is also:
+* In addition to code that **works correctly**, it should also be:
   - easy to read and understand
   - easy to maintain or change
   - easy to verify its correct operation
@@ -77,10 +77,10 @@ By the end of the workshop, participants will be able to:
 ---
 # A Note
 
-* Concepts are intended to be universal, but code examples will be in **`R`**.
+* These concepts are universal, but code examples are in **`R`**.
 * Like any other skill, **_effective_** practice matters!
-  - correctly working code isn't necessarily easy to read or maintain
-  - keep in mind that you will almost always need to fix or revise the code later
+  - Making code easy to read and maintain usually means extra work *after* the code is correctly working
+  - Keep in mind that code is almost never finished! So make it easier for you to revise it later.
 
 ---
 class: inverse, center, middle
@@ -107,17 +107,16 @@ class: inverse, center, middle
 ---
 # Why write your own functions?
 
-* It seems like extra work...
+* If my script already works, this seems like extra work...
 
 --
-* BUT, it enables:
-  - performing the same operation on different inputs (e.g. datasets, variables, parameter values, etc.)
-  - the structure of your code can communicate how it works
+* Functions enable you to:
+  - perform the same task on different inputs (e.g. new data, parameter values, etc.)
+  - organize your code to communicate its operation
 
 ---
-# Repeating yourself
-
-```{r, eval = FALSE}
+# You can repeat code ...
+```{r, results='hide'}
 df <- data.frame( a = rnorm(10),
                   b = rnorm(10),
                   c = rnorm(10))
@@ -132,29 +131,33 @@ df$c <- (df$c - min(df$c)) /
 ```
 
 ---
-# Define a function!
+# Or define a function!
 
-```{r, eval = FALSE}
+```{r, echo = FALSE}
+library(dplyr)
+```
+
+```{r, results='hide'}
 rescale_to_01 <- function(x) {
   (x - min(x)) / (max(x) - min(x))
 }
 
-# rescale all the columns of df
+# rescale the columns of df
 df$a <- rescale_to_01(df$a)
 df$b <- rescale_to_01(df$b)
 df$c <- rescale_to_01(df$c)
 
 # or with dplyr
-df <- df %>% mutate_at(c("a", "b", "c"), 
-                       rescale_to_01)
+df <- df %>% mutate(
+    across(c("a", "b", "c"), rescale_to_01))
 ```
 
 ---
 # **DRY** = "Don't Repeat Yourself"
 
-* If we need to fix or change the operation, only the function needs to be changed.
-* It is easier to find where to change it, because of the function name.
-* Someone reading the code can understand it without details.  
+* If we need to change the calculation, that change is only in the function.
+* It is easier to find where to change the code, because of the function name.
+* Eith an effective name, someone can understand what the code does without needing to understand the implementation.
 
 --
   *I don't need to know how an engine works to drive a car.*
@@ -196,7 +199,7 @@ plot_abundance_histogram(data_proc,
 # Notes
 
 * The code matches the steps of the analysis.
-* It is easy to figure out where to make changes:
+* It is easy to make changes in the right place:
   - to modify a plot - edit the function
   - including a new figure - write a new function and add it to the workflow script
 * Possible improvement: 
@@ -207,8 +210,9 @@ plot_abundance_histogram(data_proc,
 
 * name things well
 * plan for (some) flexibility
-* split large complex tasks into smaller units, each with a clear purpose
+* split large, complex tasks into smaller units, each with a clear purpose
 * use data structures to store complex objects, as needed
+
 ---
 # Tip 1: Naming Things
 
@@ -235,8 +239,8 @@ plot_abundance_histogram <-
     # {{code}} 
   }
 ```
-* input data and location of output are easily changed
-* width and height are adjustable, but have defaults that will work
+* (data) and (file output) are required inputs
+* width and height are adjustable, but have defaults that are ok
 
 ---
 # Tip 3: Subdividing work
@@ -249,7 +253,7 @@ plot_abundance_histogram <-
   - you may need to choose implementation details to get things working initially
 
 ---
-# Tip 3 notes
+# Notes on Tip 3
 
 * Get something simple working first!
 * You can always make changes to the details and/or add flexibility later.
@@ -258,7 +262,7 @@ plot_abundance_histogram <-
   - this is a **guideline**—divide work into functions sensibly!
 
 ---
-# Tip 3 (cont'd)
+# More Notes on Tip 3
 
 * If a line or set of lines of code is complicated, a new function might be needed (with a good name)
 
@@ -331,7 +335,7 @@ plot_abundance_histogram <-
     # {{code}} 
   }
 ```
-* What is `data_proc` and how is it structured?
+* What kind of object is `data_proc`, what fields/columns have the abundance data?
 
 ---
 # Comment Dos & Don'ts
@@ -350,7 +354,13 @@ Sigma_inv <-  t(L_inv) %*% L_inv
 ---
 # Comment Dos & Don'ts
 
-**Don't** turn code off and on with comments  
+**Don't** turn code off and on with comments
+```{r, eval = FALSE}
+# cat("The value of x is", x)
+```
+
+--
+
 - use conditional logic instead  
 ```{r, eval = FALSE}
 if (DEBUG_MODE) {
@@ -364,11 +374,11 @@ class: inverse, center, middle
 # Code Smells
 
 ---
-# What are "code smells"
+# What are "code smells"?
 
-* properties of code that seem less ideal
+* properties of code that seem not so ideal
   - not always incorrect, but *not quite right*
-* the ability to recognize "code smells" depends on experience
+* recognize "code smells" is a skill, depends on experience, and is also personal
 * use a good style guide and avoid common issues!
 
 ---

@@ -28,6 +28,6 @@ Carpentries workshop* - <https://www.uf-carpentries.org/>
 
 By the end of the workshop, participants will be able to:
 
-  - split complex programming tasks into modular functions
-  - communicate code intent using comments
-  - recognize and fix basic code smells
+-   organize programming tasks into modular functions
+-   communicate code intent using comments
+-   recognize and fix basic code smells
