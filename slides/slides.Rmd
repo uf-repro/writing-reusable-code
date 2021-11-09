@@ -268,7 +268,7 @@ plot_abundance_histogram <-
 
 ```{r, eval = FALSE}
 # bad
-if (class(x)[[1]]) == "numeric" || 
+if (class(x)[[1]] == "numeric" || 
     class(x)[[1]] == "integer")
 
 # good

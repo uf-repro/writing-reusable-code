@@ -9,15 +9,16 @@ Authors@R:
            comment = c(ORCID = "0000-0002-8630-1458"))
 Description: This workshop introduces attendees to the principles of writing 'clean' code, that is easier to read, maintain, and expand. Attendees will learn about organizing complex programming scripts into modular functions, writing effective documentation, and habits to improve code robustness and reusability.
  .
-  *Attendees will be expected to have basic familiarity with programming, such as experience writing simple scripts or recent attendance at a Carpentries workshop* - https://www.uf-carpentries.org/
+   *Attendees will be expected to have basic familiarity with programming, such as experience writing simple scripts or recent attendance at a Carpentries workshop* - https://www.uf-carpentries.org/
 License: CC BY 4.0
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
 Imports:
-    desc, 
-    jsonlite, 
+    desc,
+    dplyr,
+    jsonlite,
     showtext,
     xaringan,
     xaringanthemer
