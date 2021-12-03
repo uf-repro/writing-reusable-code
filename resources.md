@@ -35,8 +35,8 @@
 * ["The Wrong Abstraction"](https://sandimetz.com/blog/2016/1/20/the-wrong-abstraction)
   - blogpost from Sandi Metz on refactoring and complexity
   
-* ["The drake R package"](https://docs.ropensci.org/drake/)
-  - `drake` is a workflow package to help manage large and complex analyses
+* ["The targets R package"](https://docs.ropensci.org/targets/)
+  - `targets` is a workflow package to help manage large and complex analyses
 
 * ["My Workflow for Open and Reproducible Science as an Academic Researcher in Biomedicine"](https://towardsdatascience.com/my-workflow-for-open-and-reproducible-science-as-an-academic-researcher-in-biomedicine-b41eaabcd420)
   - a broad overview of combining snakemake, RStudio projects, and github for reproducible workflows, from Ruben Van Paemel
