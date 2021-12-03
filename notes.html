@@ -60,7 +60,7 @@
 
 <div id="syllabus" class="section level1">
 
-<p>Hao Ye Health Science Center Libraries, University of Florida (updated: 2021-11-09)</p>
+<p>Hao Ye Health Science Center Libraries, University of Florida (updated: 2021-12-03)</p>
 <div class="section level2">
 <h2 id="intro">Intro<a class="anchor" aria-label="anchor" href="#intro"></a></h2>
 <div class="section level3">
@@ -114,25 +114,14 @@ Good programmers write code that humans can understand.”<a class="anchor" aria
 </ul></li>
 <li><p>You can repeat code … ```r df &lt;- data.frame( a = rnorm(10), b = rnorm(10), c = rnorm(10))</p></li>
 <li><p>rescale all the columns of df df<span class="math inline"><em>a</em> &lt;  − (<em>d</em><em>f</em></span>a - min(df<span class="math inline"><em>a</em>))/(<em>m</em><em>a</em><em>x</em>(<em>d</em><em>f</em></span>a) - min(df<span class="math inline"><em>a</em>))<em>d</em><em>f</em></span>b &lt;- (df<span class="math inline"><em>b</em> − <em>m</em><em>i</em><em>n</em>(<em>d</em><em>f</em></span>b)) / (max(df<span class="math inline"><em>b</em>) − <em>m</em><em>i</em><em>n</em>(<em>d</em><em>f</em></span>a)) df<span class="math inline"><em>c</em> &lt;  − (<em>d</em><em>f</em></span>c - min(df<span class="math inline"><em>c</em>))/(<em>m</em><em>a</em><em>x</em>(<em>d</em><em>f</em></span>c) - min(df$c)) ```</p></li>
-<li>
-<p>Or define a function!</p>
-<pre><code><span class="co">## </span>
-<span class="co">## Attaching package: 'dplyr'</span></code></pre>
-<pre><code><span class="co">## The following objects are masked from 'package:stats':</span>
-<span class="co">## </span>
-<span class="co">##     filter, lag</span></code></pre>
-<pre><code><span class="co">## The following objects are masked from 'package:base':</span>
-<span class="co">## </span>
-<span class="co">##     intersect, setdiff, setequal, union</span></code></pre>
-<p>```r rescale_to_01 &lt;- function(x) { (x - min(x)) / (max(x) - min(x)) }</p>
-</li>
+<li><p>Or define a function! ```r rescale_to_01 &lt;- function(x) { (x - min(x)) / (max(x) - min(x)) }</p></li>
 <li><p>rescale the columns of df df<span class="math inline"><em>a</em> &lt;  − <em>r</em><em>e</em><em>s</em><em>c</em><em>a</em><em>l</em><em>e</em><sub><em>t</em></sub><em>o</em><sub>01</sub>(<em>d</em><em>f</em></span>a) df<span class="math inline"><em>b</em> &lt;  − <em>r</em><em>e</em><em>s</em><em>c</em><em>a</em><em>l</em><em>e</em><sub><em>t</em></sub><em>o</em><sub>01</sub>(<em>d</em><em>f</em></span>b) df<span class="math inline"><em>c</em> &lt;  − <em>r</em><em>e</em><em>s</em><em>c</em><em>a</em><em>l</em><em>e</em><sub><em>t</em></sub><em>o</em><sub>01</sub>(<em>d</em><em>f</em></span>c)</p></li>
 <li><p>or with dplyr df &lt;- df %&gt;% mutate( across(c(“a”, “b”, “c”), rescale_to_01)) ```</p></li>
 <li>
 <p><strong>DRY</strong> = “Don’t Repeat Yourself”</p>
 <ul><li>If we need to change the calculation, that change is only in the function.</li>
 <li>It is easier to find where to change the code, because of the function name.</li>
-<li>Eith an effective name, someone can understand what the code does without needing to understand the implementation. <em>I don’t need to know how an engine works to drive a car.</em>
+<li>With an effective name, someone can understand what the code does without needing to understand the implementation. <em>I don’t need to know how an engine works to drive a car.</em>
 </li>
 </ul></li>
 <li><p>Workflow structure <img src="project-diagram.svg" title="Diagram of the workflow in a hypothetical data analysis project with boxes representing code and data/output files. &amp;quot;Raw data&amp;quot; goes into &amp;quot;Pre-processing&amp;quot; and then &amp;quot;Pre-processed data&amp;quot;. &amp;quot;Pre-processed data&amp;quot; goes directly into &amp;quot;Figure 3&amp;quot; (code) and then &amp;quot;Figure 3&amp;quot; (Data file), but also into &amp;quot;Analysis/Modelling&amp;quot;. The &amp;quot;Model&amp;quot; output from &amp;quot;Analysis/Modelling&amp;quot; is used in code for &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;, which generate files &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;." alt="Diagram of the workflow in a hypothetical data analysis project with boxes representing code and data/output files. &amp;quot;Raw data&amp;quot; goes into &amp;quot;Pre-processing&amp;quot; and then &amp;quot;Pre-processed data&amp;quot;. &amp;quot;Pre-processed data&amp;quot; goes directly into &amp;quot;Figure 3&amp;quot; (code) and then &amp;quot;Figure 3&amp;quot; (Data file), but also into &amp;quot;Analysis/Modelling&amp;quot;. The &amp;quot;Model&amp;quot; output from &amp;quot;Analysis/Modelling&amp;quot; is used in code for &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;, which generate files &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;." width="60%"> modified from “Reproducible research best practices @JupyterCon” (version 18) by Rachael Tatman, <a href="https://www.kaggle.com/rtatman/reproducible-research-best-practices-jupytercon" class="external-link uri">https://www.kaggle.com/rtatman/reproducible-research-best-practices-jupytercon</a></p></li>
@@ -168,7 +157,7 @@ data_raw
 <li><p>good add_row() permute() ``` examples from <a href="https://style.tidyverse.org/functions.html#naming" class="external-link uri">https://style.tidyverse.org/functions.html#naming</a></p></li>
 <li>
 <p>Tip 2: Plan for flexibility</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plot_abundance_histogram</span> <span class="op">&lt;-</span> 
   <span class="kw">function</span><span class="op">(</span><span class="va">data_proc</span>, <span class="va">filename</span>, 
            <span class="va">width</span> <span class="op">=</span> <span class="fl">6</span>, <span class="va">height</span> <span class="op">=</span> <span class="fl">6</span><span class="op">)</span> <span class="op">{</span> 
@@ -204,7 +193,7 @@ data_raw
 <li>
 <p>Tip 4: Use data structures Most programming languages let you create data structures to store complex data.</p>
 <ul><li>e.g. in <strong><code>R</code></strong>, you can define a list to include data, settings, and results. This list can be returned from a function:</li>
-</ul><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+</ul><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtcars</span>, 
      var_1 <span class="op">=</span> <span class="st">"mpg"</span>, 
      var_2 <span class="op">=</span> <span class="st">"cyl"</span>, 
@@ -236,7 +225,7 @@ Developers commenting their code <a href="https://t.co/jKURCVR9ds" class="extern
 <li><p>set aside 2/3 of data to train model lib &lt;- c(1, floor(2/3 * n)) ```</p></li>
 <li>
 <p>Comment Dos &amp; Don’ts <strong>Do</strong> document the inputs, outputs, and purpose of each function</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plot_abundance_histogram</span> <span class="op">&lt;-</span> 
   <span class="kw">function</span><span class="op">(</span><span class="va">data_proc</span>, <span class="va">filename</span>, 
            <span class="va">width</span> <span class="op">=</span> <span class="fl">6</span>, <span class="va">height</span> <span class="op">=</span> <span class="fl">6</span><span class="op">)</span> <span class="op">{</span> 
@@ -252,7 +241,7 @@ Developers commenting their code <a href="https://t.co/jKURCVR9ds" class="extern
 ```r
 * cat("The value of x is", x)</code></pre>
 <ul><li>use conditional logic instead<br></li>
-</ul><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+</ul><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="va">DEBUG_MODE</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"The value of x is"</span>, <span class="va">x</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
@@ -298,7 +287,7 @@ get_some_data
 </ul></li>
 <li>
 <p>Example</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"The correlation between mpg and cyl is"</span>, 
     <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">mtcars</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>The correlation between mpg and cyl is -0.852162</code></pre>
@@ -310,7 +299,7 @@ get_some_data
 <li>
 <p>Example (fixed)</p>
 <ul><li>define variables for the “magic numbers”</li>
-</ul><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+</ul><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">var_1</span> <span class="op">&lt;-</span> <span class="st">"mpg"</span>
 <span class="va">var_2</span> <span class="op">&lt;-</span> <span class="st">"cyl"</span>
 <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"The correlation between"</span>, <span class="va">var_1</span>, 
@@ -321,7 +310,7 @@ get_some_data
 <li>
 <p>Example (as a function)</p>
 <ul><li>We can even turn it into a function!</li>
-</ul><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+</ul><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span> <span class="op">=</span> <span class="va">mtcars</span>, <span class="va">var_1</span> <span class="op">=</span> <span class="st">"mpg"</span>, 
               <span class="va">var_2</span> <span class="op">=</span> <span class="st">"cyl"</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"The correlation between"</span>, <span class="va">var_1</span>, 
@@ -365,7 +354,7 @@ get_some_data
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.9000.</p>
 </div>
 
       </footer></div>

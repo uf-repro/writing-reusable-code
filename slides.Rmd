@@ -133,7 +133,7 @@ df$c <- (df$c - min(df$c)) /
 ---
 # Or define a function!
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, message = FALSE}
 library(dplyr)
 ```
 
@@ -157,7 +157,7 @@ df <- df %>% mutate(
 
 * If we need to change the calculation, that change is only in the function.
 * It is easier to find where to change the code, because of the function name.
-* Eith an effective name, someone can understand what the code does without needing to understand the implementation.
+* With an effective name, someone can understand what the code does without needing to understand the implementation.
 
 --
   *I don't need to know how an engine works to drive a car.*

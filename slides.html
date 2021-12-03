@@ -17,7 +17,7 @@ class: inverse, center, middle
 # Writing Reusable and Modular Code
 ### Hao Ye
 ### Health Science Center Libraries, University of Florida
-### (updated: 2021-11-09)
+### (updated: 2021-12-03)
 
 ---
 class: inverse, center, middle
@@ -107,22 +107,6 @@ df$c &lt;- (df$c - min(df$c)) /
 # Or define a function!
 
 
-```
-## 
-## Attaching package: 'dplyr'
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
 
 
 ```r
@@ -145,7 +129,7 @@ df &lt;- df %&gt;% mutate(
 
 * If we need to change the calculation, that change is only in the function.
 * It is easier to find where to change the code, because of the function name.
-* Eith an effective name, someone can understand what the code does without needing to understand the implementation.
+* With an effective name, someone can understand what the code does without needing to understand the implementation.
 
 --
   *I don't need to know how an engine works to drive a car.*
