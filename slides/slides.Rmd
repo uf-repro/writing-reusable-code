@@ -79,8 +79,8 @@ By the end of the workshop, participants will be able to:
 
 * These concepts are universal, but code examples are in **`R`**.
 * Like any other skill, **_effective_** practice matters!
-  - Making code easy to read and maintain usually means extra work *after* the code is correctly working
-  - Keep in mind that code is almost never finished! So make it easier for you to revise it later.
+  - Making code easy to read usually means extra work *after* the code is correctly working
+  - Keep in mind that code is never "finished"! So make it easier for you to revise it later.
 
 ---
 class: inverse, center, middle
@@ -107,12 +107,13 @@ class: inverse, center, middle
 ---
 # Why write your own functions?
 
-* If my script already works, this seems like extra work...
+* If my script already works, this is extra work...
 
 --
 * Functions enable you to:
   - perform the same task on different inputs (e.g. new data, parameter values, etc.)
-  - organize your code to communicate its operation
+  - isolate correct code from experiments
+  - organize your analysis for readability
 
 ---
 # You can repeat code ...
@@ -155,11 +156,12 @@ df <- df %>% mutate(
 ---
 # **DRY** = "Don't Repeat Yourself"
 
-* If we need to change the calculation, that change is only in the function.
-* It is easier to find where to change the code, because of the function name.
-* With an effective name, someone can understand what the code does without needing to understand the implementation.
+* Changing the calculation only needs to be done once, in the function definition.
+* The function name helps us find where to change the code.
+* A good function name helps someone understand what the code does without seeing its implementation.
 
 --
+
   *I don't need to know how an engine works to drive a car.*
 
 ---
@@ -203,7 +205,7 @@ plot_abundance_histogram(data_proc,
   - to modify a plot - edit the function
   - including a new figure - write a new function and add it to the workflow script
 * Possible improvement: 
-  - save the processed data and model output to a file, so that they do not need to be re-run
+  - save the function outputs to a file, so that they do not need to be re-run
   
 ---
 # Tips for writing functions
@@ -239,8 +241,8 @@ plot_abundance_histogram <-
     # {{code}} 
   }
 ```
-* (data) and (file output) are required inputs
-* width and height are adjustable, but have defaults that are ok
+* `data_proc` and `filename` are required inputs
+* width and height are adjustable, but have defaults values that work
 
 ---
 # Tip 3: Subdividing work
@@ -248,9 +250,9 @@ plot_abundance_histogram <-
 1. start with the main goal of your program
 2. split the goal into separate subgoals
   - e.g. read in data, clean data, fit model, do statistics, make plots
-3. repeat until each subgoal is a single task
+3. repeat step 2 to subdivide into individual tasks
   - write a function for each task
-  - you may need to choose implementation details to get things working initially
+  - you may need to choose initial implementation details to get things working
 
 ---
 # Notes on Tip 3
@@ -297,6 +299,30 @@ class: inverse, center, middle
 ---
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Developers commenting their code <a href="https://t.co/jKURCVR9ds">pic.twitter.com/jKURCVR9ds</a></p>&mdash; Ricardo Ferreira (@riferrei) <a href="https://twitter.com/riferrei/status/1358180071081713670?ref_src=twsrc%5Etfw">February 6, 2021</a></blockquote>
+
+---
+.small[(via "Notes on Programming in C", Rob Pike)]
+
+There is a famously bad comment style:
+
+```c
+i=i+1;             /* Add one to i */
+```
+
+and there are worse ways to do it:
+
+```c
+/**********************************
+ *                                *
+ * Add one to i                   *
+ *                                *
+ **********************************/
+
+i=i+1;
+```
+
+Don’t laugh now, wait until you see it in real life.
+
 
 ---
 # Comment Dos & Don'ts
