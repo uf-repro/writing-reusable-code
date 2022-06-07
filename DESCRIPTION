@@ -1,6 +1,6 @@
 Package: writing.reusable.code
 Title: Writing Reusable and Modular Code
-Version: 1.1.2
+Version: 1.1.3
 Authors@R: 
     person(given = "Hao",
            family = "Ye",
@@ -9,7 +9,7 @@ Authors@R:
            comment = c(ORCID = "0000-0002-8630-1458"))
 Description: This workshop introduces attendees to the principles of writing 'clean' code, that is easier to read, maintain, and expand. Attendees will learn about organizing complex programming scripts into modular functions, writing effective documentation, and habits to improve code robustness and reusability.
  .
-   *Attendees will be expected to have basic familiarity with programming, such as experience writing simple scripts or recent attendance at a Carpentries workshop* - https://www.uf-carpentries.org/
+  *Attendees will be expected to have basic familiarity with programming, such as experience writing simple scripts or recent attendance at a Carpentries workshop* - https://www.uf-carpentries.org/
 License: CC BY 4.0
 Encoding: UTF-8
 LazyData: true
@@ -26,3 +26,4 @@ URL: https://github.com/uf-repro/writing-reusable-code
 learningOutcomes: * organize programming tasks into modular functions
  * communicate code intent using comments
  * recognize and fix basic code smells
+X-schema.org-keywords: Open Educational Resources, Research Support Skills, Version Control, Workshop, Research Software Engineering, Reproducibility, Modular Code, Style Guide, Code Smell

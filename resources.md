@@ -21,12 +21,15 @@
   
 * ["Column Names as Contracts"](https://emilyriederer.netlify.app/post/column-name-contracts/)
   - Blogpost from Emily Riederer on selecting good column names to facilitate a data analysis workflow
-
+  
+* ["Twelve quick tips for software design"](https://doi.org/10.1371/journal.pcbi.1009809)
+  - paper from Greg Wilson about designing larger pieces of code
+  
 ## Writing Functions
 
 * ["Functions"](https://r4ds.had.co.nz/functions.html)
   - book chapter from Hadley Wickham & Garrett Grolemund's "R for Data Science"
-  
+
 ## Advanced Topics
 
 * ["RMarkdown Driven Development (RmdDD)"](https://emilyriederer.netlify.app/post/rmarkdown-driven-development/)
@@ -40,6 +43,9 @@
 
 * ["My Workflow for Open and Reproducible Science as an Academic Researcher in Biomedicine"](https://towardsdatascience.com/my-workflow-for-open-and-reproducible-science-as-an-academic-researcher-in-biomedicine-b41eaabcd420)
   - a broad overview of combining snakemake, RStudio projects, and github for reproducible workflows, from Ruben Van Paemel
+
+
+https://twitter.com/zevross/status/1519318012846817282?s=20&t=MH7bo9SJVImUbt0N6h7AzA
 
 ## Book Recommendations from Twitter
 
