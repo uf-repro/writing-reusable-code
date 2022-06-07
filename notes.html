@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">writing.reusable.code</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.3</span>
       </span>
     </div>
 
@@ -59,31 +59,24 @@
     </div>
 
 <div id="syllabus" class="section level1">
-
-<p>Hao Ye Health Science Center Libraries, University of Florida (updated: 2022-03-29)</p>
+<p>Hao Ye Health Science Center Libraries, University of Florida (updated: 2022-06-07)</p>
 <div class="section level2">
 <h2 id="intro">Intro<a class="anchor" aria-label="anchor" href="#intro"></a></h2>
 <div class="section level3">
 <h3 id="any-fool-can-write-code-that-a-computer-can-understand-good-programmers-write-code-that-humans-can-understand">“Any fool can write code that a computer can understand.<br>
 Good programmers write code that humans can understand.”<a class="anchor" aria-label="anchor" href="#any-fool-can-write-code-that-a-computer-can-understand-good-programmers-write-code-that-humans-can-understand"></a></h3>
 <p>from “Refactoring: Improving the Design of Existing Code” by Martin Fowler</p>
-<ul><li>Motivations
-<ul><li>In addition to code that <strong>works correctly</strong>, it should also be:
-<ul><li>easy to read and understand</li>
+<ul><li>Motivations<ul><li>In addition to code that <strong>works correctly</strong>, it should also be:<ul><li>easy to read and understand</li>
 <li>easy to maintain or change</li>
 <li>easy to verify its correct operation</li>
 <li>aesthetically pleasing (maybe?)</li>
-</ul></li>
-</ul></li>
-<li>Learning Outcomes By the end of the workshop, participants will be able to:
-<ul><li>organize programming tasks into modular functions</li>
+</ul></li></ul></li>
+<li>Learning Outcomes By the end of the workshop, participants will be able to:<ul><li>organize programming tasks into modular functions</li>
 <li>communicate code intent using comments</li>
 <li>recognize and fix basic code smells</li>
 </ul></li>
-<li>A Note
-<ul><li>These concepts are universal, but code examples are in <strong><code>R</code></strong>.</li>
-<li>Like any other skill, <strong><em>effective</em></strong> practice matters!
-<ul><li>Making code easy to read usually means extra work <em>after</em> the code is correctly working</li>
+<li>A Note<ul><li>These concepts are universal, but code examples are in <strong><code>R</code></strong>.</li>
+<li>Like any other skill, <strong><em>effective</em></strong> practice matters!<ul><li>Making code easy to read usually means extra work <em>after</em> the code is correctly working</li>
 <li>Keep in mind that code is never “finished”! So make it easier for you to revise it later.</li>
 </ul></li>
 </ul></li>
@@ -94,12 +87,10 @@ Good programmers write code that humans can understand.”<a class="anchor" aria
 <ul><li>
 <p>What are functions?</p>
 <ul><li>
-<strong>Functions</strong> let you refer to another piece of code by (a hopefully informative!) name</li>
-</ul><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<strong>Functions</strong> let you refer to another piece of code by (a hopefully informative!) name</li></ul><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R">  <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="op">)</span>
   <span class="co"># computes arithmetic mean of input</span></code></pre></div>
-<ul><li>You can write your own functions, too!</li>
-</ul><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<ul><li>You can write your own functions, too!</li></ul><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R">  <span class="va">celsius_to_fahrenheit</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
     <span class="fl">9</span><span class="op">/</span><span class="fl">5</span> <span class="op">*</span> <span class="va">x</span> <span class="op">+</span> <span class="fl">32</span>
   <span class="op">}</span></code></pre></div>
@@ -107,8 +98,7 @@ Good programmers write code that humans can understand.”<a class="anchor" aria
 <li>
 <p>Why write your own functions?</p>
 <ul><li>If my script already works, this is extra work…</li>
-<li>Functions enable you to:
-<ul><li>perform the same task on different inputs (e.g. new data, parameter values, etc.)</li>
+<li>Functions enable you to:<ul><li>perform the same task on different inputs (e.g. new data, parameter values, etc.)</li>
 <li>isolate correct code from experiments</li>
 <li>organize your analysis for readability</li>
 </ul></li>
@@ -132,19 +122,15 @@ Good programmers write code that humans can understand.”<a class="anchor" aria
 library(tidyverse)
 source("analysis_functions.R")
 source("plotting_functions.R")
-data_raw 
-<p>]</p></pre>
+data_raw <p>]</p></pre>
 </li>
 <li>
 <p>Notes</p>
 <ul><li>The code matches the steps of the analysis.</li>
-<li>It is easy to make changes in the right place:
-<ul><li>to modify a plot - edit the function</li>
+<li>It is easy to make changes in the right place:<ul><li>to modify a plot - edit the function</li>
 <li>including a new figure - write a new function and add it to the workflow script</li>
 </ul></li>
-<li>Possible improvement:
-<ul><li>save the function outputs to a file, so that they do not need to be re-run</li>
-</ul></li>
+<li>Possible improvement:<ul><li>save the function outputs to a file, so that they do not need to be re-run</li></ul></li>
 </ul></li>
 <li>
 <p>Tips for writing functions</p>
@@ -172,9 +158,7 @@ data_raw
 <p>Tip 3: Subdividing work</p>
 <ol style="list-style-type: decimal"><li>start with the main goal of your program</li>
 <li>split the goal into separate subgoals</li>
-</ol><ul><li>e.g. read in data, clean data, fit model, do statistics, make plots</li>
-</ul><ol start="3" style="list-style-type: decimal"><li>repeat step 2 to subdivide into individual tasks</li>
-</ol><ul><li>write a function for each task</li>
+</ol><ul><li>e.g. read in data, clean data, fit model, do statistics, make plots</li></ul><ol start="3" style="list-style-type: decimal"><li>repeat step 2 to subdivide into individual tasks</li></ol><ul><li>write a function for each task</li>
 <li>you may need to choose initial implementation details to get things working</li>
 </ul></li>
 <li>
@@ -182,20 +166,16 @@ data_raw
 <ul><li>Get something simple working first!</li>
 <li>You can always make changes to the details and/or add flexibility later.</li>
 <li>Each function should have a single well-defined task</li>
-<li>Functions should ideally be 50 lines or less
-<ul><li>this is a <strong>guideline</strong>—divide work into functions sensibly!</li>
-</ul></li>
+<li>Functions should ideally be 50 lines or less<ul><li>this is a <strong>guideline</strong>—divide work into functions sensibly!</li></ul></li>
 </ul></li>
 <li>
 <p>More Notes on Tip 3</p>
-<ul><li>If a line or set of lines of code is complicated, a new function might be needed (with a good name) ```r</li>
-</ul></li>
+<ul><li>If a line or set of lines of code is complicated, a new function might be needed (with a good name) ```r</li></ul></li>
 <li><p>bad if (class(x)[[1]] == “numeric” || class(x)[[1]] == “integer”)</p></li>
 <li><p>good if (is.numeric(x)) ``` examples from <a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36" class="external-link uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36</a></p></li>
 <li>
 <p>Tip 4: Use data structures Most programming languages let you create data structures to store complex data.</p>
-<ul><li>e.g. in <strong><code>R</code></strong>, you can define a list to include data, settings, and results. This list can be returned from a function:</li>
-</ul><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<ul><li>e.g. in <strong><code>R</code></strong>, you can define a list to include data, settings, and results. This list can be returned from a function:</li></ul><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtcars</span>, 
      var_1 <span class="op">=</span> <span class="st">"mpg"</span>, 
      var_2 <span class="op">=</span> <span class="st">"cyl"</span>, 
@@ -205,10 +185,7 @@ data_raw
 <div class="section level2">
 <h2 id="comments">Comments<a class="anchor" aria-label="anchor" href="#comments"></a></h2>
 <blockquote class="twitter-tweet">
-<p lang="en" dir="ltr">
-Developers commenting their code <a href="https://t.co/jKURCVR9ds" class="external-link">pic.twitter.com/jKURCVR9ds</a>
-</p>
-&amp;mdash; Ricardo Ferreira (@riferrei) <a href="https://twitter.com/riferrei/status/1358180071081713670?ref_src=twsrc%5Etfw" class="external-link">February 6, 2021</a>
+<p lang="en" dir="ltr">Developers commenting their code <a href="https://t.co/jKURCVR9ds" class="external-link">pic.twitter.com/jKURCVR9ds</a></p>&amp;mdash; Ricardo Ferreira (@riferrei) <a href="https://twitter.com/riferrei/status/1358180071081713670?ref_src=twsrc%5Etfw" class="external-link">February 6, 2021</a>
 </blockquote>
 <p>(via “Notes on Programming in C”, Rob Pike) There is a famously bad comment style: <code>c   i=i+1;             /* Add one to i */</code> and there are worse ways to do it: <code>c   /**********************************    *                                *    * Add one to i                   *    *                                *    **********************************/   i=i+1;</code> Don’t laugh now, wait until you see it in real life. * Comment Dos &amp; Don’ts * <strong>Do</strong> use comments to describe <strong>why</strong>, not <strong>how</strong> * <strong>Do</strong> document the inputs, outputs, and purpose of each function * <strong>Do</strong> store notes/references in comments * <strong>Don’t</strong> turn code off and on with comments * Comment Dos &amp; Don’ts <strong>Do</strong> use comments to describe <strong>why</strong>, not <strong>how</strong> Bad: <code>r * Set lib as (1, [2/3 * n])   lib &lt;- c(1, floor(2/3 * n))</code> Good: <code>r * set aside 2/3 of data to train model   lib &lt;- c(1, floor(2/3 * n))</code> * Comment Dos &amp; Don’ts <strong>Do</strong> document the inputs, outputs, and purpose of each function <code>r   plot_abundance_histogram &lt;-      function(data_proc, filename,               width = 6, height = 6) {        # {{code}}      }</code> * What kind of object is <code>data_proc</code>, what fields/columns have the abundance data? * Comment Dos &amp; Don’ts <strong>Do</strong> store notes/references in comments <code>r * cholesky algorithm from Rasmussen &amp;amp;  *   Williams (2006, algorithm 2.1)   R &lt;- chol(Sigma)   alpha &lt;- backsolve(R, forwardsolve(t(R), y_lib - mean_y))   L_inv &lt;- forwardsolve(t(R), diag(NROW(x_lib)))   Sigma_inv &lt;-  t(L_inv) %*% L_inv</code> * Comment Dos &amp; Don’ts <strong>Don’t</strong> turn code off and on with comments <code>r * cat("The value of x is", x)</code> - use conditional logic instead<br><code>r   if (DEBUG_MODE) {     cat("The value of x is", x)   }</code></p>
 </div>
@@ -216,10 +193,8 @@ Developers commenting their code <a href="https://t.co/jKURCVR9ds" class="extern
 <h2 id="code-smells">Code Smells<a class="anchor" aria-label="anchor" href="#code-smells"></a></h2>
 <ul><li>
 <p>What are “code smells”?</p>
-<ul><li>properties of code that seem not so ideal
-<ul><li>not always incorrect, but <em>not quite right</em>
-</li>
-</ul></li>
+<ul><li>properties of code that seem not so ideal<ul><li>not always incorrect, but <em>not quite right</em>
+</li></ul></li>
 <li>recognize “code smells” is a skill, depends on experience, and is also personal</li>
 <li>use a good style guide and avoid common issues!</li>
 </ul></li>
@@ -235,15 +210,13 @@ Developers commenting their code <a href="https://t.co/jKURCVR9ds" class="extern
 <li>
 <p>TMI = too much indentation .tiny[</p>
 <pre>
-get_some_data 
-<p>] example from <a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=42" class="external-link uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=42</a></p></pre>
+get_some_data <p>] example from <a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=42" class="external-link uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=42</a></p></pre>
 </li>
 <li>
 <p>Simplify the logic! .tiny[</p>
 <pre>
 get_some_data 
-  data 
-<p>] example from <a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=43" class="external-link uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=43</a></p></pre>
+  data <p>] example from <a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=43" class="external-link uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=43</a></p></pre>
 </li>
 <li>
 <p>Magic Numbers <strong>Magic numbers</strong> are values in the code where the meaning of the number is derived from context.</p>
@@ -258,14 +231,11 @@ get_some_data
     <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">mtcars</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>The correlation between mpg and cyl is -0.852162</code></pre>
 <ul><li>What if we insert a column or change the order of columns?</li>
-<li>What if we want to change the variables?
-<ul><li>is the text label still correct?</li>
-</ul></li>
+<li>What if we want to change the variables?<ul><li>is the text label still correct?</li></ul></li>
 </ul></li>
 <li>
 <p>Example (fixed)</p>
-<ul><li>define variables for the “magic numbers”</li>
-</ul><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<ul><li>define variables for the “magic numbers”</li></ul><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">var_1</span> <span class="op">&lt;-</span> <span class="st">"mpg"</span>
 <span class="va">var_2</span> <span class="op">&lt;-</span> <span class="st">"cyl"</span>
 <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"The correlation between"</span>, <span class="va">var_1</span>, 
@@ -275,8 +245,7 @@ get_some_data
 </li>
 <li>
 <p>Example (as a function)</p>
-<ul><li>We can even turn it into a function!</li>
-</ul><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<ul><li>We can even turn it into a function!</li></ul><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span> <span class="op">=</span> <span class="va">mtcars</span>, <span class="va">var_1</span> <span class="op">=</span> <span class="st">"mpg"</span>, 
               <span class="va">var_2</span> <span class="op">=</span> <span class="st">"cyl"</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"The correlation between"</span>, <span class="va">var_1</span>, 
@@ -289,19 +258,14 @@ get_some_data
 <li>
 <p>General Strategies</p>
 <ul><li>Embrace <strong>refactoring</strong>: rewriting code without changing its behavior (i.e. make it faster, cleaner, easier to use)</li>
-<li>follow a coding <strong>style guide</strong>
-<ul><li>links in the resources</li>
-</ul></li>
-<li>use technological tools like automatic indentation and linters
-<ul><li>many modern IDEs (e.g. RStudio) have these built-in ## Thanks</li>
-</ul></li>
+<li>follow a coding <strong>style guide</strong><ul><li>links in the resources</li></ul></li>
+<li>use technological tools like automatic indentation and linters<ul><li>many modern IDEs (e.g. RStudio) have these built-in ## Thanks</li></ul></li>
 </ul></li>
 <li><p>Let me know what content you’d like to see</p></li>
 <li><p>Contact me for additional questions or consultation requests!</p></li>
 <li>
 <p>Check back in on the libguide for more modules and contact info:</p>
-<ul><li><a href="https://guides.uflib.ufl.edu/reproducibility" class="external-link uri">https://guides.uflib.ufl.edu/reproducibility</a></li>
-</ul></li>
+<ul><li><a href="https://guides.uflib.ufl.edu/reproducibility" class="external-link uri">https://guides.uflib.ufl.edu/reproducibility</a></li></ul></li>
 </ul></div>
 </div>
 
@@ -320,7 +284,7 @@ get_some_data
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
 </div>
 
       </footer></div>
