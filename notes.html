@@ -59,7 +59,7 @@
     </div>
 
 <div id="syllabus" class="section level1">
-<p>Hao Ye Health Science Center Libraries, University of Florida (updated: 2022-06-07)</p>
+<p>Hao Ye Health Science Center Libraries, University of Florida (updated: 2022-07-08)</p>
 <div class="section level2">
 <h2 id="intro">Intro<a class="anchor" aria-label="anchor" href="#intro"></a></h2>
 <div class="section level3">
@@ -88,12 +88,12 @@ Good programmers write code that humans can understand.”<a class="anchor" aria
 <p>What are functions?</p>
 <ul><li>
 <strong>Functions</strong> let you refer to another piece of code by (a hopefully informative!) name</li></ul><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R">  <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="op">)</span>
-  <span class="co"># computes arithmetic mean of input</span></code></pre></div>
+<code class="sourceCode R"><span>  <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="co"># computes arithmetic mean of input</span></span></code></pre></div>
 <ul><li>You can write your own functions, too!</li></ul><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R">  <span class="va">celsius_to_fahrenheit</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
-    <span class="fl">9</span><span class="op">/</span><span class="fl">5</span> <span class="op">*</span> <span class="va">x</span> <span class="op">+</span> <span class="fl">32</span>
-  <span class="op">}</span></code></pre></div>
+<code class="sourceCode R"><span>  <span class="va">celsius_to_fahrenheit</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fl">9</span><span class="op">/</span><span class="fl">5</span> <span class="op">*</span> <span class="va">x</span> <span class="op">+</span> <span class="fl">32</span></span>
+<span>  <span class="op">}</span></span></code></pre></div>
 </li>
 <li>
 <p>Why write your own functions?</p>
@@ -145,11 +145,11 @@ data_raw <p>]</p></pre>
 <li>
 <p>Tip 2: Plan for flexibility</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plot_abundance_histogram</span> <span class="op">&lt;-</span> 
-  <span class="kw">function</span><span class="op">(</span><span class="va">data_proc</span>, <span class="va">filename</span>, 
-           <span class="va">width</span> <span class="op">=</span> <span class="fl">6</span>, <span class="va">height</span> <span class="op">=</span> <span class="fl">6</span><span class="op">)</span> <span class="op">{</span> 
-    <span class="co"># {{code}} </span>
-  <span class="op">}</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">plot_abundance_histogram</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="kw">function</span><span class="op">(</span><span class="va">data_proc</span>, <span class="va">filename</span>, </span>
+<span>           <span class="va">width</span> <span class="op">=</span> <span class="fl">6</span>, <span class="va">height</span> <span class="op">=</span> <span class="fl">6</span><span class="op">)</span> <span class="op">{</span> </span>
+<span>    <span class="co"># {{code}} </span></span>
+<span>  <span class="op">}</span></span></code></pre></div>
 <ul><li>
 <code>data_proc</code> and <code>filename</code> are required inputs</li>
 <li>width and height are adjustable, but have defaults values that work</li>
@@ -176,10 +176,10 @@ data_raw <p>]</p></pre>
 <li>
 <p>Tip 4: Use data structures Most programming languages let you create data structures to store complex data.</p>
 <ul><li>e.g. in <strong><code>R</code></strong>, you can define a list to include data, settings, and results. This list can be returned from a function:</li></ul><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtcars</span>, 
-     var_1 <span class="op">=</span> <span class="st">"mpg"</span>, 
-     var_2 <span class="op">=</span> <span class="st">"cyl"</span>, 
-     rho <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">$</span><span class="va">mpg</span>, <span class="va">mtcars</span><span class="op">$</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtcars</span>, </span>
+<span>     var_1 <span class="op">=</span> <span class="st">"mpg"</span>, </span>
+<span>     var_2 <span class="op">=</span> <span class="st">"cyl"</span>, </span>
+<span>     rho <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">$</span><span class="va">mpg</span>, <span class="va">mtcars</span><span class="op">$</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </li>
 </ul></div>
 <div class="section level2">
@@ -227,8 +227,8 @@ get_some_data
 <li>
 <p>Example</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"The correlation between mpg and cyl is"</span>, 
-    <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">mtcars</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"The correlation between mpg and cyl is"</span>, </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">mtcars</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>The correlation between mpg and cyl is -0.852162</code></pre>
 <ul><li>What if we insert a column or change the order of columns?</li>
 <li>What if we want to change the variables?<ul><li>is the text label still correct?</li></ul></li>
@@ -236,23 +236,23 @@ get_some_data
 <li>
 <p>Example (fixed)</p>
 <ul><li>define variables for the “magic numbers”</li></ul><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">var_1</span> <span class="op">&lt;-</span> <span class="st">"mpg"</span>
-<span class="va">var_2</span> <span class="op">&lt;-</span> <span class="st">"cyl"</span>
-<span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"The correlation between"</span>, <span class="va">var_1</span>, 
-    <span class="st">"and"</span>, <span class="va">var_2</span>, <span class="st">"is"</span>, 
-    <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">[</span>,<span class="va">var_1</span><span class="op">]</span>, <span class="va">mtcars</span><span class="op">[</span>,<span class="va">var_2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">var_1</span> <span class="op">&lt;-</span> <span class="st">"mpg"</span></span>
+<span><span class="va">var_2</span> <span class="op">&lt;-</span> <span class="st">"cyl"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"The correlation between"</span>, <span class="va">var_1</span>, </span>
+<span>    <span class="st">"and"</span>, <span class="va">var_2</span>, <span class="st">"is"</span>, </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">[</span>,<span class="va">var_1</span><span class="op">]</span>, <span class="va">mtcars</span><span class="op">[</span>,<span class="va">var_2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>The correlation between mpg and cyl is -0.852162</code></pre>
 </li>
 <li>
 <p>Example (as a function)</p>
 <ul><li>We can even turn it into a function!</li></ul><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span> <span class="op">=</span> <span class="va">mtcars</span>, <span class="va">var_1</span> <span class="op">=</span> <span class="st">"mpg"</span>, 
-              <span class="va">var_2</span> <span class="op">=</span> <span class="st">"cyl"</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"The correlation between"</span>, <span class="va">var_1</span>, 
-      <span class="st">"and"</span>, <span class="va">var_2</span>, <span class="st">"is"</span>, 
-    <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">df</span><span class="op">[</span>,<span class="va">var_1</span><span class="op">]</span>, <span class="va">df</span><span class="op">[</span>,<span class="va">var_2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
-<span class="op">}</span>
-<span class="fu">f</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span> <span class="op">=</span> <span class="va">mtcars</span>, <span class="va">var_1</span> <span class="op">=</span> <span class="st">"mpg"</span>, </span>
+<span>              <span class="va">var_2</span> <span class="op">=</span> <span class="st">"cyl"</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"The correlation between"</span>, <span class="va">var_1</span>, </span>
+<span>      <span class="st">"and"</span>, <span class="va">var_2</span>, <span class="st">"is"</span>, </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">df</span><span class="op">[</span>,<span class="va">var_1</span><span class="op">]</span>, <span class="va">df</span><span class="op">[</span>,<span class="va">var_2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu">f</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code>The correlation between mpg and cyl is -0.852162</code></pre>
 </li>
 <li>
@@ -284,7 +284,7 @@ get_some_data
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.9000.</p>
 </div>
 
       </footer></div>
