@@ -22,6 +22,9 @@
 * ["Column Names as Contracts"](https://emilyriederer.netlify.app/post/column-name-contracts/)
   - Blogpost from Emily Riederer on selecting good column names to facilitate a data analysis workflow
   
+* ["How patterns in variable names can make code easier to read."](https://neverworkintheory.org/2022/05/19/hermans-naming.html)
+  - Short video from Felienne Hermans on variable and object naming
+  
 * ["Twelve quick tips for software design"](https://doi.org/10.1371/journal.pcbi.1009809)
   - paper from Greg Wilson about designing larger pieces of code
   
@@ -47,7 +50,10 @@
 
 https://twitter.com/zevross/status/1519318012846817282?s=20&t=MH7bo9SJVImUbt0N6h7AzA
 
-## Book Recommendations from Twitter
+## Books and Longer-form Guides
+
+* ["The Good Research Code Handbook"](https://goodresearch.dev/index.html)
+  - guide to good research code (python-centric)
 
 * ["The Art of Readable Code"](https://www.oreilly.com/library/view/the-art-of/9781449318482/)
   - via https://twitter.com/mv_evans/status/1354435566981545988
