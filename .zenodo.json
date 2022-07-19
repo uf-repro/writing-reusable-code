@@ -1,0 +1,25 @@
+{
+  "title": "Writing Reusable and Modular Code",
+  "version": "1.1.3",
+  "creators": [
+    {
+      "affiliation": "University of Florida",
+      "name": "Hao Ye",
+      "orcid": "0000-0002-8630-1458"
+    }
+  ],
+  "description": "This workshop introduces attendees to the principles of writing 'clean' code, that is easier to read, maintain, and expand. Attendees will learn about organizing complex programming scripts into modular functions, writing effective documentation, and habits to improve code robustness and reusability.\n\n*Attendees will be expected to have basic familiarity with programming, such as experience writing simple scripts or recent attendance at a Carpentries workshop* - https://www.uf-carpentries.org/",
+  "keywords": [
+    "Open Educational Resources",
+    "Research Support Skills",
+    "Version Control",
+    "Workshop",
+    "Research Software Engineering",
+    "Reproducibility",
+    "Modular Code",
+    "Style Guide",
+    "Code Smell"
+  ],
+  "license": "CC BY 4.0",
+  "upload_type": "lesson"
+}
