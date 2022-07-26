@@ -59,14 +59,14 @@
     </div>
 
 <div id="syllabus" class="section level1">
-<p>Hao Ye Health Science Center Libraries, University of Florida (updated: 2022-07-19)</p>
+<p>Hao Ye Health Science Center Libraries, University of Florida (updated: 2022-07-26)</p>
 <div class="section level2">
 <h2 id="intro">Intro<a class="anchor" aria-label="anchor" href="#intro"></a></h2>
 <div class="section level3">
 <h3 id="any-fool-can-write-code-that-a-computer-can-understand-good-programmers-write-code-that-humans-can-understand">“Any fool can write code that a computer can understand.<br>
 Good programmers write code that humans can understand.”<a class="anchor" aria-label="anchor" href="#any-fool-can-write-code-that-a-computer-can-understand-good-programmers-write-code-that-humans-can-understand"></a></h3>
 <p>from “Refactoring: Improving the Design of Existing Code” by Martin Fowler</p>
-<ul><li>Motivations<ul><li>In addition to code that <strong>works correctly</strong>, it should also be:<ul><li>easy to read and understand</li>
+<ul><li>Motivations<ul><li>In addition to code that <strong>works correctly</strong>, ideally, it should also be:<ul><li>easy to read and understand</li>
 <li>easy to maintain or change</li>
 <li>easy to verify its correct operation</li>
 <li>aesthetically pleasing (maybe?)</li>
@@ -76,7 +76,7 @@ Good programmers write code that humans can understand.”<a class="anchor" aria
 <li>recognize and fix basic code smells</li>
 </ul></li>
 <li>A Note<ul><li>These concepts are universal, but code examples are in <strong><code>R</code></strong>.</li>
-<li>Like any other skill, <strong><em>effective</em></strong> practice matters!<ul><li>Making code easy to read usually means extra work <em>after</em> the code is correctly working</li>
+<li>Like any other skill, <strong><em>effective</em></strong> practice matters!<ul><li>Making code easy to read is work: make the code work correctly AND readable.</li>
 <li>Keep in mind that code is never “finished”! So make it easier for you to revise it later.</li>
 </ul></li>
 </ul></li>
@@ -97,19 +97,19 @@ Good programmers write code that humans can understand.”<a class="anchor" aria
 </li>
 <li>
 <p>Why write your own functions?</p>
-<ul><li>If my script already works, this is extra work…</li>
+<ul><li>If my script already works, writing a function takes time…</li>
 <li>Functions enable you to:<ul><li>perform the same task on different inputs (e.g. new data, parameter values, etc.)</li>
-<li>isolate correct code from experiments</li>
+<li>isolate correct code</li>
 <li>organize your analysis for readability</li>
 </ul></li>
 </ul></li>
 <li><p>You can repeat code … ```r df &lt;- data.frame( a = rnorm(10), b = rnorm(10), c = rnorm(10))</p></li>
-<li><p>rescale all the columns of df df<span class="math inline"><em>a</em> &lt;  − (<em>d</em><em>f</em></span>a - min(df<span class="math inline"><em>a</em>))/(<em>m</em><em>a</em><em>x</em>(<em>d</em><em>f</em></span>a) - min(df<span class="math inline"><em>a</em>))<em>d</em><em>f</em></span>b &lt;- (df<span class="math inline"><em>b</em> − <em>m</em><em>i</em><em>n</em>(<em>d</em><em>f</em></span>b)) / (max(df<span class="math inline"><em>b</em>) − <em>m</em><em>i</em><em>n</em>(<em>d</em><em>f</em></span>a)) df<span class="math inline"><em>c</em> &lt;  − (<em>d</em><em>f</em></span>c - min(df<span class="math inline"><em>c</em>))/(<em>m</em><em>a</em><em>x</em>(<em>d</em><em>f</em></span>c) - min(df$c)) ```</p></li>
+<li><p>rescale all the columns to [0, 1] df<span class="math inline"><em>a</em> &lt;  − (<em>d</em><em>f</em></span>a - min(df<span class="math inline"><em>a</em>))/(<em>m</em><em>a</em><em>x</em>(<em>d</em><em>f</em></span>a) - min(df<span class="math inline"><em>a</em>))<em>d</em><em>f</em></span>b &lt;- (df<span class="math inline"><em>b</em> − <em>m</em><em>i</em><em>n</em>(<em>d</em><em>f</em></span>b)) / (max(df<span class="math inline"><em>b</em>) − <em>m</em><em>i</em><em>n</em>(<em>d</em><em>f</em></span>a)) df<span class="math inline"><em>c</em> &lt;  − (<em>d</em><em>f</em></span>c - min(df<span class="math inline"><em>c</em>))/(<em>m</em><em>a</em><em>x</em>(<em>d</em><em>f</em></span>c) - min(df$c)) ```</p></li>
 <li><p>Or define a function! ```r rescale_to_01 &lt;- function(x) { (x - min(x)) / (max(x) - min(x)) }</p></li>
-<li><p>rescale the columns of df df<span class="math inline"><em>a</em> &lt;  − <em>r</em><em>e</em><em>s</em><em>c</em><em>a</em><em>l</em><em>e</em><sub><em>t</em></sub><em>o</em><sub>01</sub>(<em>d</em><em>f</em></span>a) df<span class="math inline"><em>b</em> &lt;  − <em>r</em><em>e</em><em>s</em><em>c</em><em>a</em><em>l</em><em>e</em><sub><em>t</em></sub><em>o</em><sub>01</sub>(<em>d</em><em>f</em></span>b) df<span class="math inline"><em>c</em> &lt;  − <em>r</em><em>e</em><em>s</em><em>c</em><em>a</em><em>l</em><em>e</em><sub><em>t</em></sub><em>o</em><sub>01</sub>(<em>d</em><em>f</em></span>c)</p></li>
+<li><p>rescale the columns of df to [0, 1] df<span class="math inline"><em>a</em> &lt;  − <em>r</em><em>e</em><em>s</em><em>c</em><em>a</em><em>l</em><em>e</em><sub><em>t</em></sub><em>o</em><sub>01</sub>(<em>d</em><em>f</em></span>a) df<span class="math inline"><em>b</em> &lt;  − <em>r</em><em>e</em><em>s</em><em>c</em><em>a</em><em>l</em><em>e</em><sub><em>t</em></sub><em>o</em><sub>01</sub>(<em>d</em><em>f</em></span>b) df<span class="math inline"><em>c</em> &lt;  − <em>r</em><em>e</em><em>s</em><em>c</em><em>a</em><em>l</em><em>e</em><sub><em>t</em></sub><em>o</em><sub>01</sub>(<em>d</em><em>f</em></span>c)</p></li>
 <li><p>or with dplyr df &lt;- df %&gt;% mutate( across(c(“a”, “b”, “c”), rescale_to_01)) ```</p></li>
 <li>
-<p><strong>DRY</strong> = “Don’t Repeat Yourself”</p>
+<p>The <strong>DRY</strong> Principle: “Don’t Repeat Yourself”</p>
 <ul><li>Changing the calculation only needs to be done once, in the function definition.</li>
 <li>The function name helps us find where to change the code.</li>
 <li>A good function name helps someone understand what the code does without seeing its implementation. <em>I don’t need to know how an engine works to drive a car.</em>
@@ -117,7 +117,7 @@ Good programmers write code that humans can understand.”<a class="anchor" aria
 </ul></li>
 <li><p>Workflow structure <img src="project-diagram.svg" title="Diagram of the workflow in a hypothetical data analysis project with boxes representing code and data/output files. &amp;quot;Raw data&amp;quot; goes into &amp;quot;Pre-processing&amp;quot; and then &amp;quot;Pre-processed data&amp;quot;. &amp;quot;Pre-processed data&amp;quot; goes directly into &amp;quot;Figure 3&amp;quot; (code) and then &amp;quot;Figure 3&amp;quot; (Data file), but also into &amp;quot;Analysis/Modelling&amp;quot;. The &amp;quot;Model&amp;quot; output from &amp;quot;Analysis/Modelling&amp;quot; is used in code for &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;, which generate files &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;." alt="Diagram of the workflow in a hypothetical data analysis project with boxes representing code and data/output files. &amp;quot;Raw data&amp;quot; goes into &amp;quot;Pre-processing&amp;quot; and then &amp;quot;Pre-processed data&amp;quot;. &amp;quot;Pre-processed data&amp;quot; goes directly into &amp;quot;Figure 3&amp;quot; (code) and then &amp;quot;Figure 3&amp;quot; (Data file), but also into &amp;quot;Analysis/Modelling&amp;quot;. The &amp;quot;Model&amp;quot; output from &amp;quot;Analysis/Modelling&amp;quot; is used in code for &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;, which generate files &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;." width="60%"> modified from “Reproducible research best practices @JupyterCon” (version 18) by Rachael Tatman, <a href="https://www.kaggle.com/rtatman/reproducible-research-best-practices-jupytercon" class="external-link uri">https://www.kaggle.com/rtatman/reproducible-research-best-practices-jupytercon</a></p></li>
 <li>
-<p>Example Code .tiny[</p>
+<p>Example Code .small[</p>
 <pre>
 library(tidyverse)
 source("analysis_functions.R")
@@ -127,8 +127,8 @@ data_raw <p>]</p></pre>
 <li>
 <p>Notes</p>
 <ul><li>The code matches the steps of the analysis.</li>
-<li>It is easy to make changes in the right place:<ul><li>to modify a plot - edit the function</li>
-<li>including a new figure - write a new function and add it to the workflow script</li>
+<li>It is easy to find where to make changes:<ul><li>to modify a plot - edit the function</li>
+<li>add a new figure - write a new function and add it to the workflow script</li>
 </ul></li>
 <li>Possible improvement:<ul><li>save the function outputs to a file, so that they do not need to be re-run</li></ul></li>
 </ul></li>
@@ -158,8 +158,8 @@ data_raw <p>]</p></pre>
 <p>Tip 3: Subdividing work</p>
 <ol style="list-style-type: decimal"><li>start with the main goal of your program</li>
 <li>split the goal into separate subgoals</li>
-</ol><ul><li>e.g. read in data, clean data, fit model, do statistics, make plots</li></ul><ol start="3" style="list-style-type: decimal"><li>repeat step 2 to subdivide into individual tasks</li></ol><ul><li>write a function for each task</li>
-<li>you may need to choose initial implementation details to get things working</li>
+</ol><ul><li>e.g. read in data, clean data, fit model, do statistics, make plots</li></ul><ol start="3" style="list-style-type: decimal"><li>repeat step 2 - continue subdividing until you reach individual tasks</li></ol><ul><li>write a function for each task</li>
+<li>choose initial implementation details to get things working</li>
 </ul></li>
 <li>
 <p>Notes on Tip 3</p>
@@ -170,12 +170,12 @@ data_raw <p>]</p></pre>
 </ul></li>
 <li>
 <p>More Notes on Tip 3</p>
-<ul><li>If a line or set of lines of code is complicated, a new function might be needed (with a good name) ```r</li></ul></li>
+<ul><li>If a line or set of lines of code is complicated, a new function might be needed ```r</li></ul></li>
 <li><p>bad if (class(x)[[1]] == “numeric” || class(x)[[1]] == “integer”)</p></li>
 <li><p>good if (is.numeric(x)) ``` examples from <a href="https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36" class="external-link uri">https://speakerdeck.com/jennybc/code-smells-and-feels?slide=36</a></p></li>
 <li>
 <p>Tip 4: Use data structures Most programming languages let you create data structures to store complex data.</p>
-<ul><li>e.g. in <strong><code>R</code></strong>, you can define a list to include data, settings, and results. This list can be returned from a function:</li></ul><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<ul><li>e.g. in <strong><code>R</code></strong>, you can create a list to include data, settings, and results. This list can be returned from a function:</li></ul><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtcars</span>, </span>
 <span>     var_1 <span class="op">=</span> <span class="st">"mpg"</span>, </span>
 <span>     var_2 <span class="op">=</span> <span class="st">"cyl"</span>, </span>
@@ -187,16 +187,15 @@ data_raw <p>]</p></pre>
 <blockquote class="twitter-tweet">
 <p lang="en" dir="ltr">Developers commenting their code <a href="https://t.co/jKURCVR9ds" class="external-link">pic.twitter.com/jKURCVR9ds</a></p>&amp;mdash; Ricardo Ferreira (@riferrei) <a href="https://twitter.com/riferrei/status/1358180071081713670?ref_src=twsrc%5Etfw" class="external-link">February 6, 2021</a>
 </blockquote>
-<p>(via “Notes on Programming in C”, Rob Pike) There is a famously bad comment style: <code>c   i=i+1;             /* Add one to i */</code> and there are worse ways to do it: <code>c   /**********************************    *                                *    * Add one to i                   *    *                                *    **********************************/   i=i+1;</code> Don’t laugh now, wait until you see it in real life. * Comment Dos &amp; Don’ts * <strong>Do</strong> use comments to describe <strong>why</strong>, not <strong>how</strong> * <strong>Do</strong> document the inputs, outputs, and purpose of each function * <strong>Do</strong> store notes/references in comments * <strong>Don’t</strong> turn code off and on with comments * Comment Dos &amp; Don’ts <strong>Do</strong> use comments to describe <strong>why</strong>, not <strong>how</strong> Bad: <code>r * Set lib as (1, [2/3 * n])   lib &lt;- c(1, floor(2/3 * n))</code> Good: <code>r * set aside 2/3 of data to train model   lib &lt;- c(1, floor(2/3 * n))</code> * Comment Dos &amp; Don’ts <strong>Do</strong> document the inputs, outputs, and purpose of each function <code>r   plot_abundance_histogram &lt;-      function(data_proc, filename,               width = 6, height = 6) {        # {{code}}      }</code> * What kind of object is <code>data_proc</code>, what fields/columns have the abundance data? * Comment Dos &amp; Don’ts <strong>Do</strong> store notes/references in comments <code>r * cholesky algorithm from Rasmussen &amp;amp;  *   Williams (2006, algorithm 2.1)   R &lt;- chol(Sigma)   alpha &lt;- backsolve(R, forwardsolve(t(R), y_lib - mean_y))   L_inv &lt;- forwardsolve(t(R), diag(NROW(x_lib)))   Sigma_inv &lt;-  t(L_inv) %*% L_inv</code> * Comment Dos &amp; Don’ts <strong>Don’t</strong> turn code off and on with comments <code>r * cat("The value of x is", x)</code> - use conditional logic instead<br><code>r   if (DEBUG_MODE) {     cat("The value of x is", x)   }</code></p>
+<p>(via “Notes on Programming in C”, Rob Pike) There is a famously bad comment style: <code>c   i=i+1;             /* Add one to i */</code> and there are worse ways to do it: <code>c   /**********************************    *                                *    * Add one to i                   *    *                                *    **********************************/   i=i+1;</code> Don’t laugh now, wait until you see it in real life. * Comment Dos &amp; Don’ts * <strong>Do</strong> use comments to describe <strong>why</strong>, not <strong>how</strong> * <strong>Do</strong> document the inputs, outputs, and purpose of each function * <strong>Do</strong> store notes/references in comments * <strong>Don’t</strong> turn code off and on with comments * Comment Dos &amp; Don’ts <strong>Do</strong> use comments to describe <strong>why</strong>, not <strong>how</strong> Bad: <code>r * Set lib as (1, [2/3 * n])   lib &lt;- c(1, floor(2/3 * n))</code> Good: <code>r * set aside 2/3 of data to train model   lib &lt;- c(1, floor(2/3 * n))</code> * Comment Dos &amp; Don’ts <strong>Do</strong> document the inputs, outputs, and purpose of each function <code>r   plot_abundance_histogram &lt;-      function(data_proc, filename,               width = 6, height = 6) {        # {{code}}      }</code> * What kind of object is <code>data_proc</code>, what fields/columns are used to make the plot? * Comment Dos &amp; Don’ts <strong>Do</strong> store notes/references in comments <code>r * cholesky algorithm from Rasmussen &amp;amp;  *   Williams (2006, algorithm 2.1)   R &lt;- chol(Sigma)   alpha &lt;- backsolve(R, forwardsolve(t(R), y_lib - mean_y))   L_inv &lt;- forwardsolve(t(R), diag(NROW(x_lib)))   Sigma_inv &lt;-  t(L_inv) %*% L_inv</code> * Comment Dos &amp; Don’ts <strong>Don’t</strong> turn code off and on with comments <code>r * cat("The value of x is", x)</code> - use conditional logic instead<br><code>r   if (DEBUG_MODE) {     cat("The value of x is", x)   }</code> Set <code>DEBUG_MODE</code> once at the beginning of the script.</p>
 </div>
 <div class="section level2">
 <h2 id="code-smells">Code Smells<a class="anchor" aria-label="anchor" href="#code-smells"></a></h2>
 <ul><li>
 <p>What are “code smells”?</p>
-<ul><li>properties of code that seem not so ideal<ul><li>not always incorrect, but <em>not quite right</em>
-</li></ul></li>
-<li>recognize “code smells” is a skill, depends on experience, and is also personal</li>
-<li>use a good style guide and avoid common issues!</li>
+<ul><li>Code smells: properties that seem not so ideal<ul><li>code smells do not necessarily mean incorrect code, but are signs that the code may be more prone to errors</li></ul></li>
+<li>recognizing code smells is a skill<ul><li>depends on experience, and personal taste</li></ul></li>
+<li>use a good style guide to avoid common issues!</li>
 </ul></li>
 <li>
 <p>Some common code smells</p>
@@ -234,8 +233,8 @@ get_some_data
 <li>What if we want to change the variables?<ul><li>is the text label still correct?</li></ul></li>
 </ul></li>
 <li>
-<p>Example (fixed)</p>
-<ul><li>define variables for the “magic numbers”</li></ul><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<p>Example (improved)</p>
+<ul><li>define variables to replace the “magic numbers”</li></ul><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">var_1</span> <span class="op">&lt;-</span> <span class="st">"mpg"</span></span>
 <span><span class="va">var_2</span> <span class="op">&lt;-</span> <span class="st">"cyl"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"The correlation between"</span>, <span class="va">var_1</span>, </span>

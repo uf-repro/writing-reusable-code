@@ -17,7 +17,7 @@ class: inverse, center, middle
 # Writing Reusable and Modular Code
 ### Hao Ye
 ### Health Science Center Libraries, University of Florida
-### (updated: 2022-07-19)
+### (updated: 2022-07-26)
 
 ---
 class: inverse, center, middle
@@ -29,7 +29,7 @@ class: inverse, center, middle
 ---
 # Motivations
 
-* In addition to code that **works correctly**, it should also be:
+* In addition to code that **works correctly**, ideally, it should also be:
   - easy to read and understand
   - easy to maintain or change
   - easy to verify its correct operation
@@ -49,7 +49,7 @@ By the end of the workshop, participants will be able to:
 
 * These concepts are universal, but code examples are in **`R`**.
 * Like any other skill, **_effective_** practice matters!
-  - Making code easy to read usually means extra work *after* the code is correctly working
+  - Making code easy to read is work: make the code work correctly AND readable.
   - Keep in mind that code is never "finished"! So make it easier for you to revise it later.
 
 ---
@@ -79,12 +79,12 @@ class: inverse, center, middle
 ---
 # Why write your own functions?
 
-* If my script already works, this is extra work...
+* If my script already works, writing a function takes time...
 
 --
 * Functions enable you to:
   - perform the same task on different inputs (e.g. new data, parameter values, etc.)
-  - isolate correct code from experiments
+  - isolate correct code
   - organize your analysis for readability
 
 ---
@@ -95,7 +95,7 @@ df &lt;- data.frame( a = rnorm(10),
                   b = rnorm(10),
                   c = rnorm(10))
 
-# rescale all the columns of df
+# rescale all the columns to [0, 1]
 df$a &lt;- (df$a - min(df$a)) / 
   (max(df$a) - min(df$a))
 df$b &lt;- (df$b - min(df$b)) / 
@@ -115,7 +115,7 @@ rescale_to_01 &lt;- function(x) {
   (x - min(x)) / (max(x) - min(x))
 }
 
-# rescale the columns of df
+# rescale the columns of df to [0, 1]
 df$a &lt;- rescale_to_01(df$a)
 df$b &lt;- rescale_to_01(df$b)
 df$c &lt;- rescale_to_01(df$c)
@@ -126,7 +126,7 @@ df &lt;- df %&gt;% mutate(
 ```
 
 ---
-# **DRY** = "Don't Repeat Yourself"
+# The **DRY** Principle: "Don't Repeat Yourself"
 
 * Changing the calculation only needs to be done once, in the function definition.
 * The function name helps us find where to change the code.
@@ -146,7 +146,7 @@ df &lt;- df %&gt;% mutate(
 ---
 # Example Code
 
-.tiny[
+.small[
 &lt;pre&gt;
 library(tidyverse)
 
@@ -171,9 +171,9 @@ plot_abundance_histogram(data_proc,
 # Notes
 
 * The code matches the steps of the analysis.
-* It is easy to make changes in the right place:
+* It is easy to find where to make changes:
   - to modify a plot - edit the function
-  - including a new figure - write a new function and add it to the workflow script
+  - add a new figure - write a new function and add it to the workflow script
 * Possible improvement: 
   - save the function outputs to a file, so that they do not need to be re-run
   
@@ -222,9 +222,9 @@ plot_abundance_histogram &lt;-
 1. start with the main goal of your program
 2. split the goal into separate subgoals
   - e.g. read in data, clean data, fit model, do statistics, make plots
-3. repeat step 2 to subdivide into individual tasks
+3. repeat step 2 - continue subdividing until you reach individual tasks
   - write a function for each task
-  - you may need to choose initial implementation details to get things working
+  - choose initial implementation details to get things working
 
 ---
 # Notes on Tip 3
@@ -238,7 +238,7 @@ plot_abundance_histogram &lt;-
 ---
 # More Notes on Tip 3
 
-* If a line or set of lines of code is complicated, a new function might be needed (with a good name)
+* If a line or set of lines of code is complicated, a new function might be needed
 
 
 ```r
@@ -255,7 +255,7 @@ if (is.numeric(x))
 # Tip 4: Use data structures
 
 Most programming languages let you create data structures to store complex data.
-* e.g. in **`R`**, you can define a list to include data, settings, and results. This list can be returned from a function:
+* e.g. in **`R`**, you can create a list to include data, settings, and results. This list can be returned from a function:
 
 
 ```r
@@ -338,7 +338,7 @@ plot_abundance_histogram &lt;-
     # {{code}} 
   }
 ```
-* What kind of object is `data_proc`, what fields/columns have the abundance data?
+* What kind of object is `data_proc`, what fields/columns are used to make the plot?
 
 ---
 # Comment Dos &amp; Don'ts
@@ -374,6 +374,8 @@ if (DEBUG_MODE) {
 }
 ```
 
+Set `DEBUG_MODE` once at the beginning of the script.
+
 ---
 class: inverse, center, middle
 
@@ -382,10 +384,11 @@ class: inverse, center, middle
 ---
 # What are "code smells"?
 
-* properties of code that seem not so ideal
-  - not always incorrect, but *not quite right*
-* recognize "code smells" is a skill, depends on experience, and is also personal
-* use a good style guide and avoid common issues!
+* Code smells: properties that seem not so ideal
+  - code smells do not necessarily mean incorrect code, but are signs that the code may be more prone to errors
+* recognizing code smells is a skill
+  - depends on experience, and personal taste
+* use a good style guide to avoid common issues!
 
 ---
 # Some common code smells
@@ -483,9 +486,9 @@ The correlation between mpg and cyl is -0.852162
   - is the text label still correct?
 
 ---
-# Example (fixed)
+# Example (improved)
 
-* define variables for the "magic numbers"
+* define variables to replace the "magic numbers"
 
 
 ```r
