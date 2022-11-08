@@ -17,7 +17,7 @@ class: inverse, center, middle
 # Writing Reusable and Modular Code
 ### Hao Ye
 ### Health Science Center Libraries, University of Florida
-### (updated: 2022-07-26)
+### (updated: 2022-11-08)
 
 ---
 class: inverse, center, middle
@@ -32,8 +32,8 @@ class: inverse, center, middle
 * In addition to code that **works correctly**, ideally, it should also be:
   - easy to read and understand
   - easy to maintain or change
-  - easy to verify its correct operation
-  - aesthetically pleasing (maybe?)
+  - verifiable easily (did it do what was expected correctly?)
+  - aesthetically pleasing (optionally)
 
 ---
 # Learning Outcomes
@@ -49,8 +49,8 @@ By the end of the workshop, participants will be able to:
 
 * These concepts are universal, but code examples are in **`R`**.
 * Like any other skill, **_effective_** practice matters!
-  - Making code easy to read is work: make the code work correctly AND readable.
-  - Keep in mind that code is never "finished"! So make it easier for you to revise it later.
+* **Refactoring** - rewriting code without changing its functionality, but making it more readable and easy to maintain.
+  - Similar to revising a paper for clarity.
 
 ---
 class: inverse, center, middle
@@ -128,18 +128,14 @@ df &lt;- df %&gt;% mutate(
 ---
 # The **DRY** Principle: "Don't Repeat Yourself"
 
-* Changing the calculation only needs to be done once, in the function definition.
+* Changing the calculation only needs to be done once (in the function definition).
 * The function name helps us find where to change the code.
 * A good function name helps someone understand what the code does without seeing its implementation.
-
---
-
-  *I don't need to know how an engine works to drive a car.*
 
 ---
 # Workflow structure
 
-&lt;img src="project-diagram.svg" title="Diagram of the workflow in a hypothetical data analysis project with boxes representing code and data/output files. &amp;quot;Raw data&amp;quot; goes into &amp;quot;Pre-processing&amp;quot; and then &amp;quot;Pre-processed data&amp;quot;. &amp;quot;Pre-processed data&amp;quot; goes directly into &amp;quot;Figure 3&amp;quot; (code) and then &amp;quot;Figure 3&amp;quot; (Data file), but also into &amp;quot;Analysis/Modelling&amp;quot;. The &amp;quot;Model&amp;quot; output from &amp;quot;Analysis/Modelling&amp;quot; is used in code for &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;, which generate files &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;." alt="Diagram of the workflow in a hypothetical data analysis project with boxes representing code and data/output files. &amp;quot;Raw data&amp;quot; goes into &amp;quot;Pre-processing&amp;quot; and then &amp;quot;Pre-processed data&amp;quot;. &amp;quot;Pre-processed data&amp;quot; goes directly into &amp;quot;Figure 3&amp;quot; (code) and then &amp;quot;Figure 3&amp;quot; (Data file), but also into &amp;quot;Analysis/Modelling&amp;quot;. The &amp;quot;Model&amp;quot; output from &amp;quot;Analysis/Modelling&amp;quot; is used in code for &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;, which generate files &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;." width="60%" /&gt;
+&lt;img src="project-diagram.svg" alt="Diagram of the workflow in a hypothetical data analysis project with boxes representing code and data/output files. &amp;quot;Raw data&amp;quot; goes into &amp;quot;Pre-processing&amp;quot; and then &amp;quot;Pre-processed data&amp;quot;. &amp;quot;Pre-processed data&amp;quot; goes directly into &amp;quot;Figure 3&amp;quot; (code) and then &amp;quot;Figure 3&amp;quot; (Data file), but also into &amp;quot;Analysis/Modelling&amp;quot;. The &amp;quot;Model&amp;quot; output from &amp;quot;Analysis/Modelling&amp;quot; is used in code for &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;, which generate files &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;." width="60%" /&gt;
 
 .tiny[modified from "Reproducible research best practices @JupyterCon" (version 18) by Rachael Tatman, https://www.kaggle.com/rtatman/reproducible-research-best-practices-jupytercon]
 
@@ -217,20 +213,20 @@ plot_abundance_histogram &lt;-
 * width and height are adjustable, but have defaults values that work
 
 ---
-# Tip 3: Subdividing work
+# Tip 3: How to subdivide
 
 1. start with the main goal of your program
 2. split the goal into separate subgoals
   - e.g. read in data, clean data, fit model, do statistics, make plots
 3. repeat step 2 - continue subdividing until you reach individual tasks
-  - write a function for each task
+  - write a **function for each task**
   - choose initial implementation details to get things working
 
 ---
 # Notes on Tip 3
 
-* Get something simple working first!
-* You can always make changes to the details and/or add flexibility later.
+* Get a simple version working first!
+  - You can always make changes to the details and/or add flexibility later.
 * Each function should have a single well-defined task
 * Functions should ideally be 50 lines or less
   - this is a **guideline**—divide work into functions sensibly!
@@ -358,7 +354,7 @@ Sigma_inv &lt;-  t(L_inv) %*% L_inv
 ---
 # Comment Dos &amp; Don'ts
 
-**Don't** turn code off and on with comments
+**Don't** turn code off and on with comments -- you will not remember why it was commented out (was it buggy?, did you want to test somethign?)
 
 ```r
 # cat("The value of x is", x)
@@ -374,7 +370,7 @@ if (DEBUG_MODE) {
 }
 ```
 
-Set `DEBUG_MODE` once at the beginning of the script.
+Set `DEBUG_MODE` at the top of the script.
 
 ---
 class: inverse, center, middle
@@ -528,7 +524,7 @@ The correlation between mpg and cyl is -0.852162
 
 * Embrace **refactoring**: rewriting code without changing its behavior (i.e. make it faster, cleaner, easier to use)
 * follow a coding **style guide**
-  - links in the resources
+  - links in the [resources page](https://uf-repro.github.io/writing-reusable-code/resources.html)
 * use technological tools like automatic indentation and linters
   - many modern IDEs (e.g. RStudio) have these built-in
 

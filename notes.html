@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">writing.reusable.code</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.4</span>
       </span>
     </div>
 
@@ -59,7 +59,7 @@
     </div>
 
 <div id="syllabus" class="section level1">
-<p>Hao Ye Health Science Center Libraries, University of Florida (updated: 2022-07-26)</p>
+<p>Hao Ye Health Science Center Libraries, University of Florida (updated: 2022-11-08)</p>
 <div class="section level2">
 <h2 id="intro">Intro<a class="anchor" aria-label="anchor" href="#intro"></a></h2>
 <div class="section level3">
@@ -68,17 +68,17 @@ Good programmers write code that humans can understand.”<a class="anchor" aria
 <p>from “Refactoring: Improving the Design of Existing Code” by Martin Fowler</p>
 <ul><li>Motivations<ul><li>In addition to code that <strong>works correctly</strong>, ideally, it should also be:<ul><li>easy to read and understand</li>
 <li>easy to maintain or change</li>
-<li>easy to verify its correct operation</li>
-<li>aesthetically pleasing (maybe?)</li>
+<li>verifiable easily (did it do what was expected correctly?)</li>
+<li>aesthetically pleasing (optionally)</li>
 </ul></li></ul></li>
 <li>Learning Outcomes By the end of the workshop, participants will be able to:<ul><li>organize programming tasks into modular functions</li>
 <li>communicate code intent using comments</li>
 <li>recognize and fix basic code smells</li>
 </ul></li>
 <li>A Note<ul><li>These concepts are universal, but code examples are in <strong><code>R</code></strong>.</li>
-<li>Like any other skill, <strong><em>effective</em></strong> practice matters!<ul><li>Making code easy to read is work: make the code work correctly AND readable.</li>
-<li>Keep in mind that code is never “finished”! So make it easier for you to revise it later.</li>
-</ul></li>
+<li>Like any other skill, <strong><em>effective</em></strong> practice matters!</li>
+<li>
+<strong>Refactoring</strong> - rewriting code without changing its functionality, but making it more readable and easy to maintain.<ul><li>Similar to revising a paper for clarity.</li></ul></li>
 </ul></li>
 </ul></div>
 </div>
@@ -110,12 +110,11 @@ Good programmers write code that humans can understand.”<a class="anchor" aria
 <li><p>or with dplyr df &lt;- df %&gt;% mutate( across(c(“a”, “b”, “c”), rescale_to_01)) ```</p></li>
 <li>
 <p>The <strong>DRY</strong> Principle: “Don’t Repeat Yourself”</p>
-<ul><li>Changing the calculation only needs to be done once, in the function definition.</li>
+<ul><li>Changing the calculation only needs to be done once (in the function definition).</li>
 <li>The function name helps us find where to change the code.</li>
-<li>A good function name helps someone understand what the code does without seeing its implementation. <em>I don’t need to know how an engine works to drive a car.</em>
-</li>
+<li>A good function name helps someone understand what the code does without seeing its implementation.</li>
 </ul></li>
-<li><p>Workflow structure <img src="project-diagram.svg" title="Diagram of the workflow in a hypothetical data analysis project with boxes representing code and data/output files. &amp;quot;Raw data&amp;quot; goes into &amp;quot;Pre-processing&amp;quot; and then &amp;quot;Pre-processed data&amp;quot;. &amp;quot;Pre-processed data&amp;quot; goes directly into &amp;quot;Figure 3&amp;quot; (code) and then &amp;quot;Figure 3&amp;quot; (Data file), but also into &amp;quot;Analysis/Modelling&amp;quot;. The &amp;quot;Model&amp;quot; output from &amp;quot;Analysis/Modelling&amp;quot; is used in code for &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;, which generate files &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;." alt="Diagram of the workflow in a hypothetical data analysis project with boxes representing code and data/output files. &amp;quot;Raw data&amp;quot; goes into &amp;quot;Pre-processing&amp;quot; and then &amp;quot;Pre-processed data&amp;quot;. &amp;quot;Pre-processed data&amp;quot; goes directly into &amp;quot;Figure 3&amp;quot; (code) and then &amp;quot;Figure 3&amp;quot; (Data file), but also into &amp;quot;Analysis/Modelling&amp;quot;. The &amp;quot;Model&amp;quot; output from &amp;quot;Analysis/Modelling&amp;quot; is used in code for &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;, which generate files &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;." width="60%"> modified from “Reproducible research best practices @JupyterCon” (version 18) by Rachael Tatman, <a href="https://www.kaggle.com/rtatman/reproducible-research-best-practices-jupytercon" class="external-link uri">https://www.kaggle.com/rtatman/reproducible-research-best-practices-jupytercon</a></p></li>
+<li><p>Workflow structure <img src="project-diagram.svg" alt="Diagram of the workflow in a hypothetical data analysis project with boxes representing code and data/output files. &amp;quot;Raw data&amp;quot; goes into &amp;quot;Pre-processing&amp;quot; and then &amp;quot;Pre-processed data&amp;quot;. &amp;quot;Pre-processed data&amp;quot; goes directly into &amp;quot;Figure 3&amp;quot; (code) and then &amp;quot;Figure 3&amp;quot; (Data file), but also into &amp;quot;Analysis/Modelling&amp;quot;. The &amp;quot;Model&amp;quot; output from &amp;quot;Analysis/Modelling&amp;quot; is used in code for &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;, which generate files &amp;quot;Figure 1&amp;quot; and &amp;quot;Figure 2&amp;quot;." width="60%"> modified from “Reproducible research best practices @JupyterCon” (version 18) by Rachael Tatman, <a href="https://www.kaggle.com/rtatman/reproducible-research-best-practices-jupytercon" class="external-link uri">https://www.kaggle.com/rtatman/reproducible-research-best-practices-jupytercon</a></p></li>
 <li>
 <p>Example Code .small[</p>
 <pre>
@@ -155,16 +154,16 @@ data_raw <p>]</p></pre>
 <li>width and height are adjustable, but have defaults values that work</li>
 </ul></li>
 <li>
-<p>Tip 3: Subdividing work</p>
+<p>Tip 3: How to subdivide</p>
 <ol style="list-style-type: decimal"><li>start with the main goal of your program</li>
 <li>split the goal into separate subgoals</li>
-</ol><ul><li>e.g. read in data, clean data, fit model, do statistics, make plots</li></ul><ol start="3" style="list-style-type: decimal"><li>repeat step 2 - continue subdividing until you reach individual tasks</li></ol><ul><li>write a function for each task</li>
+</ol><ul><li>e.g. read in data, clean data, fit model, do statistics, make plots</li></ul><ol start="3" style="list-style-type: decimal"><li>repeat step 2 - continue subdividing until you reach individual tasks</li></ol><ul><li>write a <strong>function for each task</strong>
+</li>
 <li>choose initial implementation details to get things working</li>
 </ul></li>
 <li>
 <p>Notes on Tip 3</p>
-<ul><li>Get something simple working first!</li>
-<li>You can always make changes to the details and/or add flexibility later.</li>
+<ul><li>Get a simple version working first!<ul><li>You can always make changes to the details and/or add flexibility later.</li></ul></li>
 <li>Each function should have a single well-defined task</li>
 <li>Functions should ideally be 50 lines or less<ul><li>this is a <strong>guideline</strong>—divide work into functions sensibly!</li></ul></li>
 </ul></li>
@@ -187,7 +186,7 @@ data_raw <p>]</p></pre>
 <blockquote class="twitter-tweet">
 <p lang="en" dir="ltr">Developers commenting their code <a href="https://t.co/jKURCVR9ds" class="external-link">pic.twitter.com/jKURCVR9ds</a></p>&amp;mdash; Ricardo Ferreira (@riferrei) <a href="https://twitter.com/riferrei/status/1358180071081713670?ref_src=twsrc%5Etfw" class="external-link">February 6, 2021</a>
 </blockquote>
-<p>(via “Notes on Programming in C”, Rob Pike) There is a famously bad comment style: <code>c   i=i+1;             /* Add one to i */</code> and there are worse ways to do it: <code>c   /**********************************    *                                *    * Add one to i                   *    *                                *    **********************************/   i=i+1;</code> Don’t laugh now, wait until you see it in real life. * Comment Dos &amp; Don’ts * <strong>Do</strong> use comments to describe <strong>why</strong>, not <strong>how</strong> * <strong>Do</strong> document the inputs, outputs, and purpose of each function * <strong>Do</strong> store notes/references in comments * <strong>Don’t</strong> turn code off and on with comments * Comment Dos &amp; Don’ts <strong>Do</strong> use comments to describe <strong>why</strong>, not <strong>how</strong> Bad: <code>r * Set lib as (1, [2/3 * n])   lib &lt;- c(1, floor(2/3 * n))</code> Good: <code>r * set aside 2/3 of data to train model   lib &lt;- c(1, floor(2/3 * n))</code> * Comment Dos &amp; Don’ts <strong>Do</strong> document the inputs, outputs, and purpose of each function <code>r   plot_abundance_histogram &lt;-      function(data_proc, filename,               width = 6, height = 6) {        # {{code}}      }</code> * What kind of object is <code>data_proc</code>, what fields/columns are used to make the plot? * Comment Dos &amp; Don’ts <strong>Do</strong> store notes/references in comments <code>r * cholesky algorithm from Rasmussen &amp;amp;  *   Williams (2006, algorithm 2.1)   R &lt;- chol(Sigma)   alpha &lt;- backsolve(R, forwardsolve(t(R), y_lib - mean_y))   L_inv &lt;- forwardsolve(t(R), diag(NROW(x_lib)))   Sigma_inv &lt;-  t(L_inv) %*% L_inv</code> * Comment Dos &amp; Don’ts <strong>Don’t</strong> turn code off and on with comments <code>r * cat("The value of x is", x)</code> - use conditional logic instead<br><code>r   if (DEBUG_MODE) {     cat("The value of x is", x)   }</code> Set <code>DEBUG_MODE</code> once at the beginning of the script.</p>
+<p>(via “Notes on Programming in C”, Rob Pike) There is a famously bad comment style: <code>c   i=i+1;             /* Add one to i */</code> and there are worse ways to do it: <code>c   /**********************************    *                                *    * Add one to i                   *    *                                *    **********************************/   i=i+1;</code> Don’t laugh now, wait until you see it in real life. * Comment Dos &amp; Don’ts * <strong>Do</strong> use comments to describe <strong>why</strong>, not <strong>how</strong> * <strong>Do</strong> document the inputs, outputs, and purpose of each function * <strong>Do</strong> store notes/references in comments * <strong>Don’t</strong> turn code off and on with comments * Comment Dos &amp; Don’ts <strong>Do</strong> use comments to describe <strong>why</strong>, not <strong>how</strong> Bad: <code>r * Set lib as (1, [2/3 * n])   lib &lt;- c(1, floor(2/3 * n))</code> Good: <code>r * set aside 2/3 of data to train model   lib &lt;- c(1, floor(2/3 * n))</code> * Comment Dos &amp; Don’ts <strong>Do</strong> document the inputs, outputs, and purpose of each function <code>r   plot_abundance_histogram &lt;-      function(data_proc, filename,               width = 6, height = 6) {        # {{code}}      }</code> * What kind of object is <code>data_proc</code>, what fields/columns are used to make the plot? * Comment Dos &amp; Don’ts <strong>Do</strong> store notes/references in comments <code>r * cholesky algorithm from Rasmussen &amp;amp;  *   Williams (2006, algorithm 2.1)   R &lt;- chol(Sigma)   alpha &lt;- backsolve(R, forwardsolve(t(R), y_lib - mean_y))   L_inv &lt;- forwardsolve(t(R), diag(NROW(x_lib)))   Sigma_inv &lt;-  t(L_inv) %*% L_inv</code> * Comment Dos &amp; Don’ts <strong>Don’t</strong> turn code off and on with comments – you will not remember why it was commented out (was it buggy?, did you want to test somethign?) <code>r * cat("The value of x is", x)</code> - use conditional logic instead<br><code>r   if (DEBUG_MODE) {     cat("The value of x is", x)   }</code> Set <code>DEBUG_MODE</code> at the top of the script.</p>
 </div>
 <div class="section level2">
 <h2 id="code-smells">Code Smells<a class="anchor" aria-label="anchor" href="#code-smells"></a></h2>
@@ -257,7 +256,8 @@ get_some_data
 <li>
 <p>General Strategies</p>
 <ul><li>Embrace <strong>refactoring</strong>: rewriting code without changing its behavior (i.e. make it faster, cleaner, easier to use)</li>
-<li>follow a coding <strong>style guide</strong><ul><li>links in the resources</li></ul></li>
+<li>follow a coding <strong>style guide</strong><ul><li>links in the <a href="https://uf-repro.github.io/writing-reusable-code/resources.html" class="external-link">resources page</a>
+</li></ul></li>
 <li>use technological tools like automatic indentation and linters<ul><li>many modern IDEs (e.g. RStudio) have these built-in ## Thanks</li></ul></li>
 </ul></li>
 <li><p>Let me know what content you’d like to see</p></li>
