@@ -1,6 +1,7 @@
 ---
 title: "`r desc::desc_get('Title', '..')`"
 author: "Natya Hans"
+email: nhans@ufl.edu
 institute: "Academic Research Consulting and Services, University of Florida"
 date: "(updated: `r Sys.Date()`)"
 output:
